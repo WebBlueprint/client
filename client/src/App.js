@@ -1,6 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "./pages/Main";
 import Signup from "./compoenets/Signup";
 import Signin from "./compoenets/Signin";
 import Sidebar from "./compoenets/Sidebar";
@@ -19,9 +20,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Sidebar />
         <div className="App">
           <Routes>
+            <Route path="/" element={<Main />} />
             <Route path="signup" element={<Signup />} />
             <Route path="signin" element={<Signin />} />
             <Route path="test0" element={<Test0 />} />
