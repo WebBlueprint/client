@@ -39,6 +39,8 @@ const Sidebar = () => {
           return (
             <Link to={item.path} key={index}>
               <p>
+                {/* 현재 버튼 옆의 공백을 눌러도 버튼으로 인식됨 아마 p태그로 버튼을 묶어서 그런것 같음
+            나중에 수정 필요 */}
                 <SidebarButton className="sidebar_buttons" variant="light">
                   {item.name}
                 </SidebarButton>
