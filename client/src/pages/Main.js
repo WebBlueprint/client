@@ -5,56 +5,60 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import Popular from "../compoenets/Popular";
 
 const Main = () => {
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
   return (
-    <Container>
-      <Banner />
-      <h1>This is main page</h1>
-      <Row>
-        <Col>
-          <Cover>
-            <Introduce>
-              <Circle />
-              Hello {defaultName}
-            </Introduce>
-            <GenderArea>
-              Gender : {defaultGender} <Vertical /> Area : {defaultArea}
-            </GenderArea>
-          </Cover>
-        </Col>
-      </Row>
-      <Cover2>
+    <>
+      <Container>
+        <Banner />
+        <h1>This is main page</h1>
         <Row>
           <Col>
-            <SmCover>
-              <Link to="/reservations">Upcoming Reservations</Link>
-            </SmCover>
-          </Col>
-
-          <Col>
-            <SmCover>
-              <Link to="/review">My Lesson Review</Link>
-            </SmCover>
-          </Col>
-
-          <Col>
-            <SmCover>
-              <Link to="/schedules">View All Schedules</Link>
-            </SmCover>
-          </Col>
-
-          <Col>
-            <SmCover2>
-              <Link to="/talk_pro">Talk to the Pro</Link>
-            </SmCover2>
+            <Cover>
+              <Introduce>
+                <Circle />
+                Hello {defaultName}
+              </Introduce>
+              <GenderArea>
+                Gender : {defaultGender} <Vertical /> Area : {defaultArea}
+              </GenderArea>
+            </Cover>
           </Col>
         </Row>
-      </Cover2>
-    </Container>
+        <Cover2>
+          <Row>
+            <Col>
+              <SmCover>
+                <Link to="/reservations">Upcoming Reservations</Link>
+              </SmCover>
+            </Col>
+
+            <Col>
+              <SmCover>
+                <Link to="/review">My Lesson Review</Link>
+              </SmCover>
+            </Col>
+
+            <Col>
+              <SmCover>
+                <Link to="/schedules">View All Schedules</Link>
+              </SmCover>
+            </Col>
+
+            <Col>
+              <SmCover2>
+                <Link to="/talk_pro">Talk to the Pro</Link>
+              </SmCover2>
+            </Col>
+          </Row>
+        </Cover2>
+      </Container>
+      <Popular />
+    </>
   );
 };
 
