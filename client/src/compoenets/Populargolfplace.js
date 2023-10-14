@@ -28,11 +28,12 @@ const Populargolfplace = () => {
     },
   ]);
   return (
-    <>
+    <div>
       <Container>
         <Row>
           <Col>
             <Board>
+              <Top5place>Top 5 Popular Place</Top5place>
               {golfplacelist.map((a, b) => {
                 return <Populargolfplacedetail list={a} key={b} />;
               })}
@@ -40,14 +41,21 @@ const Populargolfplace = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 
 export default Populargolfplace;
 
 const Board = styled.div`
+  height: 284px;
+  margin-top: 80px;
   display: flex;
   width: 100%;
-  height: 284px;
+`;
+
+const Top5place = styled.p`
+  position: absolute;
+  bottom: -445px;
+  margin-left: 25px;
 `;

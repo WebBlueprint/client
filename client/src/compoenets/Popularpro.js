@@ -30,6 +30,7 @@ const Popularpro = () => {
         <Row>
           <Col>
             <Board>
+              <Top5pro>Top 5 Popular Pro</Top5pro>
               {prolist.map((a, b) => {
                 return <Popularprodetail list={a} key={b} />;
               })}
@@ -47,4 +48,11 @@ const Board = styled.div`
   display: flex;
   width: 100%;
   height: 284px;
+  margin-top: 70px;
+`;
+
+const Top5pro = styled.p`
+  position: absolute;
+  bottom: -80px;
+  margin-left: 25px;
 `;

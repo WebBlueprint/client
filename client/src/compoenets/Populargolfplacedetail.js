@@ -39,9 +39,9 @@ export default Populargolfplacedetail;
 const Board = styled.div`
   padding: 40px 20px 20px 20px;
   background-color: #d9d9d9;
-  margin-right: 40px;
+  margin: 0 10px 0 10px;
   border-radius: 30px;
-  width: 35%;
+  width: 100%;
 `;
 
 const Profile = styled.div`

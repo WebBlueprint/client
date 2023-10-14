@@ -72,6 +72,7 @@ const Cover = styled.div`
   margin-top: 50px;
   height: 87px;
   border-radius: 30px;
+  margin: 0 10px 0 10px;
 `;
 
 const Cover2 = styled.div`
@@ -82,7 +83,7 @@ const SmCover = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 5px;
+  margin: 0 10px 0 10px;
   background: #d9d9d9;
   height: 285px;
   border-radius: 30px;
@@ -95,6 +96,7 @@ const SmCover2 = styled.div`
   background: #d9d9d9;
   height: 285px;
   border-radius: 30px;
+  margin: 0 10px 0 5px;
 `;
 
 const GenderArea = styled.div`

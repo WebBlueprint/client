@@ -45,9 +45,9 @@ export default Popularprodetail;
 const Board = styled.div`
   padding: 40px 20px 20px 20px;
   background-color: #d9d9d9;
-  margin-right: 40px;
   border-radius: 30px;
-  width: 35%;
+  width: 100%;
+  margin: 0 10px 0 10px;
 `;
 
 const Profile = styled.div`
@@ -73,10 +73,6 @@ const Details2 = styled.div`
   left: 165px;
   font-size: 13px;
   line-height: 2px;
-`;
-
-const Details3 = styled.div`
-  display: flex;
 `;
 
 const Chatbutton = styled.button`
