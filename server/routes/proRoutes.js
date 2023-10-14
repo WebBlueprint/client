@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
+
 // 프로 정보 등록
 router.post('/signup', async (req, res) => {
     try {
@@ -14,8 +15,10 @@ router.post('/signup', async (req, res) => {
             password: hashedPassword,
             email: req.body.email
         });
-        await pro.save();
-        res.status(201).json({ message: "프로 등록!" });
+        // 동민님 유효성검사 어떻게 할까요 
+        // await pro.save()
+        await console.log(pro);
+        res.status(202).json({ message: "프로 등록!" });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

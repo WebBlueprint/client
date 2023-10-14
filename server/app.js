@@ -2,6 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+
+
 // const AWS = require('aws-sdk');
 
 // AWS 지역 설정
@@ -33,7 +36,7 @@ mongoose.connect(process.env.DB_CONNECT, {
     useUnifiedTopology: true
 }).catch(error => console.error('Mongoose connection error:', error));
 
-app.use(cors());  
+app.use(cors());
 app.use(express.json());
 
 // 라우터 설정

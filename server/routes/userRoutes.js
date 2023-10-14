@@ -15,8 +15,9 @@ router.post('/signup', async (req, res) => {
             email: req.body.email
         });
         console.log("Before Save");
-        await user.save();
-        console.log("Success");
+        // 동민님 유효성검사 어떻게 할까요 
+        // await user.save();
+        await console.log("Success");
         res.status(201).json({ message: "유저 등록!" });
     } catch (error) {
         console.error(error);
