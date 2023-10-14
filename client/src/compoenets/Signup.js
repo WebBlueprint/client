@@ -1,13 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+import golfimage from '../images/golfimage.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Signup.css"
+
+import { Form, Col, Row, Container } from 'react-bootstrap';
+
+// 컨테이너에 백그란운드 + 컨텐츠 두개 들어가고, 백그라운드를 4 컨테이너 6으로 놓고. 백그라운드에 꾸며주면 됨 
+const Background = styled.div`
+  background-color: #1B4607;
+  display: flex;
+  height: 100vh;
+`;
+
+const Background_Content = styled.div`
+  position: relative;
+  width: 80%;
+  left: 150px;
+  height: 75vh;
+  top: 180px;
+  font-family: "DM Sans";
+  font-weight: 700;
+  `
+
+const Golf_image = styled.img`
+position: relative;
+  width: 80%;
+  left: 120px;
+  `
 
 const Signup = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [cpassword, setCpassword] = useState("");
-    const [ispro, setIsPro] = useState(false)
+    const [ispro, setIsPro] = useState(false);
 
     const Register = async (event) => {
         event.preventDefault();
@@ -32,80 +61,107 @@ const Signup = () => {
                 console.log(error);
             }
         } else {
-            alert("Password is not matching");
+            alert("Password does not match");
         }
     };
 
-    // 민지님 sign up 디자인에는 username 적는 란이 없음
-    // 여기엔 username 우선은 추가함.
-    // 동민님이 유저인지 아닌지를 받아주는 조건을 APIs에 걸여줘야함
-    // 모델내에 isAdmin 만드실 건지 - 어떻게?
-
-    // 추가하기
-    // 유저네임, 이메일, 패스워드 각 이미 존재하는지 추가하기
-    // 비밀번호 잊었을 때 + remember me 추가하기
-    // 각 SNS로그인 추가하기
-
     return (
-        <div>
-            <h1>Sign Up</h1>
-            <form>
-                <div>
-                    <input name="isPro" type="radio" id="user" onChange={() => setIsPro(false)} />
-                    <label htmlFor="user">User</label>
-                    <input name="isPro" type="radio" id="pro" onChange={() => setIsPro(true)} />
-                    <label htmlFor="pro">Pro</label>
-                    {/* 라디오타입의 경우 name을 동일하게 하면 그 중 하나만 선택할 수 있게 됨 */}
-                </div>
+        <Container fluid>
+            <Row>
+                <Col xl={4}>
+                    <Background>
+                        <Background_Content>
+                            <p style={{ 'color': '#A4A3A3', 'font-size': "20px", "fontWeight": "200" }}>welcome</p>
+                            <h2 style={{ 'color': 'white', 'font-size': "40px" }}>Sign Up</h2>
+                            <Golf_image src={golfimage} />
+                        </Background_Content>
+                    </Background>
+                </Col>
+                <Col xl={8} className="d-flex align-items-center justify-content-center">
+                    <Form style={{ "width": "40%" }} >
+                        <Form.Group className="d-flex justify-content-between mb-3">
+                            <Form.Control
+                                type="button"
+                                value="User"
+                                label="User"
+                                name="isPro"
+                                id="user"
+                                checked={!ispro}
+                                onChange={() => setIsPro(false)}
+                                inline
+                                className="mr-3"
+                                style={{
+                                    "backgroundColor": "#F3F3F3", "height": "60px", "width": "240px", "borderRadius": "18px"
+                                }}
+                            />
+                            <Form.Control
+                                type="button"
+                                label="Pro"
+                                value="Pro"
+                                name="isPro"
+                                id="pro"
+                                checked={ispro}
+                                onChange={() => setIsPro(true)}
+                                inline
+                                style={{ "backgroundColor": "#F3F3F3", "height": "60px", "width": "240px", "borderRadius": "18px" }}
 
-                <div>
-                    <input
-                        placeholder="username"
-                        onChange={(e) => {
-                            setUsername(e.target.value);
-                        }}
-                        value={username}
-                    ></input>
-                </div>
-                <div>
-                    <input
-                        placeholder="email"
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                        value={email}
-                    ></input>
-                </div>
-                <div>
-                    <input
-                        placeholder="Password"
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        value={password}
-                    ></input>
-                </div>
-                <div>
-                    <input
-                        placeholder="Concirm Password"
-                        onChange={(e) => {
-                            setCpassword(e.target.value);
-                        }}
-                        value={cpassword}
-                    ></input>
-                </div>
-
-                <div>
-                    <button onClick={Register}>Sign Up</button>
-                    <br></br>
-                    Already have an account?
-                    <a href="/signin">Sign in</a>
-                    <br></br>
-                    icons
-                </div>
-            </form>
-        </div>
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="mb-3"
+                                style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="mb-3"
+                                style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="mb-3"
+                                style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control
+                                type="password"
+                                placeholder="Confirm Password"
+                                value={cpassword}
+                                onChange={(e) => setCpassword(e.target.value)}
+                                className="mb-3"
+                                style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
+                            />
+                        </Form.Group>
+                        <div style={{ "display": "flex", justifyContent: "center" }}>
+                            <Button variant="success" onClick={Register} style={{ "width": "80%", "height": "45px", "backgroundColor": "#1B4607" }}>
+                                Sign Up
+                            </Button>
+                        </div>
+                        <br />
+                        Already have an account? <a href="/signin">Sign in</a>
+                        <br />
+                        Icons
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
 export default Signup;
+
