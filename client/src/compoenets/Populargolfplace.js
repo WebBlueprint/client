@@ -56,6 +56,6 @@ const Board = styled.div`
 
 const Top5place = styled.p`
   position: absolute;
-  bottom: -445px;
+  bottom: -400px;
   margin-left: 25px;
 `;
