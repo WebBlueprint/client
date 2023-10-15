@@ -40,7 +40,11 @@ const Signup = () => {
 
     const Register = async (event) => {
         event.preventDefault();
-        if (password === cpassword) {
+        const regex = /^(?=.*[a-zA-Z])(?=.*\d).{4,}$/;
+        // 최소4글자, 영문, 숫자 포함 regex
+        if (regex.test(password) && password === cpassword) {
+            console.log("Your password is validated");
+
             const userData = {
                 username,
                 email,
@@ -50,10 +54,11 @@ const Signup = () => {
             try {
                 let result;
                 if (ispro) {
-                    // result = await axios.get("http://localhost:3000/pro/signup");
                     result = await axios.post("http://localhost:3000/pro/signup", userData);
+                    alert("Pro signed up");
                 } else {
                     result = await axios.post("http://localhost:3000/user/signup", userData);
+                    alert("User signed up");
                 }
 
                 console.log(result.data);
@@ -61,7 +66,11 @@ const Signup = () => {
                 console.log(error);
             }
         } else {
-            alert("Password does not match");
+            if (!regex.test(password)) {
+                alert("Your password should have more than 4 letters including alphabet and number.");
+            } else {
+                alert("Password does not match.");
+            }
         }
     };
 
@@ -71,8 +80,8 @@ const Signup = () => {
                 <Col xl={4}>
                     <Background>
                         <Background_Content>
-                            <p style={{ 'color': '#A4A3A3', 'font-size': "20px", "fontWeight": "200" }}>welcome</p>
-                            <h2 style={{ 'color': 'white', 'font-size': "40px" }}>Sign Up</h2>
+                            <p style={{ 'color': '#A4A3A3', 'fontSize': "20px", "fontWeight": "200" }}>welcome</p>
+                            <h2 style={{ 'color': 'white', 'fontSize': "40px" }}>Sign Up</h2>
                             <Golf_image src={golfimage} />
                         </Background_Content>
                     </Background>
@@ -86,9 +95,8 @@ const Signup = () => {
                                 label="User"
                                 name="isPro"
                                 id="user"
-                                checked={!ispro}
-                                onChange={() => setIsPro(false)}
-                                inline
+                                onClick={() => setIsPro(false)}
+                                inline="true"
                                 className="mr-3"
                                 style={{
                                     "backgroundColor": "#F3F3F3", "height": "60px", "width": "240px", "borderRadius": "18px"
@@ -100,9 +108,8 @@ const Signup = () => {
                                 value="Pro"
                                 name="isPro"
                                 id="pro"
-                                checked={ispro}
-                                onChange={() => setIsPro(true)}
-                                inline
+                                onClick={() => setIsPro(true)}
+                                inline="true"
                                 style={{ "backgroundColor": "#F3F3F3", "height": "60px", "width": "240px", "borderRadius": "18px" }}
 
                             />
@@ -113,7 +120,7 @@ const Signup = () => {
                                 placeholder="Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                className="mb-3"
+                                className="mb-3 place_holder"
                                 style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
                             />
                         </Form.Group>
@@ -123,7 +130,7 @@ const Signup = () => {
                                 placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="mb-3"
+                                className="mb-3 place_holder"
                                 style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
                             />
                         </Form.Group>
@@ -133,7 +140,7 @@ const Signup = () => {
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="mb-3"
+                                className="mb-3 place_holder"
                                 style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
                             />
                         </Form.Group>
@@ -143,7 +150,7 @@ const Signup = () => {
                                 placeholder="Confirm Password"
                                 value={cpassword}
                                 onChange={(e) => setCpassword(e.target.value)}
-                                className="mb-3"
+                                className="mb-3 place_holder"
                                 style={{ "backgroundColor": "#F3F3F3", "height": "50px", "borderRadius": "18px" }}
                             />
                         </Form.Group>

@@ -2,3 +2,7 @@
     border-color: #1B4607 !important;
     box-shadow: 0 0 0 0.1rem #8ebdb1 !important;
   }
+
+  .place_holder{
+    text-indent: 20px;
+  }
