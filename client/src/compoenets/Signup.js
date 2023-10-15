@@ -55,10 +55,10 @@ const Signup = () => {
                 let result;
                 if (ispro) {
                     result = await axios.post("http://localhost:3000/pro/signup", userData);
-                    alert("Pro signed up");
+                    window.location.href = "/"
                 } else {
                     result = await axios.post("http://localhost:3000/user/signup", userData);
-                    alert("User signed up");
+                    window.location.href = "/"
                 }
 
                 console.log(result.data);
@@ -97,7 +97,7 @@ const Signup = () => {
                                 id="user"
                                 onClick={() => setIsPro(false)}
                                 inline="true"
-                                className="mr-3"
+                                className={!ispro ? "mr-3 isProButton_clicks" : "mr-3"}
                                 style={{
                                     "backgroundColor": "#F3F3F3", "height": "60px", "width": "240px", "borderRadius": "18px"
                                 }}
@@ -108,6 +108,7 @@ const Signup = () => {
                                 value="Pro"
                                 name="isPro"
                                 id="pro"
+                                className={ispro ? "isProButton_clicks" : ""}
                                 onClick={() => setIsPro(true)}
                                 inline="true"
                                 style={{ "backgroundColor": "#F3F3F3", "height": "60px", "width": "240px", "borderRadius": "18px" }}
