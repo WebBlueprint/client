@@ -1,0 +1,12 @@
+.cover {
+    display: grid;
+  
+    border-radius: 1em;
+    padding: 1em;
+  
+    display: grid;
+    grid-template-columns: 40px 1fr;
+  
+    text-align: left;
+  }
+  

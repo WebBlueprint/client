@@ -1,0 +1,14 @@
+.app {
+    font-family: sans-serif;
+    text-align: center;
+    position: relative;
+    top: 150px;
+  }
+  
+  .settingbody {
+    display: grid;
+    grid-template-columns: 200px auto;
+  
+    padding: 1em;
+  }
+  

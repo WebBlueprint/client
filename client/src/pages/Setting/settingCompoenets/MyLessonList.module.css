@@ -1,0 +1,46 @@
+.cover {
+    margin-bottom: 2em;
+    width: 100%;
+  }
+  
+  .myLessons {
+    background-color: #e2e7e0;
+    padding: 1em;
+    border-radius: 1em;
+    position: relative;
+    width: 40%; /* 2개의 열로 배치하므로 50% 너비, 여백은 2em */
+    margin: 2em;
+    display: inline-block; /* 인라인 레벨로 배치 */
+    box-sizing: border-box; /* 여백 포함한 전체 크기 */
+  }
+  
+  .iconwrap {
+    position: absolute;
+    background-color: #1b4607;
+    width: 5px;
+    height: 90%;
+    left: -2px;
+  }
+  
+  .text {
+    padding: 10px;
+    text-align: left;
+    line-height: 1.2; /* 원하는 간격으로 조정 */
+  }
+  
+  .btnwrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .griddisplay {
+    display: flex; /* 그리드 대신 flex 사용 */
+    flex-wrap: wrap; /* 자동 줄 바꿈 활성화 */
+    gap: 2em; /* 각 열 간격 설정 */
+  }
+  
+  .grid2 {
+    width: 100%;
+    flex: 1; /* 2개의 열을 동일한 너비로 설정 */
+  }
+  

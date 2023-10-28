@@ -1,84 +1,206 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import styled, { createGlobalStyle } from "styled-components";
+import golfimage from "../images/golfimage.svg";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Signup.css";
+import { Form, Col, Row, Container, Button } from "react-bootstrap";
 
-const Signin = () => {
+
+//사인인은 라우터 환겨변수 밸류 나오면 확인하자.
+
+const Background = styled.div`
+  background-color: #1b4607;
+  display: flex;
+  height: 100vh;
+`;
+
+const GlobalStyle = createGlobalStyle` // 배경꽉채우기
+  body{
+    padding: 0;
+    margin: 0;
+  }
+`;
+
+const Background_Content = styled.div`
+  position: relative;
+  width: 80%;
+  left: 150px;
+  height: 75vh;
+  top: 180px;
+  font-family: "DM Sans";
+  font-weight: 700;
+`;
+
+const Golf_image = styled.img`
+  position: relative;
+  width: 80%;
+  left: 120px;
+`;
+
+const Signup = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [ispro, setIsPro] = useState(false)
-    // 보내야할 유저 데이터 state 정리
+    const [ispro, setIsPro] = useState(false);
 
-    const Login = async (event) => {
+    const Register = async (event) => {
         event.preventDefault();
-        const userData = {
-            username,
-            password,
-            ispro
-        };
-        // 유저 데이터 오브젝트 
-        try {
-            let result;
-            if (ispro) {
-                // result = await axios.get("http://localhost:3000/pro/signup");
-                result = await axios.post("http://localhost:3000/pro/login", userData);
-            } else {
-                result = await axios.post("http://localhost:3000/user/login", userData);
-            }
-            // 프로 true -> pro 라우터로, 아니면 user라우터로.
-            console.log(result.data);
-        } catch (error) {
-            console.log(error);
-        }
+        const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
+        // 최소4글자, 영문, 숫자 포함 regex
+        if (regex.test(password)) {
+            console.log("Your password is validated");
 
+            const userData = {
+                username,
+                password,
+                ispro
+            };
+
+            try {
+                let result;
+                if (ispro) {
+                    result = await axios.post(
+                        "http://localhost:3000/login",
+                        userData
+                    );
+                    alert(result.data.message);  // 여기에 추가
+                    window.location.href = "/";
+                } else {
+                    result = await axios.post(
+                        "http://localhost:3000/login",
+                        userData
+                    );
+                    alert(result.data.message);  // 여기에 추가
+                    window.location.href = "/";
+                }
+
+                console.log(result.data);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            if (!regex.test(password)) {
+                alert(
+                    "Your password should have more than 4 letters including alphabet and number."
+                );
+            } else {
+                alert("Password does not match.");
+            }
+        }
     };
 
-    // 유저네임, 이메일, 패스워드 각 이미 존재하는지 여부 확인 -> 이건 몽고DB 접근권한 받아야 테스트 가능 
-    // 비밀번호 잊었을 때 + remember me
-    // 각 SNS로그인 - auth
-
     return (
-        <div>
-            <h1>Sign In</h1>
-            <form>
+        <Container fluid>
+            <GlobalStyle />
+            <Row>
+                <Col xl={4}>
+                    <Background>
+                        <Background_Content>
+                            <p
+                                style={{
+                                    color: "#A4A3A3",
+                                    fontSize: "20px",
+                                    fontWeight: "200"
+                                }}
+                            >
+                                welcome
+                            </p>
+                            <h2 style={{ color: "white", fontSize: "40px" }}>Sign In</h2>
+                            <Golf_image src={golfimage} />
+                        </Background_Content>
+                    </Background>
+                </Col>
+                <Col
+                    xl={8}
+                    className="d-flex align-items-center justify-content-center"
+                >
+                    <Form style={{ width: "40%" }}>
+                        <Form.Group className="d-flex justify-content-between mb-3">
+                            <Form.Control
+                                type="button"
+                                value="User"
+                                label="User"
+                                name="isPro"
+                                id="user"
+                                onClick={() => setIsPro(false)}
+                                inline="true"
+                                className={!ispro ? "mr-3 isProButton_clicks" : "mr-3"}
+                                style={{
+                                    backgroundColor: "#F3F3F3",
+                                    height: "60px",
+                                    width: "240px",
+                                    borderRadius: "18px"
+                                }}
+                            />
+                            <Form.Control
+                                type="button"
+                                label="Pro"
+                                value="Pro"
+                                name="isPro"
+                                id="pro"
+                                className={ispro ? "isProButton_clicks" : ""}
+                                onClick={() => setIsPro(true)}
+                                inline="true"
+                                style={{
+                                    backgroundColor: "#F3F3F3",
+                                    height: "60px",
+                                    width: "240px",
+                                    borderRadius: "18px"
+                                }}
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Control
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="mb-3 place_holder"
+                                style={{
+                                    backgroundColor: "#F3F3F3",
+                                    height: "50px",
+                                    borderRadius: "18px"
+                                }}
+                            />
+                        </Form.Group>
 
-                <div>
-                    <input name="isPro" type="radio" id="user" onChange={() => setIsPro(false)} />
-                    <label htmlFor="user">User</label>
-                    <input name="isPro" type="radio" id="pro" onChange={() => setIsPro(true)} />
-                    {/* onChange 에서 ()=> 없이 바로 setIsPro하면 너무 많은 render 요청으로 오류남. */}
-                    <label htmlFor="pro">Pro</label>
-                </div>
-                <div>
-                    <input
-                        placeholder="username"
-                        onChange={(e) => {
-                            setUsername(e.target.value);
-                        }}
-                        value={username}
-                    ></input>
-                </div>
-                <div>
-                    <input
-                        placeholder="Password"
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        value={password}
-                    ></input>
-                </div>
-                <div>
-                    <button onClick={Login}>Sign In</button>
-                    <br></br>
-                    <a href="/passcheck">Forgot Password?</a>
-                    <div>
-                        New to Golfing?
-                        <a href="/signup">Join Now</a>
-                    </div>
-                    <br></br>
-                    icons
-                </div>
-            </form>
-        </div>
+                        <Form.Group>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="mb-3 place_holder"
+                                style={{
+                                    backgroundColor: "#F3F3F3",
+                                    height: "50px",
+                                    borderRadius: "18px"
+                                }}
+                            />
+                        </Form.Group>
+
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                            <Button
+                                variant="success"
+                                onClick={Register}
+                                style={{
+                                    width: "80%",
+                                    height: "45px",
+                                    backgroundColor: "#1B4607"
+                                }}
+                            >
+                                Sign In
+                            </Button>
+                        </div>
+                        <br />
+                        Forgot Password? <a href="/signup">Sign Up</a>
+                        <br />
+                        Icons
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
-export default Signin;
+export default Signup;
