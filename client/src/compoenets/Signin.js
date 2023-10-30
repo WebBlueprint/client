@@ -7,6 +7,7 @@ import "./Signup.css";
 import { Form, Col, Row, Container, Button } from "react-bootstrap";
 
 
+
 //사인인은 라우터 환겨변수 밸류 나오면 확인하자.
 
 const Background = styled.div`
