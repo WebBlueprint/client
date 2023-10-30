@@ -10,6 +10,7 @@ function GoogleLogin() {
         var userObj = jwtDecode(response.credential)
         console.log(userObj)
         setUser(userObj)
+        window.location.href = "/";
     }
 
 
