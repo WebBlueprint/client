@@ -1,0 +1,51 @@
+.cover {
+  background-color: #e2e7e0;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 2em;
+  display: grid;
+  grid-template-columns: 240px 200px 1fr;
+  width: em;
+}
+
+.btnbox {
+  display: flex; /* Change display to flex */
+  flex-direction: column; /* Set flex-direction to column */
+  justify-self: end;
+  align-self: center; /* Align vertically to the center */
+}
+
+.text {
+  color: #4b4b4b;
+  text-align: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  height: 70px;
+}
+
+.image {
+  background: yellow;
+  position: relative;
+  width: 240px;
+  height: 150px;
+  border-radius: 1em;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -2em;
+}
+
+.heart {
+  display: flex;
+  position: relative;
+  top: -10px;
+  left: 2em;
+
+  width: 2em; /* Set the desired width */
+  height: 2em; /* Set the desired height */
+  padding: 2px;
+}

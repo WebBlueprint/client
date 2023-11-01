@@ -1,0 +1,22 @@
+.cover {
+  background-color: #e2e7e0;
+  padding: 1em;
+  border-radius: 1em;
+  position: relative;
+  width: 250px;
+}
+
+.iconwrap {
+  position: absolute;
+  background-color: #1b4607;
+  width: 5px;
+  height: 90%;
+
+  left: -2px;
+}
+
+.text {
+  padding: 10px;
+  justify-self: start;
+  text-align: left;
+}

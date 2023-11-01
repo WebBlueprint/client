@@ -1,0 +1,49 @@
+.cover {
+  background-color: #e2e7e0;
+  display: grid;
+  grid-template-columns: 55px 1fr;
+  padding: 1em;
+  border-radius: 1em;
+
+  width: 250px;
+  margin: 2em;
+}
+
+.cover:hover {
+  background-color: #1b4607;
+  color: white;
+}
+
+.iconwrap {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.non {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 20px;
+}
+
+.cover:hover button {
+  background-color: #e2e7e0;
+  color: #1b4607;
+}
+
+.text {
+  padding: 10px;
+  justify-self: start;
+  text-align: left;
+}
+
+.text > button {
+  justify-self: center;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}

@@ -1,0 +1,30 @@
+.cover {
+  background-color: #e2e7e0;
+  padding: 1em;
+  border-radius: 1em;
+  position: relative;
+  width: 250px;
+  margin: 2em;
+  display: flex;
+  flex-direction: column; /* Make its content stack vertically */
+  align-items: left; /* Center-align its children */
+  text-align: center; /* Center-align the text */
+}
+
+.iconwrap {
+  position: absolute;
+  background-color: #1b4607;
+  width: 5px;
+  height: 90%;
+  left: -2px;
+}
+
+.text {
+  padding: 10px;
+  justify-self: start;
+  text-align: left;
+}
+
+button {
+  margin-top: 10px; /* Add space between text and button */
+}

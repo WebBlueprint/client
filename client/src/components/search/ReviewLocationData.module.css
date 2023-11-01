@@ -1,0 +1,29 @@
+.cover {
+  border: 1.5px solid #1b4607;
+  border-radius: 3em;
+  display: flex;
+  grid-template-columns: 110px 240px 1fr;
+  padding: 20px;
+  width: 180%;
+  align-items: center;
+  margin-top: 30px;
+}
+.img {
+  width: 100px;
+  height: 100px;
+  background-color: #1b4607;
+  border-radius: 50%;
+}
+
+.btnbox {
+  justify-self: end;
+  align-self: center;
+  height: 50px;
+}
+.text {
+  color: #4b4b4b;
+  text-align: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  height: 70px;
+}
