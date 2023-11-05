@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Popular from "./Popular";
+import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
 
 const Main = () => {
   const defaultName = "guest";
@@ -14,26 +15,31 @@ const Main = () => {
   return (
     <>
       <Container>
-        <Banner />
-        <h1>This is main page</h1>
-        <Row>
-          <Col>
-            <Cover>
-              <Introduce>
-                <Circle />
-                Hello {defaultName}
-              </Introduce>
-              <GenderArea>
-                Gender : {defaultGender} <Vertical /> Area : {defaultArea}
-              </GenderArea>
-            </Cover>
-          </Col>
-        </Row>
-        <Cover2>
+        <div style={{ marginTop: "120px" }}>
+          <Banner />
+          <h1>This is main page</h1>
           <Row>
-            <Col></Col>
+            <Col>
+              <Cover>
+                <Introduce>
+                  <Circle />
+                  Hello {defaultName}
+                </Introduce>
+                <GenderArea>
+                  Gender : {defaultGender} <Vertical /> Area : {defaultArea}
+                </GenderArea>
+              </Cover>
+            </Col>
           </Row>
-        </Cover2>
+          <Cover2>
+            <Row>
+              <Col>
+                {/* map돌려야함*/}
+                <LessonRemaining />
+              </Col>
+            </Row>
+          </Cover2>
+        </div>
       </Container>
       <Popular />
     </>

@@ -1,13 +1,21 @@
+import Calendars from "./calendar";
+import LessonReview from "./lessonReview";
+import styled, { css } from "styled-components";
+
 function Schedule() {
   return (
     <>
-      <h1>
-        <a style={{ color: "blue", lineHeight: 10, padding: 40 }}>
-          This is schedule
-        </a>
-      </h1>
+      <Board>
+        <LessonReview />
+        <Calendars />
+      </Board>
     </>
   );
 }
 
 export default Schedule;
+
+const Board = styled.div`
+  display: flex;
+  margin-top: 150px;
+`;
