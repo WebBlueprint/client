@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import styles from "../routes/search.module.css";
+import styles from "./search.module.css";
 import { faSearch, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import list from "../routes/locationlist.json";
+import list from "./locationlist.json";
 
 library.add(faLocationArrow);
 

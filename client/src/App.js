@@ -1,16 +1,16 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Main from "./pages/Main";
-import Signup from "./components/Signup";
-import Signin from "./components/Signin";
-import Navbar from "./components/Navbar";
-import Search from "./components/routes/Search";
-import Booking from "./components/routes/Booking";
-import Schedule from "./components/routes/Schedule";
-import Lessons from "./components/routes/Lesson";
-import Chat from "./components/routes/Chat";
-import Setting from "./pages/Setting/Setting";
+import Main from "./components/main/Main";
+import Signup from "./components/signup/Signup";
+import Signin from "./components/signin/Signin";
+import Navbar from "./components/navbar/Navbar";
+import Search from "./components/search/Search";
+import Booking from "./components/booking/booking";
+import Schedule from "./components/schedule/schedule";
+import Lessons from "./components/lessons/Lessons";
+import Chat from "./components/chat/chat";
+import Setting from "./components/setting/settingComponents/Setting";
 
 ///10/07/2023
 // Navbar 만들기

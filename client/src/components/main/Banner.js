@@ -1,5 +1,5 @@
 import Carousel from "react-bootstrap/Carousel";
-import { ReactComponent as HomeIcon } from "../icons/home.svg";
+import { ReactComponent as HomeIcon } from "../../svgs/home.svg";
 
 function Banner() {
   return (

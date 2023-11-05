@@ -29,7 +29,7 @@ const Setting = () => {
       alert("비밀번호를 확인하세요.");
     }
   };
-  1;
+
   return (
     <div className={styles.userinfocontainer}>
       <div className={styles.grid}>

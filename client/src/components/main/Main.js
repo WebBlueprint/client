@@ -1,11 +1,11 @@
 import React from "react";
-import Banner from "../components/Banner";
+import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import Popular from "../components/Popular";
+import Popular from "./Popular";
 
 const Main = () => {
   const defaultName = "guest";

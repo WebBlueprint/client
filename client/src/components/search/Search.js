@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "./searchbar";
 import ReviewLocation from "./ReviewLocation";
-import styles from "../routes/search.module.css"; // search.module.css 파일을 import합니다.
+import styles from "./search.module.css"; // search.module.css 파일을 import합니다.
 
 const Search = () => {
   return (
