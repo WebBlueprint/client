@@ -1,22 +1,11 @@
 import React from "react";
-<<<<<<< HEAD:client/src/pages/Main.js
-import Banner from "../components/Banner";
-=======
 import Banner from "./Banner";
->>>>>>> 834a486db9c016655b339eaae0d12a675caceca2:client/src/components/main/Main.js
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD:client/src/pages/Main.js
-import Popular from "../components/Popular";
-import Upcoming from "../components/Upcoming";
-import GlobalFont from "../Theme/GlobalFont";
-import Search from "../components/Search";
-=======
 import Popular from "./Popular";
->>>>>>> 834a486db9c016655b339eaae0d12a675caceca2:client/src/components/main/Main.js
 
 const Main = () => {
   const defaultName = "guest";
@@ -24,7 +13,6 @@ const Main = () => {
   const defaultArea = "KL";
   return (
     <>
-      <GlobalFont />
       <Container>
         <Banner />
         <h1>This is main page</h1>
@@ -41,12 +29,9 @@ const Main = () => {
             </Cover>
           </Col>
         </Row>
-        <Search />
         <Cover2>
           <Row>
-            <Col>
-              <Upcoming />
-            </Col>
+            <Col></Col>
           </Row>
         </Cover2>
       </Container>

@@ -1,17 +1,5 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-<<<<<<< HEAD
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./pages/Main";
-import Signup from "./components/Signup";
-import Signin from "./components/Signin";
-import Sidebar from "./components/Sidebar";
-import Test0 from "./pages/Test0";
-import Test1 from "./pages/Test1";
-import Test2 from "./pages/Test2";
-import Test3 from "./pages/Test3";
-import Test4 from "./pages/Test4";
-=======
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Main from "./components/main/Main";
 import Signup from "./components/signup/Signup";
@@ -23,7 +11,6 @@ import Schedule from "./components/schedule/schedule";
 import Lessons from "./components/lessons/Lessons";
 import Chat from "./components/chat/chat";
 import Setting from "./components/setting/settingComponents/Setting";
->>>>>>> 834a486db9c016655b339eaae0d12a675caceca2
 
 ///10/07/2023
 // Navbar 만들기
