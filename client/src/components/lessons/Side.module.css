@@ -1,0 +1,22 @@
+/* Side.module.css */
+.cover1,
+.cover2 {
+  display: grid;
+  border-radius: 1em;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  text-align: left;
+  color: #d9d9d9; /* Default background color */
+  list-style-type: none;
+}
+
+.active {
+  color: #1b4607;
+  list-style-type: none; /* Background color when the tab is active */
+}
+
+.activeText {
+  color: #1b4607; /* Text color for the active tab */
+  list-style-type: none;
+}

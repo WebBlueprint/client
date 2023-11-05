@@ -1,0 +1,58 @@
+/* View.module.css */
+
+.cover {
+  background-color: #e2e7e0;
+  border: none;
+  border-radius: 1em;
+  padding: 3px;
+  height: 100%;
+}
+
+.imgbox {
+  background-color: black;
+  width: 150px;
+  height: 100px;
+  margin: 5px;
+}
+
+.imgbox1 {
+  background-color: mintcream;
+  width: 150px;
+  height: 100px;
+  margin: 5px;
+}
+
+.imgboxList {
+  display: flex;
+}
+
+.commentbox {
+  background-color: mintcream;
+  width: 480px;
+  height: 100px;
+  margin: 5px;
+}
+
+.ReviewText {
+  margin: 3em;
+  overflow: scroll;
+}
+
+.tabButtons {
+  display: flex;
+}
+
+.tab {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: #d9d9d9;
+}
+
+.tabActive {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: #1b4607;
+  text-decoration: underline;
+}

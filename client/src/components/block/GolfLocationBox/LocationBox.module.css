@@ -1,0 +1,27 @@
+.cover {
+  position: relative;
+  background: #e2e7e0;
+  border-radius: 1em;
+  width: 260px;
+  padding: 10px;
+  margin: 2em;
+  text-align: center;
+}
+
+.map {
+  background: yellow;
+  position: relative;
+  width: 220px;
+  height: 110px;
+  border-radius: 1em;
+  left: 10px;
+}
+
+.text {
+  color: #4b4b4b;
+  text-align: left;
+  line-height: 2px;
+  padding-top: 1em;
+  padding-left: 1em;
+  height: 70px;
+}

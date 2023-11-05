@@ -1,0 +1,11 @@
+.cover {
+  position: relative;
+  top: 7em;
+  padding: 2em;
+
+  display: grid;
+  grid-template-columns: 285px auto;
+
+  margin: 2em;
+  padding: 1em;
+}

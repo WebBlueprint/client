@@ -1,0 +1,26 @@
+.cover {
+  position: relative;
+  width: 100%;
+  height: 700px;
+}
+.appsin {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  top: 100px;
+}
+
+.settingbody {
+  display: grid;
+  grid-template-columns: 285px auto;
+
+  margin: 2em;
+  padding: 1em;
+}
+
+.content {
+  position: absolute;
+  display: flex;
+  top: 10em;
+  left: 40em;
+}

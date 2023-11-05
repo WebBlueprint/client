@@ -1,0 +1,72 @@
+.cover {
+  background-color: #e2e7e0;
+  display: grid;
+  grid-template-columns: 55px 1fr;
+  padding: 1em;
+  border-radius: 1em;
+  margin: 2em;
+
+  width: 350px;
+}
+
+.iconwrap {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.non {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 20px;
+}
+
+.text {
+  padding: 10px;
+  justify-self: start;
+  text-align: left;
+}
+
+.text > button {
+  justify-self: center;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.buttonwrap {
+  display: flex;
+}
+
+.name {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.Cheart {
+  position: absolute;
+  justify-self: right;
+  margin-left: 12em;
+  margin-top: -2.5em;
+  background-color: lightcoral;
+}
+
+.btnwrap {
+  text-align: center;
+}
+
+.heart {
+  display: flex;
+  position: absolute;
+  top: 12em;
+  left: 38em;
+  margin: 2em;
+
+  width: 2em; /* Set the desired width */
+  height: 2em; /* Set the desired height */
+  padding: 2px;
+}
