@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../application/store/AuthContext"
 import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,51 +12,55 @@ const Main = () => {
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
   return (
     <>
+      {/* /{console.log(isLoggedIn)} */}
       <Container>
-        <Banner />
-        <h1>This is main page</h1>
-        <Row>
-          <Col>
-            <Cover>
-              <Introduce>
-                <Circle />
-                Hello {defaultName}
-              </Introduce>
-              <GenderArea>
-                Gender : {defaultGender} <Vertical /> Area : {defaultArea}
-              </GenderArea>
-            </Cover>
-          </Col>
-        </Row>
-        <Cover2>
+        <div style={{ marginTop: "120px" }}>
+          <Banner />
+          <h1>This is main page</h1>
           <Row>
             <Col>
-              <SmCover>
-                <Link to="/reservations">Upcoming Reservations</Link>
-              </SmCover>
-            </Col>
-
-            <Col>
-              <SmCover>
-                <Link to="/review">My Lesson Review</Link>
-              </SmCover>
-            </Col>
-
-            <Col>
-              <SmCover>
-                <Link to="/schedules">View All Schedules</Link>
-              </SmCover>
-            </Col>
-
-            <Col>
-              <SmCover2>
-                <Link to="/talk_pro">Talk to the Pro</Link>
-              </SmCover2>
+              <Cover>
+                <Introduce>
+                  <Circle />
+                  Hello {defaultName}
+                </Introduce>
+                <GenderArea>
+                  Gender : {defaultGender} <Vertical /> Area : {defaultArea}
+                </GenderArea>
+              </Cover>
             </Col>
           </Row>
-        </Cover2>
+          <Cover2>
+            <Row>
+              <Col>
+                <SmCover>
+                  <Link to="/reservations">Upcoming Reservations</Link>
+                </SmCover>
+              </Col>
+
+              <Col>
+                <SmCover>
+                  <Link to="/review">My Lesson Review</Link>
+                </SmCover>
+              </Col>
+
+              <Col>
+                <SmCover>
+                  <Link to="/schedules">View All Schedules</Link>
+                </SmCover>
+              </Col>
+
+              <Col>
+                <SmCover2>
+                  <Link to="/talk_pro">Talk to the Pro</Link>
+                </SmCover2>
+              </Col>
+            </Row>
+          </Cover2>
+        </div>
       </Container>
       <Popular />
     </>

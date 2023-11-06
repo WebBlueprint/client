@@ -11,3 +11,7 @@
   .place_holder{
     text-indent: 20px;
   }
+
+  .fill_bg {
+    padding-left: 0;
+  }

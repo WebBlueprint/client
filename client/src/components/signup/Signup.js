@@ -90,7 +90,7 @@ const Signup = () => {
       <Container fluid>
         <GlobalStyle />
         <Row>
-          <Col xl={4}>
+          <Col xl={4} className="fill_bg">
             <Background>
               <Background_Content>
                 <p
@@ -125,7 +125,7 @@ const Signup = () => {
                   style={{
                     backgroundColor: "#F3F3F3",
                     height: "60px",
-                    width: "240px",
+                    width: "50%",
                     borderRadius: "18px",
                   }}
                 />
@@ -141,7 +141,7 @@ const Signup = () => {
                   style={{
                     backgroundColor: "#F3F3F3",
                     height: "60px",
-                    width: "240px",
+                    width: "50%",
                     borderRadius: "18px",
                   }}
                 />

@@ -1,6 +1,8 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import React, { useContext } from 'react';
+import { AuthProvider, AuthContext } from './components/application/store/AuthContext';
 import Main from "./components/main/Main";
 import Signup from "./components/signup/Signup";
 import Signin from "./components/signin/Signin";
@@ -23,25 +25,26 @@ const NavbarLayout = () => (
     <Outlet />
   </>
 );
-
 function App() {
   return (
     <div>
       <BrowserRouter>
         <div className="App">
-          <Routes>
-            <Route element={<NavbarLayout />}>
-              <Route path="/" element={<Main />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/booking" element={<Booking />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/lessons" element={<Lessons />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/setting" element={<Setting />} />
-            </Route>
-            <Route path="signup" element={<Signup />} />
-            <Route path="signin" element={<Signin />} />
-          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route element={<NavbarLayout />}>
+                <Route path="/" element={<Main />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/booking" element={<Booking />} />
+                <Route path="/schedule" element={<Schedule />} />
+                <Route path="/lessons" element={<Lessons />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/setting" element={<Setting />} />
+              </Route>
+              <Route path="signup" element={<Signup />} />
+              <Route path="signin" element={<Signin />} />
+            </Routes>
+          </AuthProvider>
         </div>
       </BrowserRouter>
     </div>
