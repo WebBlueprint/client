@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,11 +7,15 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Popular from "./Popular";
 import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
+import LessonHeader from "../block/Header/Header"
+import { ReactComponent as HomeIcon } from "../../svgs/home.svg";
 
 const Main = () => {
+  const [loggedin, setLoggedin] = useState(false)
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
+ 
   return (
     <>
       <Container>
@@ -20,22 +24,14 @@ const Main = () => {
           <h1>This is main page</h1>
           <Row>
             <Col>
-              <Cover>
-                <Introduce>
-                  <Circle />
-                  Hello {defaultName}
-                </Introduce>
-                <GenderArea>
-                  Gender : {defaultGender} <Vertical /> Area : {defaultArea}
-                </GenderArea>
-              </Cover>
+              <LessonHeader/>
             </Col>
           </Row>
           <Cover2>
             <Row>
               <Col>
                 {/* map돌려야함*/}
-                <LessonRemaining />
+                {loggedin ? <LessonRemaining /> : <p>Not loggined</p>}
               </Col>
             </Row>
           </Cover2>
