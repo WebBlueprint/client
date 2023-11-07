@@ -10,7 +10,7 @@ import Booking from "./components/booking/booking";
 import Schedule from "./components/schedule/schedule";
 import Lessons from "./components/lessons/Lessons";
 import Chat from "./components/chat/chat";
-import Setting from "./components/setting/settingComponents/Setting";
+import Setting from "./components/setting/settingMain";
 import LocationBox from "../src/components/block/GolfLocationBox/LocationBox";
 import ReviewLocation from "../src/components/block/GolfReviewBox/ReviewLocation";
 import ReviewLocationData from "./components/block/GolfReviewBox/ReviewLocationData";
@@ -20,7 +20,7 @@ import LessonSchedule from "./components/block/LessonSchedule/LessonSchedule";
 import UpcomingEvent from "./components/block/UpcomingEvent/UpcomingEvent";
 import ListData from "./components/block/UpcomingList/ListData";
 import UpcomingList from "./components/block/UpcomingList/UpcomingList";
-
+import LessonDetail from "../src/components/lessons/lessonsCompoenets/ViewDetail_Lessons/LessonviewDetails"
 ///10/07/2023
 // Navbar 만들기
 //로그인 후 메인페이지 레이아웃 따놓기 \
@@ -44,6 +44,7 @@ function App() {
               <Route path="/booking" element={<Booking />} />
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/lessons" element={<Lessons />} />
+              <Route path="/lessons/:id" element={<LessonDetail />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/setting" element={<Setting />} />
             </Route>

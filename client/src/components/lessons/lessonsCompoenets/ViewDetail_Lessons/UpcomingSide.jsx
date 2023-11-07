@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./UpcomingSide.module.css";
 import MyListArray from "./MyListArray";
-const UpcomingSide = () => {
-  const myListArray = Array(6).fill(null);
 
+const UpcomingSide = ({ proName, details, lessonId }) => {
+  const myListArray = Array(6).fill(null);
+{console.log(lessonId)}
   return (
     <div>
       <div>
@@ -11,21 +12,20 @@ const UpcomingSide = () => {
           <div className={styles.iconwrap}></div>
 
           <div className={styles.text}>
-            <h3> Pro name </h3>
-            <span> Details </span>
+            <h3>{proName}</h3>
+            <span>{details}</span>
           </div>
-          <button> view details </button>
+          <button>View Details</button>
 
           <div>
-            {" "}
             <br />
             <div>
               <div>
                 {myListArray.map((_, index) => (
                   <MyListArray key={index} />
-                ))}
+                ))} {/* Closing parenthesis for map function */}
               </div>
-            </div>{" "}
+            </div>
           </div>
         </div>
       </div>

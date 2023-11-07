@@ -1,0 +1,56 @@
+.editbox {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100px; /* 원하는 높이로 조절하세요 */
+  }
+  .round {
+    background-color: aquamarine;
+    height: 6em;
+    width: 6em;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    grid-gap: 10px;
+  }
+  
+  label {
+    text-align: right;
+    padding: 2px;
+    margin: 5px;
+  
+    display: flex;
+    position: relative;
+    top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 2px;
+    margin: 5px;
+    background-color: #dde3da;
+  
+    border: none;
+    width: 100%;
+    border-radius: 1em;
+    height: 3em;
+  }
+  
+  .update {
+    text-align: left;
+    display: flex;
+    position: relative;
+    top: 2em;
+    right: -60em;
+  }
+  
+  .editpen {
+    position: relative; /* 포지션을 절대적(absolute)로 설정합니다. */
+    top: -2.5em; /* 위에서부터 위치 (조절 가능) */
+    right: -2.5em; /* 오른쪽에서부터 위치 (조절 가능) */
+  }
+  

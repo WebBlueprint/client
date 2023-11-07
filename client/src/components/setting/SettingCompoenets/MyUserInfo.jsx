@@ -1,4 +1,4 @@
-import React from "react";
+
 import { ReactComponent as Edit } from "./Edit.svg";
 import styles from "./MyUserInfo.module.css";
 import Input from "./UserInfoInput";

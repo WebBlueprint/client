@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./View.module.css";
 import ViewPro from "./ViewPro";
 
-const View = () => {
+const View = ({ lessonId }) => {
   const [activeTab, setActiveTab] = useState("video");
 
   const handleTabClick = (tab) => {
@@ -41,22 +41,22 @@ const View = () => {
 
           {activeTab === "video" && (
             <div className={style.imgboxList}>
-              <div className={style.imgbox}>Video Content 1</div>
-              <div className={style.imgbox}>Video Content 2</div>
-              <div className={style.imgbox}>Video Content 3</div>
+              <div className={style.imgbox}>Video Content 1 for Lesson {lessonId}</div>
+              <div className={style.imgbox}>Video Content 2 for Lesson {lessonId}</div>
+              <div className={style.imgbox}>Video Content 3 for Lesson {lessonId}</div>
             </div>
           )}
 
           {activeTab === "photos" && (
             <div className={style.imgboxList}>
-              <div className={style.imgbox1}>Photo 1</div>
-              <div className={style.imgbox1}>Photo 2</div>
-              <div className={style.imgbox1}>Photo 3</div>
+              <div className={style.imgbox1}>Photo 1 for Lesson {lessonId}</div>
+              <div className={style.imgbox1}>Photo 2 for Lesson {lessonId}</div>
+              <div className={style.imgbox1}>Photo 3 for Lesson {lessonId}</div>
             </div>
           )}
 
           {activeTab === "comments" && (
-            <div className={style.commentbox}>Comment content goes here</div>
+            <div className={style.commentbox}>Comment content for Lesson {lessonId} goes here</div>
           )}
         </div>
       </div>
