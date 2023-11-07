@@ -23,18 +23,21 @@ const Main = () => {
         <div style={{ marginTop: "120px" }}>
           <Banner />
           <h1>This is main page</h1>
-          <Row>
+          <Cover2>
+            
+                {/* map돌려야함*/}
+                {loggedin ? 
+                <Row>
             <Col>
               <LessonHeader/>
             </Col>
-          </Row>
-          <Cover2>
             <Row>
               <Col>
-                {/* map돌려야함*/}
-                {loggedin ? <LessonRemaining /> : <p>Not loggined</p>}
-              </Col>
+            <LessonRemaining />
+            </Col>
             </Row>
+          </Row> : <p>Not loggined</p>}
+              
           </Cover2>
         </div>
 
