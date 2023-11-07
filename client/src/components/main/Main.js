@@ -7,6 +7,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Popular from "./Popular";
 import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
+import InfoHeader from "../block/Header/Header"
 
 const Main = () => {
   const defaultName = "guest";
@@ -17,19 +18,8 @@ const Main = () => {
       <Container>
         <div style={{ marginTop: "120px" }}>
           <Banner />
-          <h1>This is main page</h1>
           <Row>
-            <Col>
-              <Cover>
-                <Introduce>
-                  <Circle />
-                  Hello {defaultName}
-                </Introduce>
-                <GenderArea>
-                  Gender : {defaultGender} <Vertical /> Area : {defaultArea}
-                </GenderArea>
-              </Cover>
-            </Col>
+            <InfoHeader />
           </Row>
           <Cover2>
             <Row>
