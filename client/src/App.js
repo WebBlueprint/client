@@ -1,11 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-<<<<<<< HEAD
-import React, { useContext } from 'react';
-import { AuthProvider, AuthContext } from './components/application/store/AuthContext';
-=======
->>>>>>> origin/yuncheol
 import Main from "./components/main/Main";
 import Signup from "./components/signup/Signup";
 import Signin from "./components/signin/Signin";
@@ -16,8 +11,6 @@ import Schedule from "./components/schedule/schedule";
 import Lessons from "./components/lessons/Lessons";
 import Chat from "./components/chat/chat";
 import Setting from "./components/setting/settingComponents/Setting";
-<<<<<<< HEAD
-=======
 import LocationBox from "../src/components/block/GolfLocationBox/LocationBox";
 import ReviewLocation from "../src/components/block/GolfReviewBox/ReviewLocation";
 import ReviewLocationData from "./components/block/GolfReviewBox/ReviewLocationData";
@@ -27,7 +20,6 @@ import LessonSchedule from "./components/block/LessonSchedule/LessonSchedule";
 import UpcomingEvent from "./components/block/UpcomingEvent/UpcomingEvent";
 import ListData from "./components/block/UpcomingList/ListData";
 import UpcomingList from "./components/block/UpcomingList/UpcomingList";
->>>>>>> origin/yuncheol
 
 ///10/07/2023
 // Navbar 만들기
