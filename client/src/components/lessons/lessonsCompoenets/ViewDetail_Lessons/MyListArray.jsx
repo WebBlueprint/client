@@ -26,8 +26,8 @@ const MyListArray = () => {
                   className={styles.non}
                 />
                 <div div className={styles.leftAligned}>
-                  2023.00.00 <br />
-                  +82 00 000 0000
+                  날짜 <br />
+                  전화번호
                 </div>
               </div>
             </div>

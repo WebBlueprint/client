@@ -88,7 +88,7 @@ const Signup = () => {
       <Container fluid>
         <GlobalStyle />
         <Row>
-          <Col xl={4} className="fill_bg" >
+          <Col xl={4}>
             <Background>
               <Background_Content>
                 <p
@@ -110,7 +110,7 @@ const Signup = () => {
             className="d-flex align-items-center justify-content-center"
           >
             <Form style={{ width: "40%" }}>
-              <Form.Group className="d-flex mb-3">
+              <Form.Group className="d-flex justify-content-between mb-3">
                 <Form.Control
                   type="button"
                   value="User"
@@ -123,7 +123,7 @@ const Signup = () => {
                   style={{
                     backgroundColor: "#F3F3F3",
                     height: "60px",
-                    width: "50%",
+                    width: "240px",
                     borderRadius: "18px",
                   }}
                 />
@@ -139,7 +139,7 @@ const Signup = () => {
                   style={{
                     backgroundColor: "#F3F3F3",
                     height: "60px",
-                    width: "50%",
+                    width: "240px",
                     borderRadius: "18px",
                   }}
                 />

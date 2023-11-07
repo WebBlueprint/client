@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../application/store/AuthContext"
+import React from "react";
 import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,15 +6,14 @@ import Col from "react-bootstrap/Col";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Popular from "./Popular";
+import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
 
 const Main = () => {
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
   return (
     <>
-      {/* /{console.log(isLoggedIn)} */}
       <Container>
         <div style={{ marginTop: "120px" }}>
           <Banner />
@@ -36,27 +34,8 @@ const Main = () => {
           <Cover2>
             <Row>
               <Col>
-                <SmCover>
-                  <Link to="/reservations">Upcoming Reservations</Link>
-                </SmCover>
-              </Col>
-
-              <Col>
-                <SmCover>
-                  <Link to="/review">My Lesson Review</Link>
-                </SmCover>
-              </Col>
-
-              <Col>
-                <SmCover>
-                  <Link to="/schedules">View All Schedules</Link>
-                </SmCover>
-              </Col>
-
-              <Col>
-                <SmCover2>
-                  <Link to="/talk_pro">Talk to the Pro</Link>
-                </SmCover2>
+                {/* map돌려야함*/}
+                <LessonRemaining />
               </Col>
             </Row>
           </Cover2>
@@ -82,26 +61,6 @@ const Cover = styled.div`
 
 const Cover2 = styled.div`
   margin-top: 50px;
-`;
-
-const SmCover = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px 0 10px;
-  background: #d9d9d9;
-  height: 285px;
-  border-radius: 30px;
-`;
-
-const SmCover2 = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #d9d9d9;
-  height: 285px;
-  border-radius: 30px;
-  margin: 0 10px 0 5px;
 `;
 
 const GenderArea = styled.div`

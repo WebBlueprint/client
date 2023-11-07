@@ -15,7 +15,7 @@ const LatestLessons = () => {
           Reaming 10 Lessons
           <br />
           (5/10)
-        </div>{" "}
+        </div>
         <br />
       </div>
       <div>

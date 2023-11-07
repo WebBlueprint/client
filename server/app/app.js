@@ -1,7 +1,5 @@
 "use strict";
-require('dotenv').config({
-    path: "../.env"
-});
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -9,7 +7,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan') // 로그 확인을 위한 라이브러리
 
 const app = express();
-
 
 // MongoDB 연결
 mongoose.connect(process.env.DB_CONNECT, {
