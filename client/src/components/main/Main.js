@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
 import { AuthContext } from "../application/store/AuthContext"
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useContext} from "react";
 import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
