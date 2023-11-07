@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../application/store/AuthContext"
+import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 import golfimage from "../../svgs/golfimage.svg";
@@ -38,11 +40,13 @@ const Golf_image = styled.img`
 `;
 
 const Signup = () => {
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [ispro, setIsPro] = useState(false);
+  const navigate = useNavigate();
 
   const Register = async (event) => {
     event.preventDefault();
@@ -63,16 +67,15 @@ const Signup = () => {
         if (ispro) {
           result = await axios.post("http://localhost:3000/signup", userData);
           alert(result.data.message); // 여기에 추가
-          window.location.href = "/";
+          navigate("/")
         } else {
           result = await axios.post("http://localhost:3000/signup", userData);
           alert(result.data.message); // 여기에 추가
-          window.location.href = "/";
+          navigate("/")
         }
-
         console.log(result.data);
       } catch (error) {
-        console.log(error);
+        alert(error.response.data.message);
       }
     } else {
       if (!regex.test(password)) {

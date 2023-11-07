@@ -1,5 +1,5 @@
 import { AuthContext } from "../application/store/AuthContext"
-import React,{useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,39 +7,37 @@ import Col from "react-bootstrap/Col";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Popular from "./Popular";
-
 import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
 import LessonHeader from "../block/Header/Header"
 import { ReactComponent as HomeIcon } from "../../svgs/home.svg";
 
 const Main = () => {
-  const [loggedin, setLoggedin] = useState(false)
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
   const { isLoggedIn, login, logout } = useContext(AuthContext);
   return (
     <>
-      {/* /{console.log(isLoggedIn)} */}
+      {console.log("Main.js isLoggedIn = " + isLoggedIn)}
       <Container>
         <div style={{ marginTop: "120px" }}>
           <Banner />
           <h1>This is main page</h1>
           <Cover2>
-            
-                {/* map돌려야함*/}
-                {loggedin ? 
+
+            {/* map돌려야함*/}
+            {isLoggedIn ?
+              <Row>
+                <Col>
+                  <LessonHeader />
+                </Col>
                 <Row>
-            <Col>
-              <LessonHeader/>
-            </Col>
-            <Row>
-              <Col>
-            <LessonRemaining />
-            </Col>
-            </Row>
-          </Row> : <p>Not loggined</p>}
-              
+                  <Col>
+                    <LessonRemaining />
+                  </Col>
+                </Row>
+              </Row> : <p>Not loggined</p>}
+
           </Cover2>
         </div>
 

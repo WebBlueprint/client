@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../application/store/AuthContext"
+import { useNavigate } from 'react-router-dom'
+
 
 function GoogleLogin() {
-
+    const navigate = useNavigate();
     const [user, setUser] = useState({})
-
+    const { isLoggedIn, login, logout } = useContext(AuthContext);
     function handleCallbackResponse(response) {
         //       console.log("Encoded JWT ID token: " + response.credential)
         var userObj = jwtDecode(response.credential)
         console.log(userObj)
         setUser(userObj)
-        window.location.href = "/";
+        login()
+        navigate("/")
     }
 
 

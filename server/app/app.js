@@ -10,7 +10,6 @@ const morgan = require('morgan') // 로그 확인을 위한 라이브러리
 
 const app = express();
 
-
 // MongoDB 연결
 mongoose.connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,

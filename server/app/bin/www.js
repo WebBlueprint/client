@@ -1,7 +1,6 @@
 "use strict";
 const dotenv = require("dotenv");
-dotenv.config({ path: '../.env' });
-
+dotenv.config({ path: '../../.env' });
 const app = require("../app.js");
 const PORT = process.env.PORT;
 

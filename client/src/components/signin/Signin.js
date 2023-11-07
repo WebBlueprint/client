@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthContext } from "../application/store/AuthContext"
+import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 import golfimage from "../../svgs/golfimage.svg";
@@ -38,18 +40,17 @@ const Golf_image = styled.img`
   left: 120px;
 `;
 
-const Signup = () => {
+const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [ispro, setIsPro] = useState(false);
-
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const Register = async (event) => {
     event.preventDefault();
     const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
     // 최소4글자, 영문, 숫자 포함 regex
     if (regex.test(password)) {
-      console.log("Your password is validated");
-
       const userData = {
         username,
         password,
@@ -60,25 +61,25 @@ const Signup = () => {
         let result;
         if (ispro) {
           result = await axios.post("http://localhost:3000/login", userData);
-          alert(result.data.message); // 여기에 추가
-          window.location.href = "/";
+          // login()
+          console.log(result.data.message); // 여기에 추가
+          navigate("/")
         } else {
           result = await axios.post("http://localhost:3000/login", userData);
-          alert(result.data.message); // 여기에 추가
-          window.location.href = "/";
+          // login()
+          console.log(result.data.message); // 여기에 추가
+          navigate("/")
         }
 
         console.log(result.data);
       } catch (error) {
-        console.log(error);
+        alert(error.response.data.message);
       }
     } else {
       if (!regex.test(password)) {
         alert(
           "Your password should have more than 4 letters including alphabet and number."
         );
-      } else {
-        alert("Password does not match.");
       }
     }
   };
@@ -198,4 +199,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;

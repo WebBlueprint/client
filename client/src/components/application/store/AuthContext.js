@@ -13,6 +13,8 @@ const AuthProvider = ({ children }) => {
         setIsLoggedIn(false);
     };
 
+    console.log("AuthContext.js isLoggedIn  " + isLoggedIn)
+
     return (
         <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
             {children}
