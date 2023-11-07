@@ -13,6 +13,15 @@ import Schedule from "./components/schedule/schedule";
 import Lessons from "./components/lessons/Lessons";
 import Chat from "./components/chat/chat";
 import Setting from "./components/setting/settingComponents/Setting";
+import LocationBox from "../src/components/block/GolfLocationBox/LocationBox";
+import ReviewLocation from "../src/components/block/GolfReviewBox/ReviewLocation";
+import ReviewLocationData from "./components/block/GolfReviewBox/ReviewLocationData";
+import Header from "./components/block/Header/Header";
+import LessonRemaining from "./components/block/LessonRemaining/LessonRemaining";
+import LessonSchedule from "./components/block/LessonSchedule/LessonSchedule";
+import UpcomingEvent from "./components/block/UpcomingEvent/UpcomingEvent";
+import ListData from "./components/block/UpcomingList/ListData";
+import UpcomingList from "./components/block/UpcomingList/UpcomingList";
 
 ///10/07/2023
 // Navbar 만들기
@@ -43,7 +52,18 @@ function App() {
               </Route>
               <Route path="signup" element={<Signup />} />
               <Route path="signin" element={<Signin />} />
-            </Routes>
+              {/* block component 추후에 삭제 */}
+            <Route path="block0" element={<LocationBox />} />
+            <Route path="block1" element={<ReviewLocation />} />
+            <Route path="block2" element={<ReviewLocationData />} />
+            <Route path="block3" element={<Header />} />
+            <Route path="block4" element={<LessonRemaining />} />
+            <Route path="block5" element={<LessonSchedule />} />
+            <Route path="block6" element={<UpcomingEvent />} />
+            <Route path="block7" element={<ListData />} />
+            <Route path="block8" element={<UpcomingList />} />
+            {/* block component 추후에 삭제 */}
+          </Routes>
           </AuthProvider>
         </div>
       </BrowserRouter>
