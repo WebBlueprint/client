@@ -1,0 +1,16 @@
+.proboxContainer {
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 500px;
+  }
+  .heart {
+    display: flex;
+    margin-left: 500px;
+  }
+  .course{
+    display: flex;
+    align-items: center;
+    padding: 10em;
+    margin-left: 250px;
+  }

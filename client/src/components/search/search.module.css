@@ -70,7 +70,7 @@
   top: 45px;
 }
 .search_text {
-  padding: 100px;
+  padding: 90px;
   margin-left: 230px;
   font-size: 20px;
   color: #1b4607;
@@ -79,4 +79,67 @@
 .large-icon {
   font-size: 40px;
   color: #1b4607;
+}
+
+.verticalLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 80px;
+}
+
+.verticalLayout .location {
+  padding: 5px;
+  width: 240px;
+  text-align: left;
+  padding-left: 20px;
+}
+.verticalLayout .location-name {
+  padding: 0.5%;
+  width: 220px;
+  text-align: left;
+  padding-left: 20px;
+  font-size: 15px;
+}
+.verticalLayout .search-input-container {
+  margin-left: -10px;
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+.verticalLayout .search-input {
+  font-size: 15px;
+  padding-left: 550px;
+  width: 240px;
+  padding: 15px;
+  text-indent: 50px;
+}
+
+.verticalLayout .special-icon {
+  font-size: 25px;
+  margin-top: -18px;
+  margin-left: -5px;
+}
+
+.verticalLayout .Search {
+  margin-left: 0px;
+  margin-top: 20px;
+  padding: 30px;
+  width: 240px;
+  font-size: 15px;
+}
+
+.SearchCourse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -220px;
+  margin-left: 450px;
+}
+.SearchPro {
+  margin-top: -22px;
+  margin-left: 750px;
 }

@@ -21,6 +21,12 @@ import UpcomingEvent from "./components/block/UpcomingEvent/UpcomingEvent";
 import ListData from "./components/block/UpcomingList/ListData";
 import UpcomingList from "./components/block/UpcomingList/UpcomingList";
 import LessonDetail from "../src/components/lessons/lessonsCompoenets/ViewDetail_Lessons/LessonviewDetails"
+import Searched from "../src/components/search/searched";
+import SearchPro from "../src/components/search/searchPro";
+import SearchCourse from "../src/components/search/searchCourse";
+
+
+
 ///10/07/2023
 // Navbar 만들기
 //로그인 후 메인페이지 레이아웃 따놓기 \
@@ -47,6 +53,8 @@ function App() {
               <Route path="/lessons/:id" element={<LessonDetail />} />
               <Route path="/chat" element={<Chat />} />
               <Route path="/setting" element={<Setting />} />
+              <Route path="/searched" element={<Searched />} />
+
             </Route>
             <Route path="signup" element={<Signup />} />
             <Route path="signin" element={<Signin />} />
@@ -60,6 +68,8 @@ function App() {
             <Route path="block6" element={<UpcomingEvent />} />
             <Route path="block7" element={<ListData />} />
             <Route path="block8" element={<UpcomingList />} />
+            <Route path="/searchPro" element={<SearchPro />} />
+            <Route path="/searchCourse" element={<SearchCourse />} />
             {/* block component 추후에 삭제 */}
           </Routes>
         </div>

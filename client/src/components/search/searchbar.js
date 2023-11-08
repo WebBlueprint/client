@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import styles from "./search.module.css";
+import styles from "../search/search.module.css";
 import { faSearch, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import list from "./locationlist.json";
+import { Link } from "react-router-dom";
 
 library.add(faLocationArrow);
 
-const SearchBar = () => {
+const SearchBar = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -22,7 +23,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={styles.search_page}>
+    <div className={`${styles.search_page} ${className}`}>
       <button
         className={styles.location}
         onClick={() => setIsOpen((prev) => !prev)}
@@ -31,7 +32,12 @@ const SearchBar = () => {
           icon={faLocationArrow}
           className={`${styles["location-icon"]} ${styles["large-icon"]}`}
         />
-        <span className={styles["location-name"]}>Kuala Lumpur</span>
+        <span
+          className={styles["location-name"]}
+          style={{ whiteSpace: "nowrap" }}
+        >
+          Kuala Lumpur
+        </span>
       </button>
       {isOpen && (
         <div className={styles["dropdown-list"]}>
@@ -54,11 +60,9 @@ const SearchBar = () => {
           className={styles["search-input"]}
         />
       </div>
-      <button className={styles.Search} onClick={handleSearch}>
-        {" "}
-        {}
+      <Link to="/searched" className={styles.Search} onClick={handleSearch}>
         Search
-      </button>
+      </Link>
     </div>
   );
 };

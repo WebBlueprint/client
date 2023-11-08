@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Popular from "./Popular";
 import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
 import InfoHeader from "../block/Header/Header"
+import SearchBar from "../search/searchbar";
 
 const Main = () => {
   const defaultName = "guest";
@@ -18,6 +19,7 @@ const Main = () => {
       <Container>
         <div style={{ marginTop: "120px" }}>
           <Banner />
+          <SearchBar />
           <Row>
             <InfoHeader />
           </Row>
