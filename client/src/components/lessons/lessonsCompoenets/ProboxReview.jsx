@@ -1,49 +1,84 @@
 import React, { useState } from "react";
-import StarRating from "./StarRating"
+import { FaStar, FaStarHalf } from "react-icons/fa";
+import styled from "styled-components";
 
-const ProboxReview = () => {
-    const [rating, setRating] = useState(0); // Initial rating is 0
-    const [comment, setComment] = useState("");
-    const [isHovered, setIsHovered] = useState(false);
+const ProboxReview = ({ onSubmit, rating, comment }) => {
+  const [hoveredRating, setHoveredRating] = useState(0);
 
-    const handleStarClick = (selectedRating) => {
-        setRating(selectedRating);
-        console.log("Rating: " + selectedRating); // 콘솔에 선택한 별점 출력
-    };
+  const handleStarClick = (newRating) => {
+    onSubmit(newRating, comment); // Call the onSubmit function with the new rating
+  };
 
-    const handleCommentChange = (e) => {
-        setComment(e.target.value);
-    };
+  const getStarColor = (starValue) => {
+    if (starValue <= rating) {
+      return "#fcc419"; // Fully filled star
+    } else if (starValue - 0.5 === rating) {
+      return "#ffa500"; // Half-filled star
+    } else {
+      return "gray"; // Empty star
+    }
+  };
 
-    const handleCommentSubmit = () => {
-        // Handle comment submission here, e.g., send to a server
-        console.log("Comment: " + comment);
-        // Reset the rating and comment after submission
-        setRating(0);
-        setComment("");
-    };
+  return (
+    <div>
+      <Wrap>
+        <Stars>
+          {Array(5)
+            .fill(0)
+            .map((_, index) => {
+              const ratingValue = index + 1;
+              return (
+                <Star
+                  key={index}
+                  onMouseEnter={() => setHoveredRating(ratingValue)}
+                  onMouseLeave={() => setHoveredRating(0)}
+                  starColor={getStarColor(ratingValue)}
+                />
+              );
+            })}
+        </Stars>
+        <RatingValue> {rating} / 5</RatingValue>
+      </Wrap>
 
-    return (
-        <div>
-            <div>
-                <div>
-                    <h3>Leave a Review</h3>
-                    <div>
-                        <StarRating rating={rating} onStarClick={handleStarClick} />
-                        {/* Pass the rating and the function to update it */}
-                    </div>
-                    <textarea
-                        rows="4"
-                        cols="50"
-                        placeholder="Write your comment here"
-                        value={comment}
-                        onChange={handleCommentChange}
-                    />
-                    <button onClick={handleCommentSubmit}>Submit Review</button>
-                </div>
-            </div>
-        </div>
-    );
+      <textarea
+        rows="4"
+        cols="50"
+        placeholder="Write your comment here"
+        value={comment} // Update the comment
+      />
+      <button onClick={() => onSubmit(rating, comment)}>Submit Review</button>
+    </div>
+  );
 };
 
 export default ProboxReview;
+
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+`;
+
+const Stars = styled.div`
+  display: flex;
+  padding-top: 5px;
+`;
+
+const Star = styled((props) => {
+  if (props.starColor === "#fcc419") {
+    return <FaStar {...props} />;
+  } else if (props.starColor === "#ffa500") {
+    return <FaStarHalf {...props} />;
+  } else {
+    return <FaStar {...props} />;
+  }
+})`
+  color: ${(props) => props.starColor};
+  cursor: pointer;
+`;
+
+const RatingValue = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 5px;
+`;

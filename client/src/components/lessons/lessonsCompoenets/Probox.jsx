@@ -8,6 +8,7 @@ import ProboxReview from "./ProboxReview";
 const Probox = () => {
   const [displayHeart, setDisplayHeart] = useState("heart");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reviewData, setReviewData] = useState(null);
 
   const handleMakeReviewClick = () => {
     setIsModalOpen(true);
@@ -15,6 +16,12 @@ const Probox = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleCommentSubmit = (data) => {
+    setIsModalOpen(false);
+    setReviewData(data);
+    console.log("Review Submitted:", data);
   };
 
   return (
@@ -49,7 +56,7 @@ const Probox = () => {
         </div>
         <br />
         <BtnBox>
-        <button>View Details</button>
+          <button>View Details</button>
           <button onClick={handleMakeReviewClick}>Make a Review</button>
         </BtnBox>
       </TextBox>
@@ -57,9 +64,17 @@ const Probox = () => {
         <Modal>
           <ModalContent>
             <span onClick={handleCloseModal}>X</span>
-            <ProboxReview />
+            <button onClick={handleCloseModal}>Submit Review</button>
+            <ProboxReview onSubmit={handleCommentSubmit} />
           </ModalContent>
         </Modal>
+      )}
+      {reviewData && (
+        <div>
+          <h4>Review Submitted:</h4>
+          <p>Rating: {reviewData.rating}</p>
+          <p>Comment: {reviewData.comment}</p>
+        </div>
       )}
     </StyledProbox>
   );
