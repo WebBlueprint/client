@@ -8,7 +8,7 @@ import Modal from "react-modal";
 
 function Calendars(props) {
   const [appointmentDate, setAppointmentDate] = useState (
-    ["Fri Nov 24 2023", "Sat Nov 25 2023"]//날짜양식 꼭 맞출것
+    props.reservations.map((a)=>a.reservation_date)//날짜양식 꼭 맞출것 ex) Wed 08 Nov 2023
 )
   const [value, onChange] = useState(new Date());
 
@@ -20,9 +20,6 @@ function Calendars(props) {
 
   useEffect(()=>{
     isOpen
-  },[value])
-  useEffect(()=>{
-    console.log(clickedDate)
   },[value])
   const [isOpen, setIsOpen] = useState(false);
   const [clickedDate, setClickedDate] = useState('')
