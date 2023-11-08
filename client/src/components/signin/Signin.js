@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../application/store/AuthContext"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 import golfimage from "../../svgs/golfimage.svg";
@@ -44,13 +44,21 @@ const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [ispro, setIsPro] = useState(false);
+  const [passwordError, setPasswordError] = useState(""); // Add state for password error
   const { isLoggedIn, login, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
+    return regex.test(password);
+  }
+
+
   const Register = async (event) => {
     event.preventDefault();
     const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
-    // 최소4글자, 영문, 숫자 포함 regex
-    if (regex.test(password)) {
+    // 최소6글자, 영문, 숫자 포함 regex
+    if (validatePassword(password)) {
       const userData = {
         username,
         password,
@@ -76,11 +84,7 @@ const Signin = () => {
         alert(error.response.data.message);
       }
     } else {
-      if (!regex.test(password)) {
-        alert(
-          "Your password should have more than 4 letters including alphabet and number."
-        );
-      }
+      setPasswordError("Your password should have more than 4 letters including alphabet and number.");
     }
   };
 
@@ -164,7 +168,10 @@ const Signin = () => {
                   type="password"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value); 
+                    setPasswordError(""); // Clear the password error message when input changes
+                  }}
                   className="mb-3 place_holder"
                   style={{
                     backgroundColor: "#F3F3F3",
@@ -172,6 +179,9 @@ const Signin = () => {
                     borderRadius: "18px",
                   }}
                 />
+                 {passwordError && (
+              <p style={{ color: "red", fontSize: "14px" }}>{passwordError}</p>
+            )}
               </Form.Group>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Button
@@ -188,9 +198,8 @@ const Signin = () => {
               </div>
               <br />
               <GoogleLogin />
-              Forgot Password? <a href="/signup">Sign Up</a>
+              Forgot Password? <Link to="/signup">Sign Up</Link>
               <br />
-              Icons
             </Form>
           </Col>
         </Row>

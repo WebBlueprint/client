@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../application/store/AuthContext"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 import golfimage from "../../svgs/golfimage.svg";
@@ -46,15 +46,21 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [ispro, setIsPro] = useState(false);
+  const [error, setError] = useState(""); // Add state for displaying a single error message
   const navigate = useNavigate();
+
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
+    return regex.test(password);
+  }
+
 
   const Register = async (event) => {
     event.preventDefault();
-    const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
-    // 최소4글자, 영문, 숫자 포함 regex
-    if (regex.test(password) && password === confirmPassword) {
-      console.log("Your password is validated");
+    setError("")
 
+    // 최소4글자, 영문, 숫자 포함 regex
+    if (validatePassword(password) && password === confirmPassword) {
       const userData = {
         username,
         email,
@@ -66,27 +72,24 @@ const Signup = () => {
         let result;
         if (ispro) {
           result = await axios.post("http://localhost:3000/signup", userData);
-          alert(result.data.message); // 여기에 추가
+          console.log(result.data.message); // 여기에 추가
           navigate("/")
         } else {
           result = await axios.post("http://localhost:3000/signup", userData);
-          alert(result.data.message); // 여기에 추가
+          console.log(result.data.message); // 여기에 추가
           navigate("/")
         }
         console.log(result.data);
       } catch (error) {
-        alert(error.response.data.message);
+        setError(error.response.data.message);
       }
     } else {
-      if (!regex.test(password)) {
-        alert(
-          "Your password should have more than 4 letters including alphabet and number."
-        );
-      } else {
-        alert("Password does not match.");
+      if (!validatePassword(password) || password !== confirmPassword) {
+        setError("Please check your input fields."); // Set a generic error message
       }
     }
   };
+
 
   return (
     <>
@@ -182,7 +185,7 @@ const Signup = () => {
                   type="password"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {setPassword(e.target.value); setError(""); }}
                   className="mb-3 place_holder"
                   style={{
                     backgroundColor: "#F3F3F3",
@@ -190,13 +193,14 @@ const Signup = () => {
                     borderRadius: "18px",
                   }}
                 />
+             
               </Form.Group>
               <Form.Group>
                 <Form.Control
                   type="password"
                   placeholder="Confirm Password"
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => {setConfirmPassword(e.target.value); setError("");}}
                   className="mb-3 place_holder"
                   style={{
                     backgroundColor: "#F3F3F3",
@@ -205,6 +209,11 @@ const Signup = () => {
                   }}
                 />
               </Form.Group>
+              {error && (
+            <p style={{ color: "red", fontSize: "14px", textAlign: "center", margin: "10px 0" }}>
+              {error}
+            </p>
+          )}
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Button
                   variant="success"
@@ -218,11 +227,11 @@ const Signup = () => {
                   Sign Up
                 </Button>
               </div>
+       
               <br />
               <GoogleLogin />
-              Already have an account? <a href="/signin">Sign in</a>
+              Already have an account? <Link to="/signin">Sign in</Link>
               <br />
-              Icons
             </Form>
           </Col>
         </Row>
