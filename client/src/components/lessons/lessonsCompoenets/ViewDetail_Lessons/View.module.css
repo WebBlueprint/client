@@ -5,7 +5,7 @@
   border: none;
   border-radius: 1em;
   padding: 3px;
-  height: 100%;
+  min-height: 38em;
 }
 
 .imgbox {
@@ -34,8 +34,10 @@
 }
 
 .ReviewText {
-  margin: 3em;
+  margin:3em;
   overflow: scroll;
+  position: relative;
+  top:-50px;
 }
 
 .tabButtons {
@@ -55,4 +57,16 @@
   cursor: pointer;
   color: #1b4607;
   text-decoration: underline;
+}
+
+.text {
+  display: flex;
+}
+
+.ReviewText > div {
+  padding: 10px;
+}
+
+.imgboxs {
+  display: flex;
 }

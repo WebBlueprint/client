@@ -4,6 +4,7 @@
   border-radius: 1em;
   position: relative;
   width: 250px;
+  text-align: center;
 }
 
 .iconwrap {
@@ -19,4 +20,22 @@
   padding: 10px;
   justify-self: start;
   text-align: left;
+  position: relative;
 }
+
+.round{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: black;
+  display: flex;
+  position: relative;
+  top:15px;
+  color: white;
+}
+
+.Probox{
+  display: grid;
+  grid-template-columns: 62px 1fr;
+}
+

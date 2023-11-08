@@ -38,6 +38,7 @@ const Golfbox = () => {
             )}
           </div>
           <button> View Details </button>
+          <button> Make a Review </button>
           <button
             onClick={() => {
               setShowBaby(!showBaby);
