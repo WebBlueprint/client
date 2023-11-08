@@ -10,16 +10,20 @@ import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
 import InfoHeader from "../block/Header/Header"
 import SearchBar from "../search/searchbar";
 
+const StyledSearchBar = styled(SearchBar)
+`margin-top: 20px; margin-left: 70px;`;
+
 const Main = () => {
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
+
   return (
     <>
       <Container>
         <div style={{ marginTop: "120px" }}>
           <Banner />
-          <SearchBar />
+          <StyledSearchBar />
           <Row>
             <InfoHeader />
           </Row>
