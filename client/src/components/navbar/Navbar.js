@@ -37,7 +37,7 @@ const Navbar = () => {
                     className={item.icon}
                     style={{
                       fontSize:
-                        selectedIconIndex === index ? "28px" : "24px",
+                        selectedIconIndex === index ? "28px" : "20px",
                     }}
                   ></i>
                   </div>

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 23px;
+  padding: 10px;
   background-color: #d9d9d9;
   width: 26%;
   border-radius: 20px;
@@ -25,9 +25,10 @@
   display: flex;
   margin-left: 10px;
   width: 15%;
-  height: 62px;
+  height: 50px;
   color: #fff;
   font-weight: bold;
+  margin-top: 10px;
 }
 .search_page {
   display: flex;
@@ -51,7 +52,7 @@
   border-radius: 20px;
   margin-left: 10px;
   border-color: transparent;
-  padding-left: 100px;
+  padding-left: 80px;
   font-weight: bold;
 }
 
@@ -60,14 +61,18 @@
   display: flex;
   align-items: center;
   margin-left: 30px;
+  height: 140px;
+  margin-top: 10px;
 }
 .special-icon {
   position: absolute;
   transform: translateY(-50%);
   color: #1b4607;
   left: 40px;
-  font-size: 40px;
+  font-size: 32px;
   top: 45px;
+  margin-top: 25px;
+
 }
 .search_text {
   padding: 90px;
@@ -77,7 +82,7 @@
   font-weight: bold;
 }
 .large-icon {
-  font-size: 40px;
+  font-size: 35px;
   color: #1b4607;
 }
 
@@ -86,6 +91,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-left: 80px;
+  margin-top: 100px;
 }
 
 .verticalLayout .location {
@@ -103,8 +109,8 @@
 }
 .verticalLayout .search-input-container {
   margin-left: -10px;
-  margin-top: 20px;
   position: relative;
+  margin-top: -30px;
   display: flex;
   align-items: center;
   text-align: left;
@@ -119,14 +125,14 @@
 
 .verticalLayout .special-icon {
   font-size: 25px;
-  margin-top: -18px;
+  margin-top: 25px;
   margin-left: -5px;
 }
 
 .verticalLayout .Search {
   margin-left: 0px;
-  margin-top: 20px;
-  padding: 30px;
+  margin-top: -30px;
+  padding: 20px;
   width: 240px;
   font-size: 15px;
 }
