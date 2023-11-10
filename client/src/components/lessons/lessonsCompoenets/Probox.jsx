@@ -51,7 +51,18 @@ const Probox = () => {
           <span>Date</span> <br />
           <span>Time</span>
         </div>
+
+
         <br />
+
+        {reviewData && (
+        <div>
+          <p>Rating: {reviewData.rating}</p>
+          <p>Comment: {reviewData.comment}</p>
+        </div>
+      )}
+      
+      
         <BtnBox>
           <button>View Details</button>
           <button onClick={handleMakeReviewClick}>Make a Review</button>
@@ -64,13 +75,9 @@ const Probox = () => {
           </ModalContent>
         </Modal>
       )}
-      {reviewData && (
-        <div>
-          <p>Rating: {reviewData.rating}</p>
-          <p>Comment: {reviewData.comment}</p>
-        </div>
-      )}
+
     </StyledProbox>
+    
   );
 };
 
@@ -142,4 +149,3 @@ const TextBox = styled.div`
   margin: 10px;
 `;
 
-// ... (이후 코드)
