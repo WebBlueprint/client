@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styled from "styled-components";
 
-const ProboxReview = ({ onSubmit }) => {
+const GolfboxReview = ({ onSubmit }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -35,7 +35,7 @@ const ProboxReview = ({ onSubmit }) => {
 
   return (
     <div>
-      나의 프로 리뷰 
+        골프장 리뷰 
       <Wrap>
         <Stars>
           {Array(5)
@@ -62,13 +62,14 @@ const ProboxReview = ({ onSubmit }) => {
         placeholder="Write your comment here"
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-      /> <br />
+      /><br />
       <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
     </div>
+ 
   );
 };
 
-export default ProboxReview;
+export default GolfboxReview;
 
 const Wrap = styled.div`
   display: flex;

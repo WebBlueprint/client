@@ -1,3 +1,4 @@
+// Probox.jsx
 import React, { useState } from "react";
 import styled from "styled-components";
 import NoneImage from "./NoneImage.svg";
@@ -14,14 +15,10 @@ const Probox = () => {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   const handleCommentSubmit = (data) => {
     setIsModalOpen(false);
     setReviewData(data);
-    console.log("Review Submitted:", data);
   };
 
   return (
@@ -63,15 +60,12 @@ const Probox = () => {
       {isModalOpen && (
         <Modal>
           <ModalContent>
-            <span onClick={handleCloseModal}>X</span>
-            <button onClick={handleCloseModal}>Submit Review</button>
             <ProboxReview onSubmit={handleCommentSubmit} />
           </ModalContent>
         </Modal>
       )}
       {reviewData && (
         <div>
-          <h4>Review Submitted:</h4>
           <p>Rating: {reviewData.rating}</p>
           <p>Comment: {reviewData.comment}</p>
         </div>
@@ -83,13 +77,13 @@ const Probox = () => {
 export default Probox;
 
 const StyledProbox = styled.div`
-background-color: #e2e7e0;
-display: grid;
-grid-template-columns: 55px 1fr;
-padding: 1em;
-border-radius: 1em;
-margin: 1em;
-width: 350px;
+  background-color: #e2e7e0;
+  display: grid;
+  grid-template-columns: 55px 1fr;
+  padding: 1em;
+  border-radius: 1em;
+  margin: 1em;
+  width: 350px;
 `;
 
 const IconWrap = styled.div`
@@ -101,8 +95,6 @@ const IconWrap = styled.div`
   align-self: center;
 `;
 
-
-
 const NonImageStyled = styled.img`
   display: block;
   margin: 0 auto;
@@ -111,15 +103,12 @@ const NonImageStyled = styled.img`
   top: 20px;
 `;
 
-
 const CHeart = styled.div`
   position: absolute;
   justify-self: right;
   margin-left: 12em;
   margin-top: -2.5em;
 `;
-
-
 
 const BtnBox = styled.div`
   display: flex;
@@ -148,6 +137,9 @@ const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 const TextBox = styled.div`
   margin: 10px;
 `;
+
+// ... (이후 코드)
