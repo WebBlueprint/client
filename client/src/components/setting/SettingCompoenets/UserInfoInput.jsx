@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Select from "react-select";
-
 import styles from "./Setting.module.css"; // UserInfo 모듈의 스타일을 임포트
 
 const UserInfoInput = () => {

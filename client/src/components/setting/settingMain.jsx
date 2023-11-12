@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LessonsHeader from "../Lessons/LessonsHeader";
+import LessonsHeader from "../lessons/LessonsHeader";
 import styles from "./SettingMain.module.css";
 import Setting from "./SettingCompoenets/Setting";
 import MyProfile from "./SettingCompoenets/MyProfile";

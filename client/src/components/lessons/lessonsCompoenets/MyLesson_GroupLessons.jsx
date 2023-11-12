@@ -60,7 +60,8 @@ const MyLesson_GroupLessons = () => {
               <div className={styles.btnwrap}>
                 <button>Reschedule</button>
                 <button>
-                  <Link to={`/lesson/${lesson.id}`}>View Details</Link>
+                  {/* Link to the LessonDetail component with the lesson.id as a parameter */}
+                  <Link to={`/lessons/1`}>View Details</Link>
                 </button>
               </div>
             </div>

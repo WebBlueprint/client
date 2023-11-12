@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Settingside.module.css";
-import { ReactComponent as Menu2Icon } from "../Lessons/menu2.svg";
+import { ReactComponent as Menu2Icon } from "../lessons/menu2.svg";
 
 const Settingside = ({ onTabClick }) => {
   const [activeTab, setActiveTab] = useState("MyProfile");

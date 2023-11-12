@@ -185,7 +185,7 @@ const Signup = () => {
                   type="password"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => {setPassword(e.target.value); setError(""); }}
+                  onChange={(e) => { setPassword(e.target.value); setError(""); }}
                   className="mb-3 place_holder"
                   style={{
                     backgroundColor: "#F3F3F3",
@@ -193,14 +193,14 @@ const Signup = () => {
                     borderRadius: "18px",
                   }}
                 />
-             
+
               </Form.Group>
               <Form.Group>
                 <Form.Control
                   type="password"
                   placeholder="Confirm Password"
                   value={confirmPassword}
-                  onChange={(e) => {setConfirmPassword(e.target.value); setError("");}}
+                  onChange={(e) => { setConfirmPassword(e.target.value); setError(""); }}
                   className="mb-3 place_holder"
                   style={{
                     backgroundColor: "#F3F3F3",
@@ -210,10 +210,10 @@ const Signup = () => {
                 />
               </Form.Group>
               {error && (
-            <p style={{ color: "red", fontSize: "14px", textAlign: "center", margin: "10px 0" }}>
-              {error}
-            </p>
-          )}
+                <p style={{ color: "red", fontSize: "14px", textAlign: "center", margin: "10px 0" }}>
+                  {error}
+                </p>
+              )}
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Button
                   variant="success"
@@ -227,7 +227,7 @@ const Signup = () => {
                   Sign Up
                 </Button>
               </div>
-       
+
               <br />
               <GoogleLogin />
               Already have an account? <Link to="/signin">Sign in</Link>

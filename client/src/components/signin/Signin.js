@@ -169,7 +169,7 @@ const Signin = () => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => {
-                    setPassword(e.target.value); 
+                    setPassword(e.target.value);
                     setPasswordError(""); // Clear the password error message when input changes
                   }}
                   className="mb-3 place_holder"
@@ -179,9 +179,9 @@ const Signin = () => {
                     borderRadius: "18px",
                   }}
                 />
-                 {passwordError && (
-              <p style={{ color: "red", fontSize: "14px" }}>{passwordError}</p>
-            )}
+                {passwordError && (
+                  <p style={{ color: "red", fontSize: "14px" }}>{passwordError}</p>
+                )}
               </Form.Group>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Button
