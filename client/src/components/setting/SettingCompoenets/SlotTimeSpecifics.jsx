@@ -106,8 +106,10 @@ const SlotTimeSpecifics = () => {
 
       <div>
         {/* 예약 가능한 시간을 버튼으로 출력 */}
+        <Container>
+
         {availableTimes.map((time, index) => (
-          <button
+          <Btn
             key={index}
             onClick={() => handleReservation(time)}
             style={{
@@ -115,8 +117,10 @@ const SlotTimeSpecifics = () => {
             }}
           >
             {time}
-          </button>
+          </Btn>
         ))}
+        </Container>
+
       </div>
     </div>
   );
@@ -130,3 +134,22 @@ grid-template-columns: 1fr 1fr;
 grid-gap: 10px;
 `;
 
+
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap; /* 추가: 아이템들이 너비를 초과하면 다음 줄로 넘어감 */
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Btn = styled.div`
+  padding: 1em;
+  margin: 5px;
+  background-color: #dde3da;
+  text-align: center;
+  display: flex;
+  border: none;
+  border-radius: 1em;
+  height: 3em;
+`;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SlotTimeSpecifics from "./SlotTimeSpecifics";
 import Select from "react-select";
-
+import styled from "styled-components";
 
 const Myslot = () => {
   const [selectedDays, setSelectedDays] = useState([]);
@@ -59,18 +59,21 @@ const Myslot = () => {
     <div>
       <div>
         <div>Available Slot </div>
+        <Container>
+
         {daysOfWeek.map((day) => (
-          <button
+          <Btn
             key={day}
             onClick={() => {
               handleDayClick(day);
               console.log("Selected Days:", selectedDays);
             }}
-            style={{ backgroundColor: selectedDays.includes(day) ? "lightblue" : "white" }}
+            style={{ backgroundColor: selectedDays.includes(day) ? "green" : "" }}
           >
             {day}
-          </button>
+          </Btn>
         ))}
+       </Container>
       </div>
 
       <div>
@@ -93,9 +96,28 @@ const Myslot = () => {
         />
       </div>
     </div>
-    
+
     </div>
   );
 };
 
 export default Myslot;
+
+
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Btn = styled.div`
+  padding: 1em;
+  margin: 5px;
+  background-color: #dde3da;
+  text-align: center;
+  display: flex;
+  border: none;
+  border-radius: 1em;
+  height: 3em;
+`;
