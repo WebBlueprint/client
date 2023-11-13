@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import SlotTimeSpecific from "./SlotTimeSpecific";
+import SlotTimeSpecifics from "./SlotTimeSpecifics";
+import Select from "react-select";
+
 
 const Myslot = () => {
   const [selectedDays, setSelectedDays] = useState([]);
@@ -33,6 +35,26 @@ const Myslot = () => {
     }
   };
 
+  const [formData, setFormData] = useState({
+    locations: []
+  });
+
+  const handleLocationChange = (selectedOptions) => {
+    // selectedOptions에는 선택된 옵션들이 배열로 들어옵니다.
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setFormData({
+      ...formData,
+      locations: selectedValues
+    });
+  };
+
+  const options = [
+    { value: "Location 1", label: "Location 1" },
+    { value: "Location 2", label: "Location 2" },
+    { value: "Location 3", label: "Location 3" },
+    { value: "Location 4", label: "Location 4" }
+  ];
+
   return (
     <div>
       <div>
@@ -52,43 +74,26 @@ const Myslot = () => {
       </div>
 
       <div>
-        <div>Per Day</div>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-          <button
-            key={value}
-            onClick={() => {
-              handlePerDayChange(value);
-              console.log("Selected Per Day:", selectedPerDay);
-            }}
-            style={{ backgroundColor: selectedPerDay === value ? "lightblue" : "white" }}
-          >
-            {value}
-          </button>
-        ))}
-      </div>
-
-
-      <div>
-        <div>4. Time Slot</div>
-        <SlotTimeSpecific />
+        <div> Time Slot</div>
+        <SlotTimeSpecifics />
         
       </div>
 
       <div>
-        <div>5. Golf Course </div>
-        {["Course A", "Course B", "Course C"].map((course) => (
-          <button
-            key={course}
-            onClick={() => {
-              handleGolfCourseSelect(course);
-              console.log("Selected Golf Courses:", selectedGolfCourses);
-            }}
-            style={{ backgroundColor: selectedGolfCourses.includes(course) ? "lightblue" : "white" }}
-          >
-            {course}
-          </button>
-        ))}
+      <label>Golf Course</label>
+      <div>
+        <Select
+          name="locations"
+          isMulti
+          value={options.filter((option) =>
+            formData.locations.includes(option.value)
+          )}
+          onChange={handleLocationChange}
+          options={options}
+        />
       </div>
+    </div>
+    
     </div>
   );
 };

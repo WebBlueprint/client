@@ -1,0 +1,11 @@
+div > select {
+    width: 100%;
+    padding: 1em;
+    margin: 5px;
+    background-color: #dde3da;
+  
+    border: none;
+    width: 100%;
+    border-radius: 1em;
+    height: 3em;
+}
