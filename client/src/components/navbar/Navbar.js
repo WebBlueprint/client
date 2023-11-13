@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { AuthContext } from "../application/store/AuthContext"
+import React, { useState, useContext } from "react";
 import { Component } from "react";
 import { menudata } from "./menudata";
 import "./Navbar.css";
@@ -6,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [selectedIconIndex, setSelectedIconIndex] = useState(null);
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
 
   const handleIconClick = (index) => {
     if (selectedIconIndex === index) {
@@ -15,8 +17,8 @@ const Navbar = () => {
     }
   };
 
-    return (
-      <nav className="NavbarItems">
+  return (
+    <nav className="NavbarItems">
       <Link to="/">
         <i
           className="fa fa-bars"
@@ -40,28 +42,28 @@ const Navbar = () => {
                         selectedIconIndex === index ? "28px" : "20px",
                     }}
                   ></i>
-                  </div>
-                  <div>
-                    <span> {item.title} </span>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <div>
-          <Link to="/signin" style={{ textDecoration: "none" }}>
-            <span className="login"> LOGIN</span>
-          </Link>
-          <Link to="/signup" style={{ textDecoration: "none" }}>
-            <span className="signin"> SIGN UP</span>
-          </Link>
-        </div>
-        <Link to="/signin">
-          <i className="fa fa-sign-in"></i>
+                </div>
+                <div>
+                  <span> {item.title} </span>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+      {!isLoggedIn ? <div>
+        <Link to="/signin" style={{ textDecoration: "none" }}>
+          <span className="login"> LOGIN</span>
         </Link>
-      </nav>
-    );
-  }
+        <Link to="/signup" style={{ textDecoration: "none" }}>
+          <span className="signin"> SIGN UP</span>
+        </Link>
+      </div> : <p>Not loggined</p>}
+      <Link to="/signin">
+        <i className="fa fa-sign-in"></i>
+      </Link>
+    </nav>
+  );
+}
 
 export default Navbar;

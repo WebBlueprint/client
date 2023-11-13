@@ -8,13 +8,15 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import Popular from "./Popular";
 import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
-import InfoHeader from "../block/Header/Header";
+// import InfoHeader from "../block/Header/Header";
 import SearchBar from "../search/searchbar";
+import LessonHeader from "../block/Header/Header"
+import { ReactComponent as HomeIcon } from "../../svgs/home.svg";
+
 
 const StyledSearchBar = styled(SearchBar)
   `margin-top: 20px; margin-left: 70px;`;
-import LessonHeader from "../block/Header/Header"
-import { ReactComponent as HomeIcon } from "../../svgs/home.svg";
+
 
 const Main = () => {
   const defaultName = "guest";
@@ -28,12 +30,10 @@ const Main = () => {
         <div style={{ marginTop: "120px" }}>
           <Banner />
           <StyledSearchBar />
-          <Row>
+          {/* <Row>
             <InfoHeader />
-          </Row>
+          </Row> */}
           <Cover2>
-
-            {/* map돌려야함*/}
             {isLoggedIn ?
               <Row>
                 <Col>

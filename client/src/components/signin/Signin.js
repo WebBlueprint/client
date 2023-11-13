@@ -46,6 +46,7 @@ const Signin = () => {
   const [ispro, setIsPro] = useState(false);
   const [passwordError, setPasswordError] = useState(""); // Add state for password error
   const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
@@ -53,9 +54,13 @@ const Signin = () => {
     return regex.test(password);
   }
 
+  const setTokenToCookie = (token) => {
+    document.cookie = `token=${token}; path=/;`;
+  };
 
-  const Register = async (event) => {
+  const Login = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
     // 최소6글자, 영문, 숫자 포함 regex
     if (validatePassword(password)) {
@@ -68,20 +73,30 @@ const Signin = () => {
       try {
         let result;
         if (ispro) {
-          result = await axios.post("http://localhost:3000/login", userData);
+          result = await axios.post("http://localhost:3000/login", userData, {
+            withCredentials: true, // 쿠키를 전송하기 위해 withCredentials 옵션을 추가
+          });
           // login()
           console.log(result.data.message); // 여기에 추가
           navigate("/")
         } else {
-          result = await axios.post("http://localhost:3000/login", userData);
+          result = await axios.post("http://localhost:3000/login", userData, {
+            withCredentials: true, // 쿠키를 전송하기 위해 withCredentials 옵션을 추가
+          });
           // login()
           console.log(result.data.message); // 여기에 추가
           navigate("/")
         }
 
-        console.log(result.data);
+        const token = result.data.token;
+        setTokenToCookie(token); // 쿠키에 토큰 저장
+        console.log("로그인 성공");
+        navigate("/");
+
       } catch (error) {
         alert(error.response.data.message);
+      } finally {
+        setLoading(false);
       }
     } else {
       setPasswordError("Your password should have more than 4 letters including alphabet and number.");
@@ -186,7 +201,7 @@ const Signin = () => {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Button
                   variant="success"
-                  onClick={Register}
+                  onClick={Login}
                   style={{
                     width: "80%",
                     height: "45px",

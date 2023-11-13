@@ -25,7 +25,13 @@ const api = {
             if (!validPassword) return res.status(400).json({ message: "잘못된 비밀번호입니다." });
 
             const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
-            res.json({ token });
+
+            // 서버에서 생성한 토큰을 쿠키에 저장
+            res.cookie('token', token, { httpOnly: true });
+
+            // 클라이언트에게 토큰을 응답으로 전달
+            res.status(200).json({ token, message: "로그인 성공!" });
+
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
