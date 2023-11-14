@@ -5,6 +5,7 @@ import MyList from "./lessonsCompoenets/MyList";
 import MyLessons from "./lessonsCompoenets/MyLessons";
 
 import React, { useState } from "react";
+import ProReviewSend from "./ProReviewSend";
 
 export default function Setting() {
   const [selectedTab, setSelectedTab] = useState("myList"); // 초기 탭 설정
@@ -25,6 +26,7 @@ export default function Setting() {
         <div>
           {selectedTab === "myList" && <MyList />}
           {selectedTab === "myLessons" && <MyLessons />}
+          {selectedTab === "LessonReviews" && <ProReviewSend />}
         </div>
       </div>
     </div>
