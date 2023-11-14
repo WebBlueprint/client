@@ -1,0 +1,75 @@
+
+.lessonContainer {
+    margin-top: 150px;
+  }
+.upcomingt {
+    margin-left: 230px;
+    margin-top: 80px;
+}
+.viewprot {
+    margin-top: -40px;
+    text-align: center;
+    position: relative;
+}
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
+  }
+.cover {
+    background-color: #e2e7e0;
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    padding: 2.5em;
+    border-radius: 1em;
+    margin: 1em;
+    width: 380px;
+    margin-left: -110px;
+}
+.iconwrap {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    border-radius: 50%;
+    align-self: center;
+}
+.non {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    font-size: 150px;  
+}  
+.cover2 {
+    text-align: center;
+    position: relative;
+    margin-left: 600px;
+    display: flex;
+}
+.chatButton {
+    /* Add your button styles here */
+    background-color: #1B4607;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: inherit;
+    margin-left: 40px;
+  }
+  .buttonContainer {
+    position: absolute;
+    bottom: 10px; /* Adjust this value as needed */
+    left: 0;
+    right: 0;
+  }
+  .clicked {
+    border: 2px solid #1B4607; 
+  }
+  .proCover {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 140px;
+  }

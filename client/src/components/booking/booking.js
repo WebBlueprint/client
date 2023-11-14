@@ -1,11 +1,22 @@
+import React from "react";
+import LessonHeader from "../block/Header/Header";
+import styles from "../booking/booking.module.css";
+import MyPro from "../booking/MyPro";
+
 function Booking() {
   return (
     <>
-      <h1>
-        <a style={{ color: "blue", lineHeight: 10, padding: 40 }}>
-          This is booking
-        </a>
-      </h1>
+      <div className={styles.lessonContainer}>
+        <LessonHeader />
+      </div>
+      <p className={styles.upcomingt}> My Upcoming Lessons </p> {}
+      <div className={styles.cover2}>
+        <p className={styles.viewprot}> View All My Pro </p> {}
+        <div className={styles.proCover}>
+          <MyPro />
+          <MyPro />
+        </div>
+      </div>
     </>
   );
 }
