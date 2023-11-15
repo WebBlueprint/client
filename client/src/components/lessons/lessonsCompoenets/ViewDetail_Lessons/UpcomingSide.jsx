@@ -11,11 +11,15 @@ const UpcomingSide = ({ proName, details, lessonId }) => {
         <div className={styles.cover}>
           <div className={styles.iconwrap}></div>
 
+          <div className={styles.Probox}>
+          <div className={styles.round}> 사진 </div>
           <div className={styles.text}>
-            <h3>{proName}</h3>
-            <span>{details}</span>
+            <h3>proName</h3>
+            <span>details</span>
+          </div>
           </div>
           <button>View Details</button>
+   
 
           <div>
             <br />

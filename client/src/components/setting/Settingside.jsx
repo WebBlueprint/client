@@ -59,6 +59,21 @@ const Settingside = ({ onTabClick }) => {
           Setting
         </div>
       </div>
+      <div
+        className={
+          activeTab === "myslot"
+            ? `${styles.cover1} ${styles.active}`
+            : styles.cover1
+        }
+        onClick={() => handleTabClick("myslot")}
+      >
+        <div>
+          <Menu2Icon fill={activeTab === "myslot" ? "#1B4607" : "#D9D9D9"} />
+        </div>
+        <div className={activeTab === "myslot" ? styles.activeText : null}>
+        My Slot
+        </div>
+      </div>
     </div>
   );
 };

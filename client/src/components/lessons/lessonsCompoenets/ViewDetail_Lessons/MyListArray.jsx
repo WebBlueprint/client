@@ -1,5 +1,5 @@
 import React from "react";
-import fold from "./fold.svg";
+import Fold from "./Fold.svg";
 import Down from "./Down.svg";
 import { useState } from "react";
 import styles from "./MyListArray.module.css";
@@ -14,14 +14,13 @@ const MyListArray = () => {
     <div>
       <div>
         <div className={styles.iconwrap}></div>
-
         <div>
           <br />
           <div>
             <div>
               <div className={styles.text} onClick={toggleExpand}>
                 <img
-                  src={isExpanded ? Down : fold}
+                  src={isExpanded ? Down : Fold}
                   alt="None"
                   className={styles.non}
                 />

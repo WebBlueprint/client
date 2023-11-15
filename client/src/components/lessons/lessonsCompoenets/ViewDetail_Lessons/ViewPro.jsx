@@ -8,7 +8,7 @@ const ViewPro = () => {
         <div className={style.photo}> </div>
 
         <div className={style.text}>
-          <div> My Lessons </div>
+          <div> My Lessons Review </div>
           <div> with Pro Mr. Yang </div>
 
           <div>

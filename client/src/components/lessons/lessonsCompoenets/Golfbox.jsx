@@ -1,12 +1,27 @@
+// Golfbox.jsx
+import React, { useState } from "react";
 import styles from "./Golfbox.module.css";
-import { useState } from "react";
-import Golfboxtext from "./Golfboxtext";
+import GolfboxReview from "./GolfboxReview";
+import Probox from "./Probox"; // Import Probox component
 import heart from "./CHeart.svg";
 import Eheart from "./EHeart.svg";
+import styled from "styled-components";
 
 const Golfbox = () => {
   const [showBaby, setShowBaby] = useState(false);
-  const [displayHeart, setDisplayHeart] = useState("heart"); // Initially display the 'heart' image
+  const [displayHeart, setDisplayHeart] = useState("heart");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reviewData, setReviewData] = useState(null);
+
+  const handleMakeReviewClick = () => {
+    setIsModalOpen(true);
+  };
+
+
+  const handleCommentSubmit = (data) => {
+    setIsModalOpen(false);
+    setReviewData(data);
+  };
 
   return (
     <div>
@@ -38,6 +53,7 @@ const Golfbox = () => {
             )}
           </div>
           <button> View Details </button>
+          <button onClick={handleMakeReviewClick}> Make a Review </button>
           <button
             onClick={() => {
               setShowBaby(!showBaby);
@@ -48,9 +64,24 @@ const Golfbox = () => {
         </div>
       </div>
       <br />
+      {isModalOpen && (
+        <Modal>
+          <ModalContent>
+            <GolfboxReview onSubmit={handleCommentSubmit} />
+          </ModalContent>
+        </Modal>
+      )}
+      {reviewData && (
+        <div>
+          <p>Rating: {reviewData.rating}</p>
+          <p>Comment: {reviewData.comment}</p>
+        </div>
+      )}
+
       {showBaby && (
         <div className={styles.centered}>
-          <Golfboxtext />
+          {/* Use the Probox component instead of Golfboxtext */}
+          <Probox />
         </div>
       )}
     </div>
@@ -58,3 +89,27 @@ const Golfbox = () => {
 };
 
 export default Golfbox;
+
+const Modal = styled.div`
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

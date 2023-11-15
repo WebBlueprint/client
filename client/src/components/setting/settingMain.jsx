@@ -4,6 +4,8 @@ import styles from "./SettingMain.module.css";
 import Setting from "./SettingCompoenets/Setting";
 import MyProfile from "./SettingCompoenets/MyProfile";
 import MyUserInfo from "./SettingCompoenets/MyUserInfo";
+import Myslot from "./SettingCompoenets/Myslot";
+
 import Settingside from "./Settingside";
 
 const SettingMain = () => {
@@ -21,6 +23,8 @@ const SettingMain = () => {
     tabContent = <Setting />;
   } else if (selectedTab === "UserInfo") {
     tabContent = <MyUserInfo />;
+  } else if (selectedTab === "myslot") {
+    tabContent = <Myslot />;
   }
 
   return (
