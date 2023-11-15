@@ -8,6 +8,8 @@ export default function RecentLessonList() {
   const [activeTab, setActiveTab] = useState("detail");
   const [videoFiles, setVideoFiles] = useState([]);
 const [photoFiles, setPhotoFiles] = useState([]);
+const [slideIndex, setSlideIndex] = useState(0);
+const lessonsPerSlide = 2;
 
   const handleViewDetail = (lesson) => {
     setSelectedLesson(lesson);
@@ -35,20 +37,41 @@ const [photoFiles, setPhotoFiles] = useState([]);
     setPhotoFiles([]); // Clear photo files
   };
 
+  const handlePrev = () => {
+    setSlideIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : Math.floor(dummyRecentLessons.length / lessonsPerSlide) - 1
+    );
+  };
+
+  const handleNext = () => {
+    setSlideIndex((prevIndex) =>
+      prevIndex < Math.floor(dummyRecentLessons.length / lessonsPerSlide) - 1 ? prevIndex + 1 : 0
+    );
+  };
+
   return (
     <div>
+<SContainer>
+  <SBtnWrap>
+      <SliderButton onClick={handlePrev}>&lt;</SliderButton>
+      <SliderButton onClick={handleNext}>&gt;</SliderButton>
+  </SBtnWrap>
       <RecentLessonsContainer>
-      {dummyRecentLessons.map((lesson) => (
-        <RecentLesson key={lesson.id}>
-          <p>{`Customer: ${lesson.customerName}`}</p>
-          <p>{`Golf Course: ${lesson.golfCourseLocation}`}</p>
-          <p>{`Date: ${lesson.date}`}</p>
-          <p>{`Time: ${lesson.time}`}</p>
-          <button onClick={() => handleViewDetail(lesson)}>View Detail</button>
-          <button onClick={() => handleMakeReview(lesson)}>Make a Review</button>
-        </RecentLesson>
-      ))}
- </RecentLessonsContainer>
+      <SliderWrapper style={{ transform: `translateX(-${slideIndex * (350 + 4)}px)` }}>
+          {dummyRecentLessons.map((lesson, index) => (
+            <RecentLesson key={lesson.id}>
+              <p>{`Customer: ${lesson.customerName}`}</p>
+              <p>{`Golf Course: ${lesson.golfCourseLocation}`}</p>
+              <p>{`Date: ${lesson.date}`}</p>
+              <p>{`Time: ${lesson.time}`}</p>
+              <button onClick={() => handleViewDetail(lesson)}>View Detail</button>
+              <button onClick={() => handleMakeReview(lesson)}>Make a Review</button>
+            </RecentLesson>
+          ))}
+        </SliderWrapper>
+
+      </RecentLessonsContainer>
+    </SContainer>
 
       {/* Render content based on the active tab */}
       {selectedLesson && (
@@ -135,15 +158,32 @@ const [photoFiles, setPhotoFiles] = useState([]);
   );
 }
 const RecentLessonsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-between; 
+display: flex;
+overflow: auto;
+margin-top: 50px;
+margin-bottom: 50px;
+width: 100%;
+`;
+const SBtnWrap = styled.div`
+display: flex;
+margin:-1em;
+position: relative;
+left:95%;
+`;
+
+const SContainer = styled.div`
+margin:2em;
+display: flex;
+flex-direction: column;
+width: 80em;
 `;
 
 const Container = styled.div`
-  text-align: left;
-  margin-top: 10px;
+display: flex;
+flex-direction: column;
+width: 100%;
 `;
+
 
 const SearchBox = styled.input`
   padding: 10px;
@@ -166,11 +206,20 @@ const RecentLesson = styled.div`
   margin-bottom: 20px;
   background-color: #e2e7e0;
   border-radius: 1em;
-  padding: 1em;
-  margin: 1em;
-  width: 25%;
+  padding: 30px;
+  margin: 0 0.5em;
+  width: 350px;
 `;
-
+const SliderWrapper = styled.div`
+  display: flex;
+  transition: transform 0.5s ease;
+`;
+const SliderButton = styled.button`
+  background-color: #333;
+  color: #fff;
+  border: none;
+  display: flex;
+`;
 
 const FilePreviewContainer = styled.div`
   display: flex;
