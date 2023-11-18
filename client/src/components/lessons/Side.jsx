@@ -44,6 +44,24 @@ export default function Side({ onTabClick }) {
           My Lessons
         </div>
       </div>
+
+      <div
+        className={
+          activeTab === "LessonReviews"
+            ? `${styles.cover1} ${styles.active}`
+            : styles.cover1
+        }
+        onClick={() => handleTabClick("LessonReviews")}
+      >
+        <div>
+          <Menu1Icon fill={activeTab === "LessonReviews" ? "#1B4607" : "#D9D9D9"} />
+        </div>
+        <div className={activeTab === "LessonReviews" ? styles.activeText : null}>
+          Lesson Reviews
+        </div>
+      </div>
+
+
     </div>
   );
 }
