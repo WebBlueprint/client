@@ -1,13 +1,19 @@
+import LessonsHeader from '../block/Header/Header.jsx'
+import styled from "styled-components";
+
+const StyledHeader = styled.div`
+position: relative;
+top: 100px;
+`
+
 function Chat() {
   return (
-    <>
-      <h1>
-        <a style={{ color: "blue", lineHeight: 10, padding: 40 }}>
-          This is chat
-        </a>
-      </h1>
-    </>
+    <StyledHeader>
+      <LessonsHeader />
+    </StyledHeader>
   );
 }
 
 export default Chat;
+
+
