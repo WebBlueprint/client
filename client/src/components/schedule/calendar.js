@@ -20,9 +20,10 @@ function Calendars(props) {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    return isOpen
-  }, [value])
+  // 윤철아 여기 고쳐야함
+  // useEffect(() => {
+  //   return isOpen
+  // }, [value])
 
   const [clickedDate, setClickedDate] = useState('')
   const clickHandler = (value, event) => {
