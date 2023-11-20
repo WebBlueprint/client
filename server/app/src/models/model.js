@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 // User Schema
 const userSchema = new mongoose.Schema({
+    username: String,
     email: String,
     password: String,
     birth_date: Date,
@@ -34,7 +35,7 @@ const User = mongoose.model('User', userSchema);
 
 // Pro Schema
 const proSchema = new mongoose.Schema({
-    name: String,
+    username: String,
     email: String,
     password: String,
     birth_date: Date,

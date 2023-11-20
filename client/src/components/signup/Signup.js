@@ -78,7 +78,15 @@ const Signup = () => {
       };
 
       try {
-        const result = await axios.post("http://localhost:3000/signup", userData);
+        let result;
+        if (isPro) {
+          // isPro가 true인 경우 다른 엔드포인트로 요청
+          result = await axios.post("http://localhost:3000/register", userData);
+        } else {
+          // isPro가 false인 경우 기존의 엔드포인트로 요청
+          result = await axios.post("http://localhost:3000/signup", userData);
+        }
+
         console.log(result.data.message);
         navigate("/");
       } catch (error) {
@@ -88,7 +96,6 @@ const Signup = () => {
       setError("Please check your input fields.");
     }
   };
-
   return (
     <>
       <Container fluid>

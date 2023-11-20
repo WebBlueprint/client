@@ -1,5 +1,5 @@
 "use strict";
-const {Pro} = require('../../models/model');
+const { Pro } = require('../../models/model');
 const bcrypt = require('bcrypt');
 
 const view = {
@@ -11,7 +11,7 @@ const view = {
 const api = {
     register: async (req, res) => {
         try {
-            let { email, password, birth_date, gender, address, height, weight, phone, golf_course_id } = req.body;
+            let { username, email, password, birth_date, gender, address, height, weight, phone, golf_course_id } = req.body;
             golf_course_id = golf_course_id || undefined; // 빈 문자열이면 undefined로 설정
 
             // 이메일 중복 검사
@@ -35,6 +35,7 @@ const api = {
 
             // 데이터 저장
             pro = new Pro({
+                username,
                 email,
                 password: hashedPassword,
                 birth_date,
