@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../booking/booking.module.css";
 
 const timeSlotsData = {
@@ -26,7 +26,7 @@ const timeSlotsData = {
   ],
   FRI: [
     { time: "13:00 - 14:00" },
-    { time: "18:00 - 119:00" },
+    { time: "18:00 - 19:00" },
     { time: "20:00 - 21:00" },
   ],
   SAT: [
@@ -42,12 +42,24 @@ const timeSlotsData = {
 };
 
 function ScheduledSlots({ day }) {
+  const [selectedSlot, setSelectedSlot] = useState(null);
+
+  const handleSlotClick = (index) => {
+    setSelectedSlot((prevIndex) => (prevIndex === index ? null : index));
+  };
+
   const timeSlots = timeSlotsData[day] || [];
 
   return (
     <div className={styles.scheduledSlots}>
       {timeSlots.map((slot, index) => (
-        <div key={index} className={styles.slotContainer}>
+        <div
+          key={index}
+          className={`${styles.slotContainer} ${
+            selectedSlot === index ? styles.clicked2 : ""
+          }`}
+          onClick={() => handleSlotClick(index)}
+        >
           <div>{slot.time}</div>
         </div>
       ))}

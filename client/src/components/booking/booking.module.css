@@ -192,4 +192,8 @@
   margin-top: 200px;
   grid-gap: 1px;
 }
+.clicked2 {
+  background-color: #1B4607;
+  color: white;
 
+}
