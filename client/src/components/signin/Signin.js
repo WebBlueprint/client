@@ -41,9 +41,9 @@ const Golf_image = styled.img`
 `;
 
 const Signin = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [ispro, setIsPro] = useState(false);
+  const [isPro, setIsPro] = useState(false);
   const [passwordError, setPasswordError] = useState(""); // Add state for password error
   const { isLoggedIn, login, logout } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -54,9 +54,7 @@ const Signin = () => {
     return regex.test(password);
   }
 
-  const setTokenToCookie = (token) => {
-    document.cookie = `token=${token}; path=/;`;
-  };
+
 
   const Login = async (event) => {
     event.preventDefault();
@@ -65,34 +63,20 @@ const Signin = () => {
     // 최소6글자, 영문, 숫자 포함 regex
     if (validatePassword(password)) {
       const userData = {
-        username,
+        email,
         password,
-        ispro,
+        isPro,
       };
 
       try {
         let result;
-        if (ispro) {
-          result = await axios.post("http://localhost:3000/login", userData, {
-            withCredentials: true, // 쿠키를 전송하기 위해 withCredentials 옵션을 추가
-          });
-          // login()
-          console.log(result.data.message); // 여기에 추가
-          navigate("/")
-        } else {
-          result = await axios.post("http://localhost:3000/login", userData, {
-            withCredentials: true, // 쿠키를 전송하기 위해 withCredentials 옵션을 추가
-          });
-          // login()
-          console.log(result.data.message); // 여기에 추가
-          navigate("/")
-        }
-
-        const token = result.data.token;
-        setTokenToCookie(token); // 쿠키에 토큰 저장
+        result = await axios.post("http://localhost:3000/login", userData, {
+          withCredentials: true, // 서버에서 쿠키를 전송받기 위해 withCredentials 옵션을 추가
+        });
+        console.log(result.data.message); // 여기에 추가
+        login(userData)
+        navigate("/")
         console.log("로그인 성공");
-        navigate("/");
-
       } catch (error) {
         alert(error.response.data.message);
       } finally {
@@ -139,7 +123,7 @@ const Signin = () => {
                   id="user"
                   onClick={() => setIsPro(false)}
                   inline="true"
-                  className={!ispro ? "mr-3 isProButton_clicks" : "mr-3"}
+                  className={!isPro ? "mr-3 isProButton_clicks" : "mr-3"}
                   style={{
                     backgroundColor: "#F3F3F3",
                     height: "60px",
@@ -153,7 +137,7 @@ const Signin = () => {
                   value="Pro"
                   name="isPro"
                   id="pro"
-                  className={ispro ? "isProButton_clicks" : ""}
+                  className={isPro ? "isProButton_clicks" : ""}
                   onClick={() => setIsPro(true)}
                   inline="true"
                   style={{
@@ -167,9 +151,9 @@ const Signin = () => {
               <Form.Group>
                 <Form.Control
                   type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="mb-3 place_holder"
                   style={{
                     backgroundColor: "#F3F3F3",

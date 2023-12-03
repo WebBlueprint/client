@@ -1,4 +1,5 @@
 import { AuthContext } from "../application/store/AuthContext"
+import axios from 'axios'
 import React, { useState, useEffect, useContext } from "react";
 import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
@@ -22,7 +23,16 @@ const Main = () => {
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const { isLoggedIn, login, logout, userinfo } = useContext(AuthContext);
+  const [user, setUser] = useState(userinfo)
+
+  useEffect(() => {
+    console.log("Main.js userinfo:", userinfo);
+  }, [userinfo]);
+
+
+
+
   return (
     <>
       {console.log("Main.js isLoggedIn = " + isLoggedIn)}
@@ -37,14 +47,14 @@ const Main = () => {
             {isLoggedIn ?
               <Row>
                 <Col>
-                  <LessonHeader />
+                  <LessonHeader userinfo={userinfo} />
                 </Col>
                 <Row>
                   <Col>
                     <LessonRemaining />
                   </Col>
                 </Row>
-              </Row> : <p>Not loggined</p>}
+              </Row> : ""}
 
           </Cover2>
         </div>

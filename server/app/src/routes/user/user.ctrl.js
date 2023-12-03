@@ -18,22 +18,68 @@ const view = {
 const api = {
     login: async (req, res) => {
         try {
-            const user = await User.findOne({ username: req.body.username });
-            if (!user) return res.status(400).json({ message: "아이디를 찾을 수 없습니다." });
+            const userInfo = req.body
+            const user = await User.findOne({ email: userInfo.email });
+            if (!user) return res.status(400).json({ message: "이메일을 찾을 수 없습니다." });
 
-            const validPassword = await bcrypt.compare(req.body.password, user.password);
+            const validPassword = await bcrypt.compare(userInfo.password, user.password);
             if (!validPassword) return res.status(400).json({ message: "잘못된 비밀번호입니다." });
+            // 액세스토큰
+            const accessToken = jwt.sign({
+                email: userInfo.email,
+                isPro: userInfo.isPro
+            }, process.env.ACCESS_SECRET, {
+                expiresIn: '3m',
+                issuer: 'Pmatch',
+            })
 
-            const token = jwt.sign({ _id: user._id }, 'pmatch');
-            res.json({ token });
+            // 리프레쉬토큰 
+            const refreshToken = jwt.sign({
+                email: userInfo.email,
+                isPro: userInfo.isPro
+            }, process.env.REFRESH_SECRET, {
+                expiresIn: '24h',
+                issuer: 'Pmatch',
+            })
+            // 쿠키에 담아서 토큰 클라이언트에 전송
+            res.cookie("accessToken", accessToken, {
+                secure: false,
+                httpOnly: true,
+            })
+            res.cookie("refreshToken", refreshToken, {
+                secure: false,
+                httpOnly: true,
+            })
+            res.status(200).json("로그인 성공!")
+
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
-    },
+    }
+    ,
+    user: async (req, res) => {
+        try {
+            console.log(req.body.email)
+            const user = await User.findOne({ email: req.body.email });
+            console.log(user)
+            res.status(200).json(user)
+
+        } catch (err) {
+            res.status(500).json(err.message)
+        }
+    }
+
+    ,
+    logout: (req, res) => {
+        res.cookie('accessToken', '', { expiresIn: new Date(0), httpOnly: true, secure: false });
+        res.cookie('refreshToken', '', { expiresIn: new Date(0), httpOnly: true, secure: false });
+        res.status(200).json({ message: 'Logout successful' });
+    }
+    ,
     signup: async (req, res) => {
         try {
             // 입력 검증
-            const { username, email, password, confirmPassword, birth_date, gender, isPro } = req.body;
+            const { email, password, confirmPassword, birth_date, gender, isPro } = req.body;
 
             // 이메일 형식 검사
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -70,11 +116,7 @@ const api = {
             const isProBoolean = isPro === 'true';
 
             // 중복 검사
-            let user = await User.findOne({ username });
-            if (user) {
-                return res.status(400).json({ message: "이미 존재하는 사용자 이름입니다." });
-            }
-            user = await User.findOne({ email });
+            let user = await User.findOne({ email });
             if (user) {
                 return res.status(400).json({ message: "이미 존재하는 이메일 주소입니다." });
             }
@@ -85,11 +127,9 @@ const api = {
 
             // 데이터 저장
             user = new User({
-                username,
                 email,
                 password: hashedPassword,
                 birth_date: birthDateObject,
-                // birthDate
                 gender,
                 isPro: isProBoolean
             });

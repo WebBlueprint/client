@@ -42,7 +42,6 @@ const Golf_image = styled.img`
 
 const Signup = () => {
   const { isLoggedIn, login, logout } = useContext(AuthContext);
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -63,12 +62,10 @@ const Signup = () => {
 
     if (
       validatePassword(password) &&
-      password === confirmPassword &&
       birth_date &&
       (gender === "male" || gender === "female" || gender === "other")
     ) {
       const userData = {
-        username,
         email,
         password,
         confirmPassword,
@@ -76,6 +73,7 @@ const Signup = () => {
         gender,
         isPro
       };
+      console.log(userData)
 
       try {
         let result;
@@ -153,20 +151,6 @@ const Signup = () => {
                     backgroundColor: "#F3F3F3",
                     height: "60px",
                     width: "50%",
-                    borderRadius: "18px",
-                  }}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Control
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="mb-3 place_holder"
-                  style={{
-                    backgroundColor: "#F3F3F3",
-                    height: "50px",
                     borderRadius: "18px",
                   }}
                 />

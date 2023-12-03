@@ -1,8 +1,12 @@
 import styles from "./Header.module.css";
 import LessonsIcon from "./LessonsIcon.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../application/store/AuthContext.js"
+import React from "react";
 
-const LessonsHeader = () => {
+
+const LessonsHeader = (props) => {
+
   return (
     <div>
       <div className={styles.cover}>
@@ -10,7 +14,7 @@ const LessonsHeader = () => {
           <div className={styles.round}>img</div>
           <div className={styles.text}>
             {" "}
-            <span>Hello, Mr.Lee</span>{" "}
+            <span>Hello, {props.userinfo.email} </span>{" "}
           </div>
         </div>
 

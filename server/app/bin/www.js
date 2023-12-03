@@ -14,17 +14,12 @@ const io = new Server(httpServer, {
         origin: "http://localhost:3006"
     }
 })
+// io를 io.js로부터 받아옴. 
+require("../src/utils/io")(io)
+
 
 httpServer.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
 })
 
-// io를 io.js로부터 받아옴. 
-require("../src/utils/io")(io)
 
-
-// const PORT = process.env.PORT;
-
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
