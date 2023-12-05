@@ -5,6 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import list from "./locationlist.json";
 import { Link } from "react-router-dom";
+import Dropdown from "./Citydropdown";
 
 library.add(faLocationArrow);
 
@@ -21,6 +22,7 @@ const SearchBar = ({ className }) => {
     console.log("검색어:", searchTerm);
     // 실제로 검색을 실행하거나 다른 동작을 수행할 수 있습니다.
   };
+
 
   return (
     <div className={`${styles.search_page} ${className}`}>
@@ -39,7 +41,7 @@ const SearchBar = ({ className }) => {
           Kuala Lumpur
         </span>
       </button>
-      {isOpen && (
+    {isOpen && (
         <div className={styles["dropdown-list"]}>
           {" "}
           {}
@@ -63,6 +65,11 @@ const SearchBar = ({ className }) => {
       <Link to="/searched" className={styles.Search} onClick={handleSearch}>
         Search
       </Link>
+
+<br />
+<Dropdown />
+         
+
     </div>
   );
 };
