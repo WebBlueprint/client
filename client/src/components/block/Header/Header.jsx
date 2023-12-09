@@ -2,11 +2,12 @@ import styles from "./Header.module.css";
 import LessonsIcon from "./LessonsIcon.svg";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../application/store/AuthContext.js"
-import React from "react";
+import React, { useContext } from "react";
 
 
 const LessonsHeader = (props) => {
-
+  const { userinfo } = useContext(AuthContext);
+  const userEmail = userinfo?.email || "Guest";
   return (
     <div>
       <div className={styles.cover}>
@@ -14,7 +15,7 @@ const LessonsHeader = (props) => {
           <div className={styles.round}>img</div>
           <div className={styles.text}>
             {" "}
-            <span>Hello, {props.userinfo.email} </span>{" "}
+            <span>Hello, {userEmail} </span>{" "}
           </div>
         </div>
 

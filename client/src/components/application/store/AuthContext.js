@@ -8,9 +8,14 @@ const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userinfo, setUserInfo] = useState({});
 
+    const updateUserInfo = (newInfo) => {
+        setUserInfo(newInfo);
+    };
+
     useEffect(() => {
         console.log("AuthContext.js userinfo:", userinfo);
     }, [userinfo]);
+
 
 
     const login = async (userData) => {
@@ -23,6 +28,7 @@ const AuthProvider = ({ children }) => {
             setIsLoggedIn(true);
         } catch (error) {
             console.error('Login failed:', error);
+            setIsLoggedIn(false);
         }
     };
 
@@ -30,15 +36,13 @@ const AuthProvider = ({ children }) => {
         try {
             await axios.post('http://localhost:3000/logout', "", {
                 withCredentials: true,
-            }); // 로그아웃 요청
-            // 로그아웃 후 필요한 동작 수행
-            // ...
+            });
+            setUserInfo({});
+            setIsLoggedIn(false);
         } catch (error) {
             console.error(error);
         }
     };
-
-    console.log("AuthContext.js isLoggedIn  " + isLoggedIn)
 
     return (
         <AuthContext.Provider value={{ isLoggedIn, login, logout, userinfo }}>

@@ -1,7 +1,6 @@
-const jwt = require('jasonwebtoken')
-require('dotenv').config({ path: "../../.env" });
+const jwt = require('jsonwebtoken');
 
-const requireAuth = async (req, res, next) => {
+const verifyAuth = async (req, res) => {
     try {
         const accessToken = req.cookies.accessToken;
 
@@ -43,22 +42,20 @@ const requireAuth = async (req, res, next) => {
                         secure: false,
                         httpOnly: true,
                     });
+                    console.log("New accessToken was created with refreshToken")
 
-                    // 요청에 새로운 액세스 토큰을 추가하여 다음 미들웨어로 이동
-                    req.accessToken = newAccessToken;
-                    next();
+                    // 클라이언트에 새로운 액세스 토큰 반환
+                    return res.json({ accessToken: newAccessToken, decodedToken: decodedToken });
                 });
             } else {
-                // 액세스 토큰이 유효한 경우, 요청에 액세스 토큰을 추가하여 다음 미들웨어로 이동
-                req.accessToken = accessToken;
-                next();
+                // 액세스 토큰이 유효한 경우, 클라이언트에 현재 액세스 토큰 반환
+                return res.json({ accessToken, decodedToken: decodedToken });
             }
         });
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ error: "Internal Server Error" });
+        return res.status(500).json({ error: "Internal Server Error" });
     }
-
 }
 
-module.exports = { requireAuth }
+module.exports = { verifyAuth };

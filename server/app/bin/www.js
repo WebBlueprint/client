@@ -11,7 +11,8 @@ const { Server } = require("socket.io")
 
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:3006"
+        origin: "http://localhost:3006",
+        credentials: true,
     }
 })
 // io를 io.js로부터 받아옴. 

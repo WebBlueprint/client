@@ -59,7 +59,7 @@ const api = {
     ,
     user: async (req, res) => {
         try {
-            console.log(req.body.email)
+            console.log("이메일" + req.body.email)
             const user = await User.findOne({ email: req.body.email });
             console.log(user)
             res.status(200).json(user)

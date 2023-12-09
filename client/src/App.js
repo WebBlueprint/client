@@ -1,8 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import React, { useContext } from 'react';
-import { AuthProvider, AuthContext } from './components/application/store/AuthContext';
+import React, { useEffect, useContext } from 'react';
+import axios from 'axios'
+import { AuthContext } from './components/application/store/AuthContext';
 import Main from "./components/main/Main";
 import Signup from "./components/signup/Signup";
 import Signin from "./components/signin/Signin";
@@ -29,52 +30,65 @@ import SearchCourse from "../src/components/search/searchCourse";
 
 
 
-///10/07/2023
-// Navbar 만들기
-//로그인 후 메인페이지 레이아웃 따놓기 \
-//로그인페이지 반응형 작업
-
-const NavbarLayout = () => (
-  <>
-    <Navbar />
-    <Outlet />
-  </>
-);
 function App() {
+  const { login, userinfo } = useContext(AuthContext);
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const response = await axios.post("http://localhost:3000/verifyauth", {}, { withCredentials: true });
+        console.log("서버응답 확인", response.data.accessToken);
+        login({ email: response.data.decodedToken.email })
+      } catch (error) {
+        console.error("사용자 확인 중 오류 발생:", error);
+      }
+    };
+
+    checkToken();
+  }, []);
+
+
+  const NavbarLayout = () => (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
+
   return (
     <div>
       <BrowserRouter>
         <div className="App">
-          <AuthProvider>
-            <Routes>
-              <Route element={<NavbarLayout />}>
-                <Route path="/" element={<Main />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/booking" element={<Booking />} />
-                <Route path="/schedule" element={<Schedule />} />
-                <Route path="/lessons" element={<Lessons />} />
-                <Route path="/lessons/:id" element={<LessonDetail />} />
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/setting" element={<Setting />} />
-                <Route path="/searched" element={<Searched />} />
-              </Route>
-              <Route path="signup" element={<Signup />} />
-              <Route path="signin" element={<Signin />} />
-              {/* block component 추후에 삭제 */}
-              <Route path="block0" element={<LocationBox />} />
-              <Route path="block1" element={<ReviewLocation />} />
-              <Route path="block2" element={<ReviewLocationData />} />
-              <Route path="block3" element={<Header />} />
-              <Route path="block4" element={<LessonRemaining />} />
-              <Route path="block5" element={<LessonSchedule />} />
-              <Route path="block6" element={<UpcomingEvent />} />
-              <Route path="block7" element={<ListData />} />
-              <Route path="block8" element={<UpcomingList />} />
-              <Route path="/searchPro" element={<SearchPro />} />
-              <Route path="/searchCourse" element={<SearchCourse />} />
-              {/* block component 추후에 삭제 */}
-            </Routes>
-          </AuthProvider>
+
+          <Routes>
+            <Route element={<NavbarLayout />}>
+              <Route path="/" element={<Main />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/booking" element={<Booking />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/lessons" element={<Lessons />} />
+              <Route path="/lessons/:id" element={<LessonDetail />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/setting" element={<Setting />} />
+              <Route path="/searched" element={<Searched />} />
+            </Route>
+            <Route path="signup" element={<Signup />} />
+            <Route path="signin" element={<Signin />} />
+            {/* block component 추후에 삭제 */}
+            <Route path="block0" element={<LocationBox />} />
+            <Route path="block1" element={<ReviewLocation />} />
+            <Route path="block2" element={<ReviewLocationData />} />
+            <Route path="block3" element={<Header />} />
+            <Route path="block4" element={<LessonRemaining />} />
+            <Route path="block5" element={<LessonSchedule />} />
+            <Route path="block6" element={<UpcomingEvent />} />
+            <Route path="block7" element={<ListData />} />
+            <Route path="block8" element={<UpcomingList />} />
+            <Route path="/searchPro" element={<SearchPro />} />
+            <Route path="/searchCourse" element={<SearchCourse />} />
+            {/* block component 추후에 삭제 */}
+          </Routes>
+
         </div>
       </BrowserRouter>
     </div>

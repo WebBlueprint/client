@@ -24,11 +24,18 @@ const Main = () => {
   const defaultGender = "M";
   const defaultArea = "KL";
   const { isLoggedIn, login, logout, userinfo } = useContext(AuthContext);
-  const [user, setUser] = useState(userinfo)
+  const [userEmail, setUserEmail] = useState("Guest");
 
   useEffect(() => {
+    // 페이지 로드 시에 로그인 상태 확인
+    console.log("Main.js isLoggedIn =", isLoggedIn);
     console.log("Main.js userinfo:", userinfo);
-  }, [userinfo]);
+    if (userinfo?.email) {
+      setUserEmail(userinfo.email);
+    } else {
+      setUserEmail("Guest");
+    }
+  }, [isLoggedIn, userinfo]);
 
 
 
@@ -47,7 +54,7 @@ const Main = () => {
             {isLoggedIn ?
               <Row>
                 <Col>
-                  <LessonHeader userinfo={userinfo} />
+                  <LessonHeader />
                 </Col>
                 <Row>
                   <Col>
