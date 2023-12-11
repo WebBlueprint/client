@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import style from './Citydropdown.module.css';
+import location from './Location.svg';
 
 const Dropdown = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -32,7 +33,9 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown" ref={dropdownRef}>
-      <div className="dropdown-toggle" onClick={handleDropdownClick}>
+              
+      <div className={style['dropdown-toggle']} onClick={handleDropdownClick}>
+        <img src={location} className={style['location-menu']} />
         {selectedOption ? selectedOption : 'Select an option'}
       </div>
       {isOpen && (

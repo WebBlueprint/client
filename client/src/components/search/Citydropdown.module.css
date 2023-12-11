@@ -1,5 +1,35 @@
+.dropdown-toggle  {
+  align-items: center;
+  padding: 10px;
+  background-color: #d9d9d9;
+  width: 15em;
+  border-radius: 20px;
+  border-color: transparent;
+  margin-right: -28px;
+  height: 3.5em;
+  display: flex;
+  position: relative;
+  top: 5px;
+}
+
 .dropdown-menu {
-    display: block; /* 드롭다운이 보이도록 설정 */
+    display: block; 
     position: absolute;
-    /* 원하는 스타일을 추가하세요. */
+    background: #d9d9d9;
+    padding: 1.5em;
+    border: 1px solid none;
+    border-radius: 0.5em;
+    width: 15em;
+  }
+
+
+  .dropdown-menu :hover {
+  color: #1b4607;
+  text-decoration: underline;
+  }
+
+
+  .location-menu {
+    width: 2em;
+    padding: 5px;
   }
