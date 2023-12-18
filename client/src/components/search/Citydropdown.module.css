@@ -1,7 +1,7 @@
 .dropdown-toggle  {
   align-items: center;
   padding: 10px;
-  background-color: #d9d9d9;
+  background-color: #e7e7e7;
   width: 15em;
   border-radius: 20px;
   border-color: transparent;
@@ -13,21 +13,34 @@
 }
 
 .dropdown-menu {
-    display: block; 
-    position: absolute;
-    background: #d9d9d9;
-    padding: 1.5em;
-    border: 1px solid none;
-    border-radius: 0.5em;
-    width: 15em;
+  display: block;
+  position: absolute;
+  padding: 1.5em;
+  background-color: #f6f6f6;
+  border: 1px solid none;
+  border-radius: 0.2em;
+  width: 15em;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: transform 0.2s ease-in-out; /* Add smooth transition */
+
+
   }
 
+  .dropdown:hover .dropdown-menu {
+    transform: scaleY(1); /* Expand on hover */
+  }
 
   .dropdown-menu :hover {
-  color: #1b4607;
-  text-decoration: underline;
+    background-color: #d3d3d3; 
+    padding: 0.2em;
+    transition: transform 0.2s ease-in-out; 
+    border-radius: 5px;
   }
 
+  .dropdown-item {
+    padding: 0.5em 0;
+    cursor: pointer;
+  }
 
   .location-menu {
     width: 2em;

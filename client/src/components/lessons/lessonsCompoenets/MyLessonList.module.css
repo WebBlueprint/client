@@ -8,7 +8,8 @@
   padding: 1em;
   border-radius: 1em;
   position: relative;
-  width: 40%; /* 2개의 열로 배치하므로 50% 너비, 여백은 2em */
+  width: 30%; 
+  height: 200px;
   margin: 2em;
   display: inline-block; /* 인라인 레벨로 배치 */
   box-sizing: border-box; /* 여백 포함한 전체 크기 */
@@ -18,19 +19,23 @@
   position: absolute;
   background-color: #1b4607;
   width: 5px;
-  height: 90%;
+  height: 170px;
   left: -2px;
 }
 
 .text {
   padding: 10px;
   text-align: left;
-  line-height: 1.2; /* 원하는 간격으로 조정 */
+  line-height: 0.8; /* 원하는 간격으로 조정 */
+}
+.text p {
+  margin: 5px 0; /* Added margins between paragraphs */
 }
 
 .btnwrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  position: relative;
 }
 
 .griddisplay {
@@ -43,3 +48,58 @@
   width: 100%;
   flex: 1; /* 2개의 열을 동일한 너비로 설정 */
 }
+/* Add this to your CSS file */
+.selectedMonth {
+  background-color: green;
+}
+
+/* Add this to your CSS file */
+
+/* Modal container */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Modal content */
+.modalContent {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Input fields */
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
