@@ -1,4 +1,4 @@
-import "./styles.css";
+
 import Side from "./Side";
 import SettingHeader from "./SettingHeader";
 import MyList from "./MyList";
