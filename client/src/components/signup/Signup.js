@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../application/store/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 import golfimage from "../../svgs/golfimage.svg";
@@ -51,6 +51,13 @@ const Signup = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const userEmail = location.state?.userEmail || '';
+
+  useEffect(() => {
+    setEmail(userEmail);
+  }, [userEmail]);
+
   const validatePassword = (password) => {
     const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
     return regex.test(password);
@@ -87,6 +94,7 @@ const Signup = () => {
 
         console.log(result.data.message);
         navigate("/");
+        alert("Registration completed. Please log in.")
       } catch (error) {
         setError(error.response.data.message);
       }
@@ -159,7 +167,7 @@ const Signup = () => {
                 <Form.Control
                   type="email"
                   placeholder="Email"
-                  value={email}
+                  value={userEmail ? userEmail : email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="mb-3 place_holder"
                   style={{
