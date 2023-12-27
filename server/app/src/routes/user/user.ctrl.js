@@ -29,7 +29,7 @@ const api = {
                 email: userInfo.email,
                 isPro: userInfo.isPro
             }, process.env.ACCESS_SECRET, {
-                expiresIn: '3m',
+                expiresIn: '10m',
                 issuer: 'Pmatch',
             })
 
@@ -59,16 +59,34 @@ const api = {
     ,
     user: async (req, res) => {
         try {
-            console.log("이메일" + req.body.email)
+            console.log("이메일" + req.body.email);
             const user = await User.findOne({ email: req.body.email });
-            console.log(user)
-            res.status(200).json(user)
 
+            if (user) {
+                console.log(user);
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ message: "User not found" });
+            }
         } catch (err) {
-            res.status(500).json(err.message)
+            res.status(500).json(err.message);
         }
     }
-
+    ,
+    chatuser: async (req, res) => {
+        let chatuser = await Chat.findOne({ email: req.body.email })
+        if (!chatuser) {
+            chatuser = new Chat({
+                name: req.body.email,
+                token: req.body.sid,
+                online: true,
+            })
+        }
+        user.toekn = req.body.sid
+        user.online = true
+        await chatuser.save()
+        return chatuser
+    }
     ,
     logout: (req, res) => {
         res.cookie('accessToken', '', { expiresIn: new Date(0), httpOnly: true, secure: false });

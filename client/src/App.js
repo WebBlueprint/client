@@ -12,8 +12,8 @@ import Search from "./components/search/Search";
 import Booking from "./components/booking/booking";
 import Schedule from "./components/schedule/schedule";
 import Lessons from "./components/lessons/Lessons";
-import Chat from "./components/chat/chat";
 import Setting from "./components/setting/settingMain";
+import ChatPage from "./components/chat/ChatPage.js";
 import LocationBox from "../src/components/block/GolfLocationBox/LocationBox";
 import ReviewLocation from "../src/components/block/GolfReviewBox/ReviewLocation";
 import ReviewLocationData from "./components/block/GolfReviewBox/ReviewLocationData";
@@ -68,7 +68,7 @@ function App() {
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/lessons" element={<Lessons />} />
               <Route path="/lessons/:id" element={<LessonDetail />} />
-              <Route path="/chat" element={<Chat />} />
+              <Route path="/chat" element={<ChatPage />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/searched" element={<Searched />} />
             </Route>
