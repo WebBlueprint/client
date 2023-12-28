@@ -3,12 +3,13 @@ import socket from "./server";
 import styled from "styled-components";
 
 const ChatContainer = styled.div`
-  margin-top: 200px;
   display: flex;
   flex-direction: column;
-  max-width: 40vw;
+  width: 100%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding: 50px;
 `;
 
 const MessagesContainer = styled.div`
@@ -17,14 +18,14 @@ const MessagesContainer = styled.div`
   border-radius: 8px;
   margin-bottom: 10px;
   overflow-y: scroll;
-  height: 300px;
+  height: 400px;
 `;
 
 const MessageItem = styled.li`
   list-style-type: none;
   margin-bottom: 5px;
+  text-align: ${(props) => (props.isCurrentUser ? "right" : "left")};
 `;
-
 const Username = styled.span`
   font-weight: bold;
   margin-right: 5px;
@@ -96,7 +97,7 @@ const Chat = () => {
             <MessagesContainer ref={messagesRef}>
                 <ul>
                     {messages.map((message, index) => (
-                        <MessageItem key={index}>
+                        <MessageItem key={index} isCurrentUser={message.username === username}>
                             <Username>{message.username}:</Username> {message.content}
                         </MessageItem>
                     ))}
