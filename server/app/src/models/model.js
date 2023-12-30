@@ -116,15 +116,17 @@ const Lesson = mongoose.model('Lesson', lessonSchema);
 
 // Chat Schema
 const chatSchema = new mongoose.Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+    email: {
+        type: String,
+        unique: true
     },
-    pro_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pro'
+    token: {
+        type: String,
     },
-    message: String,
+    online: {
+        type: Boolean,
+        default: false
+    },
     sent_time: Date,
     image: String,
     created_date: {
@@ -132,7 +134,26 @@ const chatSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
 const Chat = mongoose.model('Chat', chatSchema);
+// const chatSchema = new mongoose.Schema({
+//     user_id: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'User'
+//     },
+//     pro_id: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'Pro'
+//     },
+//     message: String,
+//     sent_time: Date,
+//     image: String,
+//     created_date: {
+//         type: Date,
+//         default: Date.now
+//     }
+// });
+
 
 
 // Golf Course Schema

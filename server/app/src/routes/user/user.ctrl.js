@@ -29,7 +29,7 @@ const api = {
                 email: userInfo.email,
                 isPro: userInfo.isPro
             }, process.env.ACCESS_SECRET, {
-                expiresIn: '3m',
+                expiresIn: '10m',
                 issuer: 'Pmatch',
             })
 
@@ -55,20 +55,90 @@ const api = {
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
-    }
-    ,
+    },
+    googlelogin: async (req, res) => {
+        const userInfo = req.body
+        console.log("서버에서 받은 구글이메일", userInfo.email)
+        try {
+            // 구글 로그인으로 전달받은 이메일로 DB 조회
+            const user = await User.findOne({ email: userInfo.email });
+            if (!user) return res.status(400).json({ message: "이메일을 찾을 수 없습니다." });
+
+            if (user) {
+                // 이미 존재하는 이메일인 경우에는 액세스 토큰과 리프레시 토큰 발급
+                const accessToken = jwt.sign(
+                    {
+                        email: user.email,
+                    },
+                    process.env.ACCESS_SECRET,
+                    {
+                        expiresIn: '10m',
+                        issuer: 'Pmatch',
+                    }
+                );
+
+                const refreshToken = jwt.sign(
+                    {
+                        email: user.email,
+                    },
+                    process.env.REFRESH_SECRET,
+                    {
+                        expiresIn: '24h',
+                        issuer: 'Pmatch',
+                    }
+                );
+
+                // 쿠키에 담아서 토큰 클라이언트에 전송
+                res.cookie('accessToken', accessToken, {
+                    secure: false,
+                    httpOnly: true,
+                });
+
+                res.cookie('refreshToken', refreshToken, {
+                    secure: false,
+                    httpOnly: true,
+                });
+
+                return res.status(200).json('로그인 성공!');
+            } else {
+                // 존재하지 않는 이메일이라면 에러 응답
+                return res.status(404).json({ message: '해당 이메일로 가입된 계정이 없습니다.' });
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: error.message });
+        }
+    },
     user: async (req, res) => {
         try {
-            console.log("이메일" + req.body.email)
+            console.log("이메일" + req.body.email);
             const user = await User.findOne({ email: req.body.email });
-            console.log(user)
-            res.status(200).json(user)
 
+            if (user) {
+                console.log(user);
+                res.status(200).json(user);
+            } else {
+                res.status(404).json({ message: "User not found" });
+            }
         } catch (err) {
-            res.status(500).json(err.message)
+            res.status(500).json(err.message);
         }
     }
-
+    ,
+    chatuser: async (req, res) => {
+        let chatuser = await Chat.findOne({ email: req.body.email })
+        if (!chatuser) {
+            chatuser = new Chat({
+                name: req.body.email,
+                token: req.body.sid,
+                online: true,
+            })
+        }
+        user.toekn = req.body.sid
+        user.online = true
+        await chatuser.save()
+        return chatuser
+    }
     ,
     logout: (req, res) => {
         res.cookie('accessToken', '', { expiresIn: new Date(0), httpOnly: true, secure: false });

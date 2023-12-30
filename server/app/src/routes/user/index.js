@@ -14,6 +14,7 @@ router.post("/user", ctrl.api.user)
 router.post('/logout', ctrl.api.logout)
 router.post("/login", ctrl.api.login);
 router.post("/signup", ctrl.api.signup);
+router.post("/googlelogin", ctrl.api.googlelogin)
 router.post("/verifyauth", verifyAuth);
 
 module.exports = router;

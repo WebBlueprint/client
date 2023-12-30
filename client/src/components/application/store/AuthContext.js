@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 
 const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
     const [userinfo, setUserInfo] = useState({});
 
     const updateUserInfo = (newInfo) => {

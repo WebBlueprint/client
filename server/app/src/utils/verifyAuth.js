@@ -32,7 +32,7 @@ const verifyAuth = async (req, res) => {
                         },
                         process.env.ACCESS_SECRET,
                         {
-                            expiresIn: '3m',
+                            expiresIn: '10m',
                             issuer: 'Pmatch',
                         }
                     );
