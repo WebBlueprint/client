@@ -1,38 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Modal from "react-modal";
 
 const Popularprodetail = (props) => {
+  console.log(props);
+  const [isOpen, setIsOpen] = useState(false);
+  const clickHandler = () => {
+    setIsOpen(() => !isOpen);
+  };
   return (
     <Board>
       <div style={{ display: "flex" }}>
         <Profile />
         <Details>
-          <Icon>icon</Icon>
-          <b>{props.list.area}</b>
+          <Icon></Icon>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Bold>Pro Name</Bold>
+            <p>{props.proname}</p>
+          </div>
         </Details>
       </div>
-      <Details2>
-        <p>{props.list.areaDetail}</p>
-        <p>{props.list.placeName}</p>
-      </Details2>
+      <Details2></Details2>
 
       <Container>
         <Row>
           <Col style={{ padding: "0 0 0 20px" }}>
-            <p style={{ color: "#1B4607", fontSize: "18px" }}>
-              <b>My Pro</b>
-            </p>
-            <div style={{ lineHeight: "2px" }}>
-              <p>Reaming 10 Lessons</p>
-              <p>(10/20)</p>
-            </div>
+            <div style={{ lineHeight: "2px" }}></div>
           </Col>
 
           <Col>
-            <Chatbutton>Chat with Pro</Chatbutton>
+            <ViewDetails onClick={clickHandler}>View Details</ViewDetails>
+            <Modal
+              appElement={document.getElementById("root")}
+              isOpen={isOpen}
+              style={modalStyles}
+            >
+              <h2>Details</h2>
+              <h4>Total Reviews</h4>
+              <p>{props.reviewCount}</p>
+              <h4>Average Rating</h4>
+              <p>{props.averageRating}</p>
+              <button onClick={() => setIsOpen(false)}>Close</button>
+            </Modal>
           </Col>
         </Row>
       </Container>
@@ -75,7 +92,25 @@ const Details2 = styled.div`
   line-height: 2px;
 `;
 
-const Chatbutton = styled.button`
+const ViewDetails = styled.button`
   margin: 30px 0 0 30px;
   font-size: 14px;
+  width: 10rem;
 `;
+
+const Bold = styled.p`
+  color: #1b4607;
+  font-size: 18px;
+  margin: 0;
+`;
+
+const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};

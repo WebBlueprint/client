@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import styled, { css } from "styled-components";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
+import GoogleMaps from "./Googlemaps.js";
 const Populargolfplacedetail = (props) => {
+  const [center, setCenter] = useState({
+    lat: 37.56667,
+    lng: 122.02333,
+  });
+  const [markers, setMarkers] = useState([
+    {
+      position: {
+        lat: 37.56667,
+        lng: 122.02333,
+      },
+      title: "서울",
+    },
+    {
+      position: {
+        lat: 35.66667,
+        lng: 128.97333,
+      },
+      title: "부산",
+    },
+  ]);
   return (
     <Board>
       <div style={{ display: "flex" }}>
         <Profile />
         <Details>
+          <GoogleMaps></GoogleMaps>
           <Icon>icon</Icon>
           <b>{props.list.area}</b>
         </Details>

@@ -1,9 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import React, { useEffect, useContext } from 'react';
-import axios from 'axios'
-import { AuthContext } from './components/application/store/AuthContext';
+import React, { useEffect, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "./components/application/store/AuthContext";
 import Main from "./components/main/Main";
 import Signup from "./components/signup/Signup";
 import Signin from "./components/signin/Signin";
@@ -23,12 +23,10 @@ import LessonSchedule from "./components/block/LessonSchedule/LessonSchedule";
 import UpcomingEvent from "./components/block/UpcomingEvent/UpcomingEvent";
 import ListData from "./components/block/UpcomingList/ListData";
 import UpcomingList from "./components/block/UpcomingList/UpcomingList";
-import LessonDetail from "../src/components/lessons/lessonsCompoenets/ViewDetail_Lessons/LessonviewDetails"
+import LessonDetail from "../src/components/lessons/lessonsCompoenets/ViewDetail_Lessons/LessonviewDetails";
 import Searched from "../src/components/search/searched";
 import SearchPro from "../src/components/search/searchPro";
 import SearchCourse from "../src/components/search/searchCourse";
-
-
 
 function App() {
   const { login, userinfo } = useContext(AuthContext);
@@ -36,9 +34,13 @@ function App() {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const response = await axios.post("http://localhost:3000/verifyauth", {}, { withCredentials: true });
+        const response = await axios.post(
+          "http://localhost:3000/verifyauth",
+          {},
+          { withCredentials: true }
+        );
         console.log("서버응답 확인", response.data.accessToken);
-        login({ email: response.data.decodedToken.email })
+        login({ email: response.data.decodedToken.email });
       } catch (error) {
         console.error("사용자 확인 중 오류 발생:", error);
       }
@@ -46,7 +48,6 @@ function App() {
 
     checkToken();
   }, []);
-
 
   const NavbarLayout = () => (
     <>
@@ -59,7 +60,6 @@ function App() {
     <div>
       <BrowserRouter>
         <div className="App">
-
           <Routes>
             <Route element={<NavbarLayout />}>
               <Route path="/" element={<Main />} />
@@ -88,7 +88,6 @@ function App() {
             <Route path="/searchCourse" element={<SearchCourse />} />
             {/* block component 추후에 삭제 */}
           </Routes>
-
         </div>
       </BrowserRouter>
     </div>
