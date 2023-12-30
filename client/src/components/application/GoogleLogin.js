@@ -5,32 +5,26 @@ import { useNavigate } from 'react-router-dom'
 import Signin from "../signin/Signin"
 import axios from "axios";
 
-
-
 function GoogleLogin() {
     const navigate = useNavigate();
     const [user, setUser] = useState({})
     const { isLoggedIn, login, logout } = useContext(AuthContext);
 
-    function handleCallbackResponse(response) {
+
+    async function handleCallbackResponse(response) {
         //       console.log("Encoded JWT ID token: " + response.credential)
         var userObj = jwtDecode(response.credential)
-        console.log(userObj)
         setUser(userObj)
 
-        axios.post('http://localhost:3000/user', {
+        axios.post('http://localhost:3000/googlelogin', {
             email: userObj.email,
         }, {
             withCredentials: true,
         }).then(async (response) => {
-            console.log(response.data);
-
             // 로그인 성공 시 받은 사용자 정보를 저장하고 페이지 이동
             const userData = response.data;
             await login(userData);
-            navigate('/');
-
-            console.log("로그인 성공");
+            window.location = "/"
         })
             .catch((error) => {
                 if (error.response && error.response.status === 404) {

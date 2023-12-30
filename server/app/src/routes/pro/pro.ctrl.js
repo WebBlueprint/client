@@ -52,6 +52,15 @@ const api = {
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
+    },
+
+    getallpros: async (req, res) => {
+        try {
+            const allPros = await Pro.find({});
+            res.status(200).json(allPros);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
     }
 }
 

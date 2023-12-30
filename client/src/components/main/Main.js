@@ -19,24 +19,25 @@ const StyledSearchBar = styled(SearchBar)
   `margin-top: 20px; margin-left: 70px;`;
 
 
+
 const Main = () => {
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
   const { isLoggedIn, login, logout, userinfo } = useContext(AuthContext);
-  const [userEmail, setUserEmail] = useState("Guest");
+
 
   useEffect(() => {
-    // 페이지 로드 시에 로그인 상태 확인
-    console.log("Main.js isLoggedIn =", isLoggedIn);
-    console.log("Main.js userinfo:", userinfo);
-    if (userinfo?.email) {
-      setUserEmail(userinfo.email);
-    } else {
-      setUserEmail("Guest");
-    }
-  }, [isLoggedIn, userinfo]);
+    console.log("Main.js isLoggedIn = " + isLoggedIn);
 
+    if (isLoggedIn !== undefined) {
+      if (isLoggedIn) {
+        console.log("사용자가 로그인했습니다.");
+      } else {
+        console.log("사용자가 로그아웃했습니다.");
+      }
+    }
+  }, [isLoggedIn]);
 
 
 
@@ -51,7 +52,7 @@ const Main = () => {
             <InfoHeader />
           </Row> */}
           <Cover2>
-            {isLoggedIn ?
+            {isLoggedIn === true ? (
               <Row>
                 <Col>
                   <LessonHeader />
@@ -61,7 +62,8 @@ const Main = () => {
                     <LessonRemaining />
                   </Col>
                 </Row>
-              </Row> : ""}
+              </Row>
+            ) : <></>}
 
           </Cover2>
         </div>

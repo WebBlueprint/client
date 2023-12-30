@@ -31,7 +31,7 @@ import SearchCourse from "../src/components/search/searchCourse";
 
 
 function App() {
-  const { login, userinfo } = useContext(AuthContext);
+  const { login, userinfo, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     const checkToken = async () => {

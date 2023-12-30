@@ -75,7 +75,7 @@ const Signin = () => {
         });
         console.log(result.data.message); // 여기에 추가
         login(userData)
-        navigate("/")
+        window.location = "/"
         console.log("로그인 성공");
       } catch (error) {
         alert(error.response.data.message);
