@@ -32,11 +32,11 @@ const Popularprodetail = (props) => {
 
       <Container>
         <Row>
-          <Col style={{ padding: "0 0 0 20px" }}>
-            <div style={{ lineHeight: "2px" }}></div>
-          </Col>
-
-          <Col>
+          <Col style={{marginBottom:"1rem"}}>
+          <Star style={{ marginTop:"1.5rem"}}>
+              <Starspan style={{ width: (props.averageRating)*20 + '%' }}></Starspan>
+            </Star>
+           
             <ViewDetails onClick={clickHandler}>View Details</ViewDetails>
             <Modal
               appElement={document.getElementById("root")}
@@ -47,7 +47,7 @@ const Popularprodetail = (props) => {
               <h4>Total Reviews</h4>
               <p>{props.reviewCount}</p>
               <h4>Average Rating</h4>
-              <p>{props.averageRating}</p>
+              <p >{props.averageRating}</p>
               <button onClick={() => setIsOpen(false)}>Close</button>
             </Modal>
           </Col>
@@ -72,7 +72,7 @@ const Profile = styled.div`
   height: 100px;
   border-radius: 50%;
   background-color: tomato;
-  margin-right: 25px;
+  margin-right: 10px;
 `;
 
 const Icon = styled.div`
@@ -114,3 +114,20 @@ const modalStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
+
+const Star = styled.div`
+  display: flex;
+  margin: 0 auto;
+  background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png)
+    no-repeat;
+  width: 121px;
+  height: 20px;
+  position: relative;
+`;
+
+const Starspan = styled.span`
+  position: absolute;
+  background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);
+  width: auto;
+  height: 20px;
+`;

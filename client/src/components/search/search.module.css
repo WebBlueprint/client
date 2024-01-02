@@ -33,9 +33,9 @@
 .search_page {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   margin-top: 160px;
-  margin-left: 320px;
 }
 .dropdown-list {
   position: absolute;

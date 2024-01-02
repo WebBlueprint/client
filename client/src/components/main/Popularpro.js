@@ -7,8 +7,10 @@ import Popularprodetail from "./Popularprodetail";
 import { useState } from "react";
 import axios from "axios";
 
+
 const Popularpro = () => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     const popularPros = async () => {
       try {
@@ -61,6 +63,7 @@ const Popularpro = () => {
                 );
               })}
             </Board>
+            
           </Col>
         </Row>
       </Container>
@@ -74,9 +77,9 @@ const Board = styled.div`
   display: flex;
   width: 100%;
   height: 284px;
-  margin-top: 70px;
+  margin-top: 2rem;
 `;
 
 const Top5pros = styled.p`
-  margin: 0 0 0 25px;
+  margin: 0 0 0 10px;
 `;

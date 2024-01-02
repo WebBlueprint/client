@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import GoogleMaps from "./Googlemaps.js";
+
 const Populargolfplacedetail = (props) => {
   const [center, setCenter] = useState({
     lat: 37.56667,
@@ -28,27 +29,23 @@ const Populargolfplacedetail = (props) => {
   ]);
   return (
     <Board>
-      <div style={{ display: "flex" }}>
-        <Profile />
-        <Details>
-          <GoogleMaps></GoogleMaps>
-          <Icon>icon</Icon>
-          <b>{props.list.area}</b>
-        </Details>
-      </div>
-      <Details2>
-        <p>{props.list.areaDetail}</p>
-        <p>{props.list.placeName}</p>
-      </Details2>
-
+      <GoogleMaps/>  
       <Container>
         <Row>
           <Col style={{ padding: "0 0 0 20px" }}>
+          <Details>
+          <p>{props.list.placeName}</p>
+      </Details>
+      <Details>
+      <p>{props.list.area}</p>
+      </Details>
+      <Details2>
+      <p>{props.list.areaDetail}</p>
+      </Details2>
             <Star>
               <Starspan style={{ width: props.list.rate }}></Starspan>
             </Star>
-
-            <Detailbutton>View Details</Detailbutton>
+            <Detailbutton>View Details</Detailbutton>  
           </Col>
         </Row>
       </Container>
@@ -59,36 +56,32 @@ const Populargolfplacedetail = (props) => {
 export default Populargolfplacedetail;
 
 const Board = styled.div`
-  padding: 40px 20px 20px 20px;
+  padding: 30px 2% 20px 2%;
   background-color: #d9d9d9;
   margin: 0 10px 0 10px;
   border-radius: 30px;
   width: 100%;
-`;
-
-const Profile = styled.div`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: tomato;
-  margin-right: 25px;
-`;
-
-const Icon = styled.div`
-  margin-right: 9px;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Details = styled.div`
-  display: flex;
-  margin-top: 16px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+  font-size: 13px;
+  line-height: 2px;
+  
 `;
 
 const Details2 = styled.div`
-  position: relative;
-  top: -55px;
-  left: 165px;
-  font-size: 13px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+  font-size: 21px;
   line-height: 2px;
+  margin-top: 1rem;
 `;
 
 const Star = styled.div`

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Populargolfplacedetail from "./Populargolfplacedetail";
-import { useState } from "react";
+import ItemsCarousel from 'react-items-carousel';
+import './Carousel.css'
 
 const Populargolfplace = () => {
   const [golfplacelist, setGolfplacelist] = useState([
@@ -26,18 +27,53 @@ const Populargolfplace = () => {
       placeName: "승우네골프장",
       rate: "80%",
     },
+    {
+      area: "수원시",
+      areaDetail: "가나다동 라마바번지",
+      placeName: "골프장",
+      rate: "80%",
+    },
+    {
+      area: "수원시",
+      areaDetail: "가나다동 라마바번지",
+      placeName: "골프장",
+      rate: "80%",
+    },
   ]);
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const chevronWidth = 40;
   return (
     <div>
       <Container>
         <Row>
           <Col>
-            <Board>
-              <Top5place>Top 5 Popular Place</Top5place>
+          <Top5place>Top 5 Popular Place</Top5place>
+          <div className='scrollHorizontal' style={{ height: `45em` }}>
+          <div style={{ padding: `0 ${chevronWidth}px` }}>
+      <ItemsCarousel
+        requestToChangeActive={setActiveItemIndex}
+        activeItemIndex={activeItemIndex}
+        numberOfCards={1.5}
+        gutter={20}
+        leftChevron={<div className="carosuelArrow">{'<'}</div>}
+        rightChevron={<div className="carosuelArrow">{'>'}</div>}
+        outsideChevron
+        chevronWidth={chevronWidth}
+      >
+              <div style={{ height: 600}}> 
+              <Board>
               {golfplacelist.map((a, b) => {
                 return <Populargolfplacedetail list={a} key={b} />;
               })}
-            </Board>
+             </Board>
+              </div>
+        <div style={{ height: 600}}></div>
+        <div style={{ height: 600}}></div>
+      </ItemsCarousel>
+    </div>
+        
+           
+    </div>
           </Col>
         </Row>
       </Container>
@@ -49,13 +85,11 @@ export default Populargolfplace;
 
 const Board = styled.div`
   height: 284px;
-  margin-top: 80px;
+  margin-top: 2rem;
   display: flex;
   width: 100%;
 `;
 
 const Top5place = styled.p`
-  position: absolute;
-  bottom: -400px;
-  margin-left: 25px;
+margin: 5rem 0 0 10px;
 `;

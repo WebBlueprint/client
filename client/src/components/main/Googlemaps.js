@@ -1,9 +1,11 @@
 import React from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const containerStyle = {
-  width: "400px",
-  height: "400px",
+  width: "350px",
+  height: "250px",
+  borderRadius: "5%",
+  marginBottom: "2rem",
 };
 
 const center = {
@@ -48,3 +50,4 @@ function GoogleMaps() {
 }
 
 export default React.memo(GoogleMaps);
+

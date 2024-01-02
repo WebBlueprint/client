@@ -13,10 +13,7 @@ import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
 import SearchBar from "../search/searchbar";
 import LessonHeader from "../block/Header/Header";
 
-const StyledSearchBar = styled(SearchBar)`
-  margin-top: 20px;
-  margin-left: 70px;
-`;
+
 
 const Main = () => {
   const defaultName = "guest";
@@ -108,4 +105,9 @@ const Vertical = styled.div`
   border-left: 0.5px solid #000;
   height: 30px;
   margin: 0 30px 0 30px;
+`;
+
+const StyledSearchBar = styled(SearchBar)`
+  margin: 0 auto;
+
 `;
