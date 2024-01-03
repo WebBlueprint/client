@@ -3,7 +3,7 @@ import LessonHeader from "../block/Header/Header";
 import styles from "../booking/booking.module.css";
 import MyPro from "../booking/MyPro";
 import Schedule from "../booking/Schedule";
-
+import { GoogleMap, Marker, withGoogleMap, withScriptjs } from "react-google-maps";
 
 const proData = [
   { name: "김민지 프로", lesson: "(10/20)" },
@@ -13,6 +13,22 @@ const proData = [
   { name: "이현경 프로", lesson: "(8/20)" }
 ];
 
+const MapComponent = withScriptjs(
+  withGoogleMap((props) => (
+    <GoogleMap
+      defaultZoom={8}
+      defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    >
+      {props.markers.map((marker, index) => (
+        <Marker
+          key={index}
+          position={{ lat: marker.lat, lng: marker.lng }}
+          label={marker.label}
+        />
+      ))}
+    </GoogleMap>
+  ))
+);
 
 function Booking() {
   const containerRef = useRef(null);
@@ -38,37 +54,26 @@ function Booking() {
     }
   };
 
+  const mapMarkers = [
+    { lat: -34.397, lng: 150.644, label: "A" },
+    // Add more markers as needed
+  ];
+
   return (
     <>
       <div className={styles.lessonContainer}>
         <LessonHeader />
       </div>
-      <p className={styles.upcomingt}> My Upcoming Lessons </p> {}
-      <div className={styles.cover2}>
-        <p className={styles.viewprot}> View All My Pro </p>
-        <div className={styles.iconContainer}>
-          <div className={styles.iconWrapper} onClick={scrollLeft}>
-            <i className="fa fa-chevron-left"></i>
-          </div>
-          <div className={styles.iconWrapper2} onClick={scrollRight}>
-            <i className="fa fa-chevron-right"></i>
-          </div>
-          <div className={styles.wrapper} ref={wrapperRef}>
-            <div className={styles.proCover} ref={containerRef}>
-              {proData.slice(startIndex, startIndex + 3).map((pro, index) => (
-                <MyPro
-                  key={index}
-                  name={pro.name}
-                  lesson={pro.lesson}
-                  onItemClick={() => onItemClick(index)}
-                  isActive={index === activeIndex}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <p className={styles.booklessont}> Book for Next Lessons </p>
+      
+      {/* Add the Map component with markers */}
+      <MapComponent
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&v=3.exp&libraries=geometry,drawing,places`}
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `119vh`, width: `45%`, float: 'left' }} />} 
+        mapElement={<div style={{ height: `100%` }} />}
+        markers={mapMarkers}
+      />
+      <MyPro />
       <Schedule />
     </>
   );

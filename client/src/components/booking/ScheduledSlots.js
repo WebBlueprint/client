@@ -48,21 +48,45 @@ function ScheduledSlots({ day }) {
     setSelectedSlot((prevIndex) => (prevIndex === index ? null : index));
   };
 
+  const handleBookNowClick = () => {
+    // Add logic to handle the "Book Now" action
+    console.log("Book Now clicked for slot:", selectedSlot);
+
+    // Hide the "Book Now" button after booking
+    setSelectedSlot(null);
+  };
+
   const timeSlots = timeSlotsData[day] || [];
 
   return (
-    <div className={styles.scheduledSlots}>
-      {timeSlots.map((slot, index) => (
-        <div
-          key={index}
-          className={`${styles.slotContainer} ${
-            selectedSlot === index ? styles.clicked2 : ""
-          }`}
-          onClick={() => handleSlotClick(index)}
-        >
-          <div>{slot.time}</div>
-        </div>
-      ))}
+    <div>
+      <div className={styles.scheduledSlots}>
+        {timeSlots.map((slot, index) => (
+          <div
+            key={index}
+            className={`${styles.slotContainer} ${
+              selectedSlot === index ? styles.clicked2 : ""
+            }`}
+            onClick={() => {
+              handleSlotClick(index);
+            }}
+          >
+            <div>{slot.time}</div>
+          </div>
+        ))}
+      </div>
+      <div>
+        {selectedSlot !== null && (
+          <div className={styles.bookContainer}>
+            <button
+              className={styles.bookNowButton}
+              onClick={handleBookNowClick}
+            >
+              Book Now
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

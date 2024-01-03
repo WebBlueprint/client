@@ -102,11 +102,11 @@
     background-color: #F4F4F4;
     padding: 10em;
     border-radius: 1em;
-    width: 60%;
-    margin-left: 600px;
+    width: 50%;
+    margin-left: 790px;
     height: 700px;
     margin-bottom: 20px;
-    margin-top: 40px;
+    margin-top: 30px;
   }
   .day{
     background-color: #DDE3DA;
@@ -120,7 +120,7 @@
     width: 700px;
     height: 300px;
     margin-top: -80px;
-    margin-left: 10px;
+    margin-left: -77px;
     display: grid;
     grid-template-columns: repeat(7, auto);
     grid-gap: 10px;
@@ -181,19 +181,49 @@
   flex-direction: column; 
   align-items: center; 
   justify-content: center; 
-  margin: 8px 0;
+  margin: 10px 0;
   font-size: 20px;
   display: flex;
-  margin-left: 50px;
+  margin-left: 20px;
 }
 .scheduledSlots {
   display: grid;
   grid-template-columns: repeat(3, auto);
   margin-top: 200px;
   grid-gap: 1px;
+  margin-left: -40px;
 }
 .clicked2 {
   background-color: #1B4607;
   color: white;
 
+}
+.containerWrapper {
+  display: flex;
+  margin-left: 760px;
+  margin-top: 30px;
+}
+
+.Procontainer {
+  background-color: #F4F4F4;
+  height: 390px;
+  width: 390px;
+  margin-left: 35px;
+  border-radius: 1em;
+
+}
+.bookNowButton {
+  margin-top: 10px;
+  padding: 10px;
+  width: 150px;
+  height: 50px;
+  background-color: #1B4607;
+  border-radius: 0.8em;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.bookContainer{
+  margin-top: 50px;
+  margin-left: 200px;
 }
