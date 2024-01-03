@@ -210,10 +210,28 @@
   width: 390px;
   margin-left: 35px;
   border-radius: 1em;
+  font-size: 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Ensure flex container works as expected */
+  justify-content: center;
+  font-weight: bold;
 
 }
-.bookNowButton {
+.boldText {
+  margin-top: 20px; 
+  word-wrap: break-word;
+  max-width: 5ch; 
+}
+.additionalText {
+  font-size: 15px;
   margin-top: 10px;
+  text-align: center; 
+  justify-content: center; 
+  font-weight: lighter;
+}
+.bookNowButton {
+  margin-top: 100px;
   padding: 10px;
   width: 150px;
   height: 50px;
@@ -226,4 +244,32 @@
 .bookContainer{
   margin-top: 50px;
   margin-left: 200px;
+}
+.Proname{
+  color: #1B4607;
+  font-size: 25px;
+}
+.reaminglesson{
+  font-size: 15px;
+  font-weight: lighter;
+  margin-top: 20px;
+}
+.Procontainer2 {
+  background-color: #F4F4F4;
+  height: 390px;
+  width: 390px;
+  margin-left: 35px;
+  border-radius: 1em;
+  font-size: 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  font-weight: bold;
+}
+.proImage{
+  height: 150px;
+  width: 150px;
+  margin-bottom: 25px;
+  margin-left: 120px;
 }
