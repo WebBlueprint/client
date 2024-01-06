@@ -2,13 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import ChatRooms from './ChatRooms'; // Import the ChatRooms component
 import axios from 'axios';
 
-function ChatSearch() {
+function ChatSearch({ onChatRoomClick }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [isInputFocused, setIsInputFocused] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [selectedPros, setSelectedPros] = useState([]); // New state to store selected pros
     const [proList, setProList] = useState([]); // Initialize as an empty array
     const filteredProList = proList.filter(pro => pro && pro.toLowerCase().includes(searchTerm.toLowerCase()));
+    const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+
 
     const resultContainerStyle = {
         maxHeight: '200px',
@@ -86,6 +88,15 @@ function ChatSearch() {
         setSelectedPros(updatedPros);
     };
 
+
+    const handleChatRoomClick = (pro) => {
+        setSelectedChatRoom(pro);
+        onChatRoomClick(pro);
+        // ... other actions, like fetching chat history
+    };
+
+
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
             <div style={{ flex: '1' }}>
@@ -123,7 +134,7 @@ function ChatSearch() {
             </div>
             <div style={{ flex: '2' }}>
                 {/* Display selected pros in the ChatRooms component */}
-                <ChatRooms selectedPros={selectedPros} onRemove={handleRemoveChatRoom} />
+                <ChatRooms selectedPros={selectedPros} onRemove={handleRemoveChatRoom} handleChatRoomClick={handleChatRoomClick} />
             </div>
         </div>
     );

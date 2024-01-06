@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function ChatRoom({ pro, onRemove }) {
+function ChatRoom({ pro, onRemove, onClick, isSelected }) {
     const chatRoomStyle = {
         display: 'flex',
         justifyContent: 'space-between',
@@ -10,6 +10,7 @@ function ChatRoom({ pro, onRemove }) {
         padding: '10px', // Padding
         margin: '5px', // Margin
         cursor: 'pointer',
+        backgroundColor: isSelected ? '#e0e0e0' : 'transparent', // Apply different background color if selected
     };
 
     const closeButtonStyle = {
@@ -18,12 +19,17 @@ function ChatRoom({ pro, onRemove }) {
         cursor: 'pointer',
     };
 
-    const handleRemove = () => {
+    const handleRemove = (e) => {
+        e.stopPropagation(); // Prevent the onClick of the parent div from firing
         onRemove(pro);
     };
 
+    const handleClick = () => {
+        onClick(pro);
+    };
+
     return (
-        <div style={chatRoomStyle}>
+        <div style={chatRoomStyle} onClick={handleClick}>
             <span>{pro}</span>
             <span style={closeButtonStyle} onClick={handleRemove}>x</span>
         </div>
