@@ -1,4 +1,5 @@
-import { AuthContext } from "../application/store/AuthContext"
+import { AuthContext } from "../application/store/AuthContext";
+import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import Banner from "./Banner";
 import Container from "react-bootstrap/Container";
@@ -10,19 +11,28 @@ import Popular from "./Popular";
 import LessonRemaining from "../block/LessonRemaining/LessonRemaining";
 // import InfoHeader from "../block/Header/Header";
 import SearchBar from "../search/searchbar";
-import LessonHeader from "../block/Header/Header"
-import { ReactComponent as HomeIcon } from "../../svgs/home.svg";
+import LessonHeader from "../block/Header/Header";
 
-
-const StyledSearchBar = styled(SearchBar)
-  `margin-top: 20px; margin-left: 70px;`;
 
 
 const Main = () => {
   const defaultName = "guest";
   const defaultGender = "M";
   const defaultArea = "KL";
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const { isLoggedIn, login, logout, userinfo } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log("Main.js isLoggedIn = " + isLoggedIn);
+
+    if (isLoggedIn !== undefined) {
+      if (isLoggedIn) {
+        console.log("사용자가 로그인했습니다.");
+      } else {
+        console.log("사용자가 로그아웃했습니다.");
+      }
+    }
+  }, [isLoggedIn]);
+
   return (
     <>
       {console.log("Main.js isLoggedIn = " + isLoggedIn)}
@@ -34,7 +44,7 @@ const Main = () => {
             <InfoHeader />
           </Row> */}
           <Cover2>
-            {isLoggedIn ?
+            {isLoggedIn === true ? (
               <Row>
                 <Col>
                   <LessonHeader />
@@ -44,11 +54,12 @@ const Main = () => {
                     <LessonRemaining />
                   </Col>
                 </Row>
-              </Row> : <p>Not loggined</p>}
-
+              </Row>
+            ) : (
+              <></>
+            )}
           </Cover2>
         </div>
-
       </Container>
       <Popular />
     </>
@@ -72,7 +83,6 @@ const Cover2 = styled.div`
   margin-top: 50px;
 `;
 
-
 const GenderArea = styled.div`
   display: flex;
   margin-right: 10px;
@@ -95,4 +105,9 @@ const Vertical = styled.div`
   border-left: 0.5px solid #000;
   height: 30px;
   margin: 0 30px 0 30px;
+`;
+
+const StyledSearchBar = styled(SearchBar)`
+  margin: 0 auto;
+
 `;

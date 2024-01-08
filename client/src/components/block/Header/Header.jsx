@@ -1,8 +1,19 @@
 import styles from "./Header.module.css";
 import LessonsIcon from "./LessonsIcon.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../application/store/AuthContext.js"
+import React, { useContext, useEffect, useState } from "react";
 
-const LessonsHeader = () => {
+
+const LessonsHeader = (props) => {
+  const { userinfo } = useContext(AuthContext);
+  const [userEmail, setUserEmail] = useState("Guest")
+  // useEffect 추가
+
+  useEffect(() => {
+    setUserEmail(userinfo.email || "Guest");
+  }, [userinfo]);
+
   return (
     <div>
       <div className={styles.cover}>
@@ -10,7 +21,7 @@ const LessonsHeader = () => {
           <div className={styles.round}>img</div>
           <div className={styles.text}>
             {" "}
-            <span>Hello, Mr.Lee</span>{" "}
+            <span>Hello, {userEmail} </span>{" "}
           </div>
         </div>
 
