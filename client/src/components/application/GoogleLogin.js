@@ -27,7 +27,7 @@ function GoogleLogin() {
             window.location = "/"
         })
             .catch((error) => {
-                if (error.response && error.response.status === 404) {
+                if (error.response && error.response.status === 404 || error.response && error.response.status === 400) {
                     if (window.location.href.includes("signin")) {
                         alert("회원가입페이지로 이동합니다")
                     }
