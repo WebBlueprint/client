@@ -1,15 +1,17 @@
 // Probox.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import NoneImage from "./NoneImage.svg";
 import heart from "./CHeart.svg";
 import Eheart from "./EHeart.svg";
 import ProboxReview from "./ProboxReview";
+import axios from "axios";
 
 const Probox = () => {
   const [displayHeart, setDisplayHeart] = useState("heart");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewData, setReviewData] = useState(null);
+  const [proName, setProName] = useState([]);
 
   const handleMakeReviewClick = () => {
     setIsModalOpen(true);
@@ -21,6 +23,24 @@ const Probox = () => {
     setReviewData(data);
   };
 
+  
+  useEffect(() => {
+    const Test = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/getAllPros", {
+          withCredentials: true,
+        });
+        setProName(response.data);
+        console.log("프로박스 요청 테스트", response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    Test();
+  }, []);
+
+
   return (
     <StyledProbox>
       <div>
@@ -29,8 +49,14 @@ const Probox = () => {
         </IconWrap>
       </div>
       <TextBox>
-        <h3>Pro name</h3>
-        <span>Pro detail golf course</span>
+      {proName && proName[0] && (
+    <>
+      <h3>{proName[0].name}</h3>
+      <span>Pro detail golf course</span>
+    </>
+  )}
+        <span>{proName && proName[0] && proName[0].gender}</span>
+
         <CHeart>
           {displayHeart === "heart" && (
             <img
