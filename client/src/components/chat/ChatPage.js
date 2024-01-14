@@ -12,17 +12,18 @@ const ChatPageContainer = styled.div`
   height: 100vh;
   margin: 0 auto;
   margin-top: 150px; /* 상단 여백 조정 */
+  padding: 0 150px;
 `;
 
 const ChatSearchContainer = styled.div`
-  flex-grow: 1.5;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   padding: 0 50px;
 `;
 
 const ChatContainer = styled.div`
-  flex-grow: 6;
+  flex-grow: 9;
 `;
 
 const ChatSearchSection = styled.div`
