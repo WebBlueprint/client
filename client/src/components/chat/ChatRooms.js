@@ -1,5 +1,21 @@
 import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
+import styled from 'styled-components';
+
+
+const StyledDiv = styled.div`
+  border: 1px solid #1b4607; /* 초록색 테두리 설정 */
+  border-radius: 30px;
+  padding: 20px;
+  height: 70%;
+`;
+
+const StyledUl = styled.ul`
+  display: column; /* 수평 정렬을 위해 flexbox 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  width: 100%;
+  padding: 0
+`;
 
 function ChatRooms(props) {
   const [selectedRoomIndex, setSelectedRoomIndex] = useState(null);
@@ -17,9 +33,9 @@ function ChatRooms(props) {
   };
 
   return (
-    <div>
-      <h3>채팅방</h3>
-      <ul>
+    <StyledDiv>
+
+      <StyledUl>
         {props.selectedPros.map((pro, index) => (
           <ChatRoom
             key={index}
@@ -29,8 +45,8 @@ function ChatRooms(props) {
             isSelected={index === selectedRoomIndex} // Pass whether the ChatRoom is selected or not
           />
         ))}
-      </ul>
-    </div>
+      </StyledUl>
+    </StyledDiv>
   );
 }
 
