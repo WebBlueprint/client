@@ -43,6 +43,7 @@ const timeSlotsData = {
 
 function ScheduledSlots({ day }) {
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSlotClick = (index) => {
     setSelectedSlot((prevIndex) => (prevIndex === index ? null : index));
@@ -51,6 +52,14 @@ function ScheduledSlots({ day }) {
   const handleBookNowClick = () => {
     // Add logic to handle the "Book Now" action
     console.log("Book Now clicked for slot:", selectedSlot);
+
+    // Show the modal
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    // Close the modal
+    setIsModalOpen(false);
 
     // Hide the "Book Now" button after booking
     setSelectedSlot(null);
@@ -87,6 +96,23 @@ function ScheduledSlots({ day }) {
           </div>
         )}
       </div>
+
+      {/* 모달 컴포넌트 */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <div className={styles.modalHeader}>
+              <p className={styles.modalTitle}>예약 완료!</p>
+              <button className={styles.closeButton} onClick={handleCloseModal}>
+                &times;
+              </button>
+            </div>
+            <div className={styles.modalBody}>
+              <p>예약이 완료되었습니다!</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
