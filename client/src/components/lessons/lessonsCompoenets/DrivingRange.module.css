@@ -1,0 +1,78 @@
+.probox {
+    background-color: #DDE3DA;
+    display: flex;
+    margin: 1em;
+    position: relative;
+    border-radius: 2em;
+}
+
+.mapimg {
+    background-color: #1B4607;
+    padding:2em;
+    width:10em;
+    border-radius: 2em;
+    margin: 10px; }
+
+.textbox{
+    display: flexbox;
+    padding: 2em;
+}
+
+
+.probox > button   {
+    background-color: #1B4607;
+    color: #DDE3DA;
+    position: absolute;
+    width: 10em;
+    height: 30%;
+    border: 0px ;
+    border-radius: 1em;
+    right: 2em;
+    margin-top: 10px;
+}
+
+.prolist {
+    top: 10px;
+}
+.review {
+    position: absolute;
+    top: 60px;
+}
+
+.imgbox {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    background-color: #DDE3DA;
+}
+
+.pronamebox {
+ 
+    position:relative;
+    display: flex;
+    left:8%;
+    width: 80%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid #1B4607 ;
+    border-radius: 1em;
+}
+
+.pronamebox >button {
+    background-color: #1B4607;
+    color: #DDE3DA;
+    position: absolute;
+    width: 10em;
+    height: 50%;
+    border: 0px ;
+    border-radius: 1em;
+    right: 2em;
+    margin-top: 13px;
+}
+
+.protext {
+    display: flex;
+    position: relative;
+    padding-top:1.5em;
+    padding-left:0.5em;
+}

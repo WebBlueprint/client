@@ -1,12 +1,12 @@
 import React from "react";
-import Probox from "./Probox";
+import MyProList from "./MyProList";
 
 const MyList_MyProList = () => {
   // Your component logic here
   return (
     <div>
       <div>
-        <Probox />
+        <MyProList />
       </div>
     </div>
   );

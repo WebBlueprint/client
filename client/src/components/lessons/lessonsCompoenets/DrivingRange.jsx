@@ -5,8 +5,8 @@ import DrivingRangeReview from "./DrivingRangeReview";
 
 const DrivingRange = () => {
   const [data, setData] = useState([]);
-  const [selectedRange, setSelectedRange] = useState(null);
-  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [selectedRanges, setSelectedRanges] = useState([]);
+  const [showReviews, setShowReviews] = useState([]);
 
   useEffect(() => {
     const popularPros = async () => {
@@ -17,6 +17,9 @@ const DrivingRange = () => {
           { withCredentials: true }
         );
         setData(response.data);
+        // Initialize selectedRanges and showReviews arrays with false values
+        setSelectedRanges(new Array(response.data.length).fill(false));
+        setShowReviews(new Array(response.data.length).fill(false));
       } catch (error) {
         console.error("사용자 확인 중 오류 발생:", error);
       }
@@ -24,20 +27,30 @@ const DrivingRange = () => {
     popularPros();
   }, []);
 
-  const handleProListClick = (golfCourseName) => {
-    // Toggle the selected range or set it to null if already selected
-    setSelectedRange((prevSelectedRange) =>
-      prevSelectedRange === golfCourseName ? null : golfCourseName
-    );
-    // Set the state to hide the review modal
-    setShowReviewModal(false);
+  const handleProListClick = (index) => {
+    setSelectedRanges((prevSelectedRanges) => {
+      const newSelectedRanges = [...prevSelectedRanges];
+      newSelectedRanges[index] = !newSelectedRanges[index];
+      return newSelectedRanges;
+    });
+    setShowReviews((prevShowReviews) => {
+      const newShowReviews = [...prevShowReviews];
+      newShowReviews[index] = false; // Hide the review when switching to Pro List
+      return newShowReviews;
+    });
   };
 
-  const handleReviewClick = () => {
-    // Toggle the state to show/hide the review modal
-    setShowReviewModal((prevShowReviewModal) => !prevShowReviewModal);
-    // Set the state to null to unselect the range
-    setSelectedRange(null);
+  const handleReviewClick = (index) => {
+    setShowReviews((prevShowReviews) => {
+      const newShowReviews = [...prevShowReviews];
+      newShowReviews[index] = !newShowReviews[index];
+      return newShowReviews;
+    });
+    setSelectedRanges((prevSelectedRanges) => {
+      const newSelectedRanges = [...prevSelectedRanges];
+      newSelectedRanges[index] = false; // Unselect the range when Review is clicked
+      return newSelectedRanges;
+    });
   };
 
   return (
@@ -58,22 +71,29 @@ const DrivingRange = () => {
                   </div>
                   <button
                     className={styles.prolist}
-                    onClick={() => handleProListClick(data[index].golfCourseName)}
+                    onClick={() => handleProListClick(index)}
                   >
                     Pro List
                   </button>
-                  <button className={styles.review} onClick={handleReviewClick}>
+                  <button
+                    className={styles.review}
+                    onClick={() => handleReviewClick(index)}
+                  >
                     Make a Review
                   </button>
                 </div>
 
-                {selectedRange === data[index].golfCourseName && (
+                {selectedRanges[index] && (
                   <div>
                     {data[index].pros && data[index].pros.length > 0 && (
                       <div>
                         {data[index].pros.map((pro, proIndex) => (
                           <div key={`pro-${proIndex}-${pro.proName}`}>
-                            <div>Pro Name: {pro.proName}</div>
+                            <div className={styles.pronamebox}>
+                                <div  className= {styles.imgbox} > </div> 
+                                <div  className={styles.protext}>  {pro.proName} </div>
+                            <button>Details</button>  </div>
+                        
                           </div>
                         ))}
                       </div>
@@ -81,14 +101,11 @@ const DrivingRange = () => {
                   </div>
                 )}
 
-{showReview && (
-  <DrivingRangeReview
-    key={`review-${data[index].golfCourseId}`}
-    golfCourseId={data[index].golfCourseId}
-    reviews={data[index].reviews} // Assuming reviews is an array of objects
-    isOpen={selectedRange === data[index].golfCourseName}
-  />
-)}
+                {showReviews[index] && (
+                  <DrivingRangeReview
+                    key={`review-${data[index].golfCourseId}`}
+                  />
+                )}
               </>
             ) : (
               <p>Loading...</p>

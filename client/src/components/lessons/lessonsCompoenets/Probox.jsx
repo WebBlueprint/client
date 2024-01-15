@@ -1,20 +1,47 @@
 // Probox.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import NoneImage from "./NoneImage.svg";
 import heart from "./CHeart.svg";
 import Eheart from "./EHeart.svg";
 import ProboxReview from "./ProboxReview";
+import axios from "axios";
 
-const Probox = () => {
+const Probox = ({ golfCourse }) => {
   const [displayHeart, setDisplayHeart] = useState("heart");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewData, setReviewData] = useState(null);
+  const [proDetails, setProDetails] = useState(null);
+    const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    const fetchProDetails = async () => {
+      try {
+        const response = await axios.get(
+          "https://p-match-ec61fc56d612.herokuapp.com/lesson/my-pro-list",
+          {
+            params: {
+              golfCourseName: golfCourse,
+            },
+          },
+          { withCredentials: true }
+        );
+
+        setProDetails(response.data);
+      } catch (error) {
+        console.error("프로 상세 정보를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    if (golfCourse) {
+      fetchProDetails();
+    }
+  }, [golfCourse]);
 
   const handleMakeReviewClick = () => {
     setIsModalOpen(true);
   };
-
 
   const handleCommentSubmit = (data) => {
     setIsModalOpen(false);
@@ -29,8 +56,15 @@ const Probox = () => {
         </IconWrap>
       </div>
       <TextBox>
-        <h3>Pro name</h3>
-        <span>Pro detail golf course</span>
+        {proDetails ? (
+          <>
+            <h3>{proDetails.name}</h3>
+            <span>{proDetails.golfCourseName}</span>
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
+
         <CHeart>
           {displayHeart === "heart" && (
             <img
@@ -47,22 +81,16 @@ const Probox = () => {
             />
           )}
         </CHeart>
-        <div>
-          <span>Date</span> <br />
-          <span>Time</span>
-        </div>
-
 
         <br />
 
         {reviewData && (
-        <div>
-          <p>Rating: {reviewData.rating}</p>
-          <p>Comment: {reviewData.comment}</p>
-        </div>
-      )}
-      
-      
+          <div>
+            <p>Rating: {reviewData.rating}</p>
+            <p>Comment: {reviewData.comment}</p>
+          </div>
+        )}
+
         <BtnBox>
           <button>View Details</button>
           <button onClick={handleMakeReviewClick}>Make a Review</button>
@@ -75,13 +103,13 @@ const Probox = () => {
           </ModalContent>
         </Modal>
       )}
-
     </StyledProbox>
-    
   );
 };
 
 export default Probox;
+
+
 
 const StyledProbox = styled.div`
   background-color: #e2e7e0;
