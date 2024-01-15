@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./searchbar";
 import styles from "../search/search.module.css";
 import SearchCourse from "./searchCourse";
 import SearchPro from "./searchPro";
+import axios from "axios"
 
 function Searched() {
   const [selectedOption, setSelectedOption] = useState("course");
@@ -24,6 +25,23 @@ function Searched() {
     fontWeight: "bold"
   };
 
+  useEffect(() => {
+    const searchResut = async () => {
+      try {
+        const response = await axios.get(
+          "https://p-match-ec61fc56d612.herokuapp.com/search/?searchQuery=",
+          {},
+          { withCredentials: true }
+        );
+        console.log("검색어 테스트", response.data)
+      } catch (error) {
+        console.error("검색어 테스트", error);
+      }
+    };
+    searchResut();
+  }, []);
+
+  
   return (
     <>
       <div className={styles.verticalLayout}>
