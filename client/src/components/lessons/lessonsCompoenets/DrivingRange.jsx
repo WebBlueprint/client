@@ -1,15 +1,20 @@
+// Import necessary dependencies and styles
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./DrivingRange.module.css";
 import DrivingRangeReview from "./DrivingRangeReview";
+import heart from "./CHeart.svg";
+import Eheart from "./EHeart.svg";
 
 const DrivingRange = () => {
   const [data, setData] = useState([]);
   const [selectedRanges, setSelectedRanges] = useState([]);
   const [showReviews, setShowReviews] = useState([]);
+  const [heartState, setHeartState] = useState({});
+  const [golfCourseNames, setGolfCourseNames] = useState([]);
 
   useEffect(() => {
-    const popularPros = async () => {
+    const mydrivingrange = async () => {
       try {
         const response = await axios.get(
           "https://p-match-ec61fc56d612.herokuapp.com/lesson/my-driving-range",
@@ -17,14 +22,15 @@ const DrivingRange = () => {
           { withCredentials: true }
         );
         setData(response.data);
-        // Initialize selectedRanges and showReviews arrays with false values
         setSelectedRanges(new Array(response.data.length).fill(false));
         setShowReviews(new Array(response.data.length).fill(false));
+        setHeartState({});
+        setGolfCourseNames(response.data.map((item) => item.golfCourseName));
       } catch (error) {
-        console.error("사용자 확인 중 오류 발생:", error);
+        console.error("my-driving-range:", error);
       }
     };
-    popularPros();
+    mydrivingrange();
   }, []);
 
   const handleProListClick = (index) => {
@@ -35,7 +41,7 @@ const DrivingRange = () => {
     });
     setShowReviews((prevShowReviews) => {
       const newShowReviews = [...prevShowReviews];
-      newShowReviews[index] = false; // Hide the review when switching to Pro List
+      newShowReviews[index] = false;
       return newShowReviews;
     });
   };
@@ -48,10 +54,27 @@ const DrivingRange = () => {
     });
     setSelectedRanges((prevSelectedRanges) => {
       const newSelectedRanges = [...prevSelectedRanges];
-      newSelectedRanges[index] = false; // Unselect the range when Review is clicked
+      newSelectedRanges[index] = false;
       return newSelectedRanges;
     });
   };
+
+  const handleHeartClick = (golfCourseId, golfCourseName) => {
+    setHeartState((prevHeartState) => {
+      const newHeartState = {
+        ...prevHeartState,
+        [golfCourseName]: !prevHeartState[golfCourseName]
+      };
+  
+      // Save newHeartState to console with golf course id
+      console.log("Heart State:", newHeartState);
+
+      sessionStorage.setItem("heartState", JSON.stringify(newHeartState));
+  
+      return newHeartState;
+    });
+  };
+  
 
   return (
     <div>
@@ -67,8 +90,19 @@ const DrivingRange = () => {
                   </div>
                   <div className={styles.textbox}>
                     <b>{data[index].golfCourseName}</b>
-                    <div>하트 들어가고</div>
+                    
                   </div>
+                  <img
+  src={heartState[data[index].golfCourseName] ? heart : Eheart}
+  alt="heart"
+  onClick={() =>
+    handleHeartClick(
+      data[index].golfCourseId,
+      data[index].golfCourseName
+    )
+  }
+/>
+
                   <button
                     className={styles.prolist}
                     onClick={() => handleProListClick(index)}
@@ -81,6 +115,7 @@ const DrivingRange = () => {
                   >
                     Make a Review
                   </button>
+
                 </div>
 
                 {selectedRanges[index] && (
@@ -90,10 +125,10 @@ const DrivingRange = () => {
                         {data[index].pros.map((pro, proIndex) => (
                           <div key={`pro-${proIndex}-${pro.proName}`}>
                             <div className={styles.pronamebox}>
-                                <div  className= {styles.imgbox} > </div> 
-                                <div  className={styles.protext}>  {pro.proName} </div>
-                            <button>Details</button>  </div>
-                        
+                              <div className={styles.imgbox}></div>
+                              <div className={styles.protext}>{pro.proName}</div>
+                              <button>Details</button>
+                            </div>
                           </div>
                         ))}
                       </div>

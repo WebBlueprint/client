@@ -15,30 +15,6 @@ const Probox = ({ golfCourse }) => {
     const [data, setData] = useState([]);
 
 
-  useEffect(() => {
-    const fetchProDetails = async () => {
-      try {
-        const response = await axios.get(
-          "https://p-match-ec61fc56d612.herokuapp.com/lesson/my-pro-list",
-          {
-            params: {
-              golfCourseName: golfCourse,
-            },
-          },
-          { withCredentials: true }
-        );
-
-        setProDetails(response.data);
-      } catch (error) {
-        console.error("프로 상세 정보를 불러오는 중 오류 발생:", error);
-      }
-    };
-
-    if (golfCourse) {
-      fetchProDetails();
-    }
-  }, [golfCourse]);
-
   const handleMakeReviewClick = () => {
     setIsModalOpen(true);
   };
