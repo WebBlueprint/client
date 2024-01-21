@@ -129,6 +129,7 @@ const UserInfoInput = () => {
             className={styles.selectbox}
           />
         </div>
+        <button> Save </button>
       </div>
     </div>
   );

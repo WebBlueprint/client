@@ -1,5 +1,7 @@
+// MyLesson_GroupLessons.jsx
+
 import React, { useState, useEffect } from "react";
-import MyLessonsData from "./MyLessonList.json";
+import axios from "axios";
 import styles from "./MyLessonList.module.css";
 import style from "./MyLessons.module.css";
 import { Link } from "react-router-dom";
@@ -7,11 +9,12 @@ import NoneImage from "./NoneImage.svg";
 
 const MyLesson_GroupLessons = () => {
   const [lessons, setLessons] = useState([]);
-  const [selectedMonth, setSelectedMonth] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState("All"); // 초기값 설정
   const [selectedLesson, setSelectedLesson] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newDate, setNewDate] = useState("");
   const [newTime, setNewTime] = useState("");
+  const user_Id = "user2";
 
   const months = [
     "All",
@@ -28,10 +31,29 @@ const MyLesson_GroupLessons = () => {
     "Nov",
     "Dec"
   ];
-  
+
   useEffect(() => {
-    setLessons(MyLessonsData);
-  }, []);
+    const fetchLessonsForUser = async () => {
+      try {
+        const response = await axios.get(
+          `https://your-api-endpoint.com/lesson/groupLessons/${user_Id}`,
+          {
+            withCredentials: true,
+            timeout: 5000,
+          }
+        );
+
+        setLessons(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("fetchLessonsForUser에서 오류:", error);
+        console.error("오류 응답 데이터:", error.response?.data);
+        console.error("오류 요청 데이터:", error.request);
+      }
+    };
+
+    fetchLessonsForUser();
+  }, [user_Id, selectedMonth]); // selectedMonth를 의존성에 추가
 
   const handleMonthClick = (month) => {
     setSelectedMonth(month);
@@ -47,9 +69,7 @@ const MyLesson_GroupLessons = () => {
   };
 
   const handleRescheduleSave = () => {
-    // Implement logic to save the new date and time
-    // Check if the modification is allowed (e.g., 24 hours after the current time)
-    // Update the lessons array with the modified lesson
+    // 여기서 저장 또는 API 호출 수행
     setIsModalOpen(false);
   };
 
@@ -79,25 +99,23 @@ const MyLesson_GroupLessons = () => {
         <div className={styles.grid2}>
           {lessons
             .filter((lesson) => {
-              return selectedMonth === "All" || lesson.date.includes(`${selectedMonth}-`);
+              return selectedMonth === "All" || lesson.reservation_date.includes(`${selectedMonth}-`);
             })
             .map((lesson) => (
-              <div key={lesson.id} className={styles.myLessons}>
+              <div key={lesson._id} className={styles.myLessons}>
                 <div className={`${styles.iconwrap} ${styles.greenBackground}`}></div>
                 <div className={styles.text}>
-                  <h2>{lesson.title}</h2>
+                  <h2>{lesson.place.name}</h2>
                   <p>
-                    {lesson.status} / {lesson.instructor}
+                    {lesson.location.name} / {lesson.status}
                   </p>
-                  <p>
-                    {lesson.date} / {lesson.time}
-                  </p>
-                  <p>{lesson.remaining}</p>
+                  <p>{lesson.reservation_date}</p>
+                  <p>{lesson.remaining_lesson}</p>
                 </div>
                 <div className={styles.btnwrap}>
                   <button onClick={() => handleRescheduleClick(lesson)}>Reschedule</button>
                   <button>
-                    <Link to={`/lessons/1`}>View Details</Link>
+                    <Link to={`/lessons/${lesson._id}`}>View Details</Link>
                   </button>
                 </div>
               </div>
