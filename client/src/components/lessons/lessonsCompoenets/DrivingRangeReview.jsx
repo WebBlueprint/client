@@ -36,6 +36,10 @@ const DrivingRangeReview = ({ onSubmit, golfCourseId }) => {
   return (
     <Container>
       <StarsAndRating>
+      <div>
+          <h2>{proName}</h2>
+          <p>{golfCourseName}</p>
+        </div>
         <Stars>
           {Array(5)
             .fill(0)

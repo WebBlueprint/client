@@ -12,14 +12,13 @@ const DrivingRange = () => {
   const [showReviews, setShowReviews] = useState([]);
   const [heartState, setHeartState] = useState({});
   const [golfCourseNames, setGolfCourseNames] = useState([]);
+  const user_Id = "user1";
 
   useEffect(() => {
     const mydrivingrange = async () => {
       try {
         const response = await axios.get(
-          "https://p-match-ec61fc56d612.herokuapp.com/lesson/my-driving-range",
-          {},
-          { withCredentials: true }
+          `https://p-match-ec61fc56d612.herokuapp.com//lesson/my-driving-range/${user_Id}`
         );
         setData(response.data);
         setSelectedRanges(new Array(response.data.length).fill(false));
