@@ -56,7 +56,7 @@ const DrivingRangeReview = ({ onSubmit, golfCourseId }) => {
               );
             })}
         </Stars>
-        <RatingValue>{rating} / 5</RatingValue>
+        <RatingValue>{rating} / 7</RatingValue>
       </StarsAndRating>
 
       <Textarea
