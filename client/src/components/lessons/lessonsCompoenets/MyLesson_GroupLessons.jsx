@@ -146,7 +146,7 @@ const MyLesson_GroupLessons = () => {
                 });
   
               if (filteredLessons.length === 0) {
-                return <div >No Group Lessons</div>;
+                return <div className={styles.Loading} >No Group Lessons</div>;
               }
   
               return filteredLessons.map((lesson) => (

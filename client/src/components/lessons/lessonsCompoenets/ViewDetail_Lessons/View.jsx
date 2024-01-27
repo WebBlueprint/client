@@ -24,6 +24,8 @@ const View = ({ lessonId }) => {
 
   return (
     <div>
+
+
       <div className={style.cover}>
         <div>
           <ViewPro />
