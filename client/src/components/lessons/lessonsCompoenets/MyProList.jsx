@@ -1,8 +1,11 @@
+// MyProList.jsx
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./MyProList.module.css";
 import heart from "./CHeart.svg";
 import Eheart from "./EHeart.svg";
+import MyProListReview from "./MyProListReview";
 
 const MyProList = () => {
   const [data, setData] = useState([]);
@@ -10,6 +13,7 @@ const MyProList = () => {
   const [selectedPros, setSelectedPros] = useState([]);
   const [showDetails, setShowDetails] = useState([]);
   const [heartState, setHeartState] = useState({});
+  const [showReviews, setShowReviews] = useState([]);
 
   useEffect(() => {
     const fetchProsForUser = async () => {
@@ -29,6 +33,9 @@ const MyProList = () => {
           initialHeartState[pro.proName] = false;
         });
         setHeartState(initialHeartState);
+
+        // Initialize showReviews array
+        setShowReviews(new Array(response.data.length).fill(false));
       } catch (error) {
         console.error("Error during request:", error);
         console.error("Error response data:", error.response?.data);
@@ -80,12 +87,33 @@ const MyProList = () => {
     });
   };
 
+  const handleReviewClick = (index) => {
+    setShowReviews((prevShowReviews) => {
+      const newShowReviews = [...prevShowReviews];
+      newShowReviews[index] = !newShowReviews[index];
+      return newShowReviews;
+    });
+  };
+
+  const closeModal = (index) => {
+    setShowReviews((prevShowReviews) => {
+      const newShowReviews = [...prevShowReviews];
+      newShowReviews[index] = false;
+      return newShowReviews;
+    });
+  };
+
+  const submitReview = (reviewData) => {
+    // You can handle the submission of the review data here
+    console.log("Submitting review:", reviewData);
+  };
+
   return (
     <div>
       {Array.isArray(data) && data.length > 0 ? (
         data.map((pro, index) => (
           <div key={`pro-${index}-${pro.user_id}`} className={styles.proboxs}>
-            <div  className={styles.protextbox}>
+            <div className={styles.protextbox}>
               <span>{pro.proName}</span>
               <div className={styles.golfboxtext}>{pro.golfCourseName}</div>
             </div>
@@ -94,7 +122,32 @@ const MyProList = () => {
               alt="heart"
               onClick={() => handleHeartClick(pro.proName)}
             />
-            <button> Chat Now </button>
+            <div>
+              <button className={styles.Chat}> Chat Now </button>
+              <button
+                className={styles.Review}
+                onClick={() => handleReviewClick(index)}
+              >
+                Review
+              </button>
+            </div>
+            {showReviews[index] && (
+              <div
+                key={`overlay-${index}`}
+                className={`${styles.overlay} ${showReviews[index] && styles.active}`}
+                onClick={() => closeModal(index)}
+              />
+            )}
+            {showReviews[index] && (
+              <MyProListReview
+                key={`review-${data[index].golfCourseId}`}
+                onClose={() => closeModal(index)}
+                active={showReviews[index]}
+                proName={data[index].proName}
+                golfCourseName={data[index].golfCourseName}
+                onSubmit={submitReview} // Pass the submitReview function
+              />
+            )}
           </div>
         ))
       ) : (

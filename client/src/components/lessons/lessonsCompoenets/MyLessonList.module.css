@@ -49,9 +49,7 @@
   flex: 1; /* 2개의 열을 동일한 너비로 설정 */
 }
 /* Add this to your CSS file */
-.selectedMonth {
-  background-color: green;
-}
+
 
 /* Add this to your CSS file */
 
@@ -103,3 +101,35 @@ input {
   box-sizing: border-box;
 }
 
+
+.selectedMonth {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #1b4607;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color:white;
+}
+
+
+.nonSelectedMonth {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ccc;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+
+.Loading {
+  margin: 2em;
+  color : #ccc;
+}

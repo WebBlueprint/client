@@ -36,6 +36,9 @@ const DrivingRangeReview = ({ onSubmit, golfCourseId }) => {
   return (
     <Container>
       <StarsAndRating>
+      <div>
+
+        </div>
         <Stars>
           {Array(5)
             .fill(0)
@@ -52,7 +55,7 @@ const DrivingRangeReview = ({ onSubmit, golfCourseId }) => {
               );
             })}
         </Stars>
-        <RatingValue>{rating} / 5</RatingValue>
+        <RatingValue>{rating} / 7</RatingValue>
       </StarsAndRating>
 
       <Textarea
