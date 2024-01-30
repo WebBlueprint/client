@@ -1,0 +1,4 @@
+PORT=3000
+DB_CONNECT=mongodb+srv://handevmin:tpkQBNeG3l20ATQK@cluster0.laqz6qu.mongodb.net/golfManager?retryWrites=true&w=majority
+ACCESS_SECRET= ACCESS_SECRET
+REFRESH_SECRET = REFRESH_SECRET

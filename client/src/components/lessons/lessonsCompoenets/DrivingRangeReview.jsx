@@ -1,8 +1,9 @@
+// MyProListReview.jsx
 import React, { useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styled from "styled-components";
 
-const DrivingRangeReview = ({ onSubmit, golfCourseId }) => {
+const DrivingRangeReview = ({ onClose, active, onSubmit }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -21,6 +22,7 @@ const DrivingRangeReview = ({ onSubmit, golfCourseId }) => {
 
   const handleSubmitReview = () => {
     onSubmit({ rating, comment });
+    onClose(); // Close the modal after submitting the review
   };
 
   const getStarColor = (starValue) => {
@@ -34,56 +36,64 @@ const DrivingRangeReview = ({ onSubmit, golfCourseId }) => {
   };
 
   return (
-    <Container>
-      <StarsAndRating>
-      <div>
+    <Overlay active={active}>
 
-        </div>
-        <Stars>
-          {Array(5)
-            .fill(0)
-            .map((_, index) => {
-              const ratingValue = index + 1;
-              return (
-                <Star
-                  key={index}
-                  onMouseEnter={() => handleMouseEnter(ratingValue)}
-                  onMouseLeave={handleMouseLeave}
-                  starColor={getStarColor(ratingValue)}
-                  onClick={() => handleStarClick(ratingValue)}
-                />
-              );
-            })}
-        </Stars>
-        <RatingValue>{rating} / 7</RatingValue>
-      </StarsAndRating>
+      <Container>
 
-      <Textarea
-        rows="4"
-        cols="50"
-        placeholder="Write your comment here"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-      />
-      <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
-    </Container>
+        <TextMain>
+        <p> Please review who works at </p>
+        </TextMain>
+
+        <StarsAndRating>
+          <Stars>
+            {Array(5)
+              .fill(0)
+              .map((_, index) => {
+                const ratingValue = index + 1;
+                return (
+                  <Star
+                    key={index}
+                    onMouseEnter={() => handleMouseEnter(ratingValue)}
+                    onMouseLeave={handleMouseLeave}
+                    starColor={getStarColor(ratingValue)}
+                    onClick={() => handleStarClick(ratingValue)}
+                  />
+                );
+              })}
+          </Stars>
+          <RatingValue>{rating} / 5</RatingValue>
+        </StarsAndRating>
+
+        <Textarea
+          rows="4"
+          cols="50"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+<ButtonsWrapper>
+  <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
+  <CloseButton onClick={onClose}>Close</CloseButton>
+</ButtonsWrapper>
+      </Container>
+    </Overlay>
   );
 };
 
 export default DrivingRangeReview;
 
 const Container = styled.div`
-position:relative;
-width: 80%;
-left:8%;
+  position: relative;
+  width: 60%;
+  left: 15%;
   display: grid;
   grid-template-columns: 20% 70%;
-    gap: 15px; /* 각 열 사이의 간격 */
+  gap: 15px;
   padding: 1em;
-  border: 1px solid #1B4607;
   border-radius: 1em;
   align-items: center;
-  padding-left:6em;
+  padding-left: 6em;
+  background-color: white;
+  top:30%;
 `;
 
 const StarsAndRating = styled.div`
@@ -129,9 +139,59 @@ const SubmitButton = styled.button`
   color: white;
   border: none;
   border-radius: 5px;
-  grid-column: 2 / span 1; /* 수정된 부분: SubmitButton을 두 번째 열로 이동 */
-  grid-row: 2 / span 2;    /* 수정된 부분: SubmitButton을 첫 번째 행으로 이동 */
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 2;
   display: flex;
   position: relative;
   width: 8em;
+`;
+
+const CloseButton = styled.button`
+  margin-top: 2px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  grid-column: 2 / span 1;
+  grid-row: 4 / span 2;
+  display: flex;
+  position: relative;
+  width: 8em;
+`;
+
+const Overlay = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  ${(props) => props.active && `
+    display: block;
+  `}
+`;
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; // 필요한 경우에 조절하세요.
+  grid-column: span 2; // 전체 그리드의 2개의 열을 차지하도록 설정
+  /* 버튼 간격을 위한 스타일 */
+  button + button {
+    margin-left: 10px; // 원하는 간격 조절
+  }
+  
+`;
+
+
+
+const TextMain = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; // 필요한 경우에 조절하세요.
+  grid-column: span 2; // 전체 그리드의 2개의 열을 차지하도록 설정
 `;

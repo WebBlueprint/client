@@ -67,9 +67,9 @@ function Booking() {
       
       {/* Add the Map component with markers */}
       <MapComponent
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&v=3.exp&libraries=geometry,drawing,places`}
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDpVJ2n77XT_CoXu7wwBLz6ADDMkaXqroo&v=3.exp&libraries=geometry,drawing,places`}
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `119vh`, width: `45%`, float: 'left' }} />} 
+        containerElement={<div style={{ height: `100%`, width: `50%`, float: 'left' }} />} 
         mapElement={<div style={{ height: `100%` }} />}
         markers={mapMarkers}
       />
