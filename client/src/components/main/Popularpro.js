@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import Popularprodetail from "./Popularprodetail";
 import { useState } from "react";
 import axios from "axios";
-
+import Spinner from "react-bootstrap/Spinner";
 
 const Popularpro = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(true);
 
   useEffect(() => {
     const popularPros = async () => {
@@ -20,7 +20,7 @@ const Popularpro = () => {
           { withCredentials: true }
         );
         console.log(response.data);
-        setData(...data, response.data);
+        setData(...[response.data]);
       } catch (error) {
         console.error("사용자 확인 중 오류 발생:", error);
       }
@@ -44,7 +44,7 @@ const Popularpro = () => {
     };
     lessonInfo();
   }, []);
-  //console.log(data);
+  console.log(data);
   return (
     <>
       <Container>
@@ -52,18 +52,23 @@ const Popularpro = () => {
           <Col>
             <Top5pros>Top 5 Popular Pros</Top5pros>
             <Board>
-              {data.map((a, b) => {
-                return (
-                  <Popularprodetail
-                    reviewCount={a.reviewCount}
-                    averageRating={a.averageRating}
-                    proname={a.pro.name}
-                    key={b}
-                  />
-                );
-              })}
+              {data == true ? (
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              ) : (
+                data.map((a, b) => {
+                  return (
+                    <Popularprodetail
+                      reviewCount={a.reviewCount}
+                      averageRating={a.averageRating.toFixed(2)}
+                      proname={a.pro.name}
+                      key={b}
+                    />
+                  );
+                })
+              )}
             </Board>
-            
           </Col>
         </Row>
       </Container>

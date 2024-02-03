@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Modal from "react-modal";
 
 const Popularprodetail = (props) => {
-  console.log(props);
+  // console.log(props);
   const [isOpen, setIsOpen] = useState(false);
   const clickHandler = () => {
     setIsOpen(() => !isOpen);
@@ -32,11 +32,13 @@ const Popularprodetail = (props) => {
 
       <Container>
         <Row>
-          <Col style={{marginBottom:"1rem"}}>
-          <Star style={{ marginTop:"1.5rem"}}>
-              <Starspan style={{ width: (props.averageRating)*20 + '%' }}></Starspan>
+          <Col style={{ marginBottom: "1rem" }}>
+            <Star style={{ marginTop: "1.5rem" }}>
+              <Starspan
+                style={{ width: props.averageRating * 20 + "%" }}
+              ></Starspan>
             </Star>
-           
+
             <ViewDetails onClick={clickHandler}>View Details</ViewDetails>
             <Modal
               appElement={document.getElementById("root")}
@@ -47,7 +49,7 @@ const Popularprodetail = (props) => {
               <h4>Total Reviews</h4>
               <p>{props.reviewCount}</p>
               <h4>Average Rating</h4>
-              <p >{props.averageRating}</p>
+              <p>{props.averageRating}</p>
               <button onClick={() => setIsOpen(false)}>Close</button>
             </Modal>
           </Col>

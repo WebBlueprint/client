@@ -1,51 +1,61 @@
 import React, { useState } from "react";
-import { GoogleMap, Marker } from "@react-google-maps/api";
 import styled, { css } from "styled-components";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import GoogleMaps from "./Googlemaps.js";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const Populargolfplacedetail = (props) => {
-  const [center, setCenter] = useState({
-    lat: 37.56667,
-    lng: 122.02333,
+  console.log(props);
+
+  const containerStyle = {
+    width: "350px",
+    height: "250px",
+    borderRadius: "5%",
+    marginBottom: "2rem",
+  };
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
   });
-  const [markers, setMarkers] = useState([
-    {
-      position: {
-        lat: 37.56667,
-        lng: 122.02333,
-      },
-      title: "서울",
-    },
-    {
-      position: {
-        lat: 35.66667,
-        lng: 128.97333,
-      },
-      title: "부산",
-    },
-  ]);
+  const [map, setMap] = React.useState(null);
+
+  const onLoad = React.useCallback(function callback(map) {
+    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    const bounds = new window.google.maps.LatLngBounds(props);
+    map.fitBounds(bounds);
+
+    setMap(map);
+  }, []);
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
   return (
     <Board>
-      <GoogleMaps/>  
       <Container>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={props.center}
+          zoom={8}
+          // onLoad={onLoad}
+          onUnmount={onUnmount}
+        >
+          {/* Child components, such as markers, info windows, etc. */}
+          <></>
+        </GoogleMap>
         <Row>
           <Col style={{ padding: "0 0 0 20px" }}>
-          <Details>
-          <p>{props.list.placeName}</p>
-      </Details>
-      <Details>
-      <p>{props.list.area}</p>
-      </Details>
-      <Details2>
-      <p>{props.list.areaDetail}</p>
-      </Details2>
+            <Details>
+              <p>{props.list.courseName}</p>
+            </Details>
+            <Details>
+              <p>{props.list.courseReview}</p>
+            </Details>
+            <Details2></Details2>
             <Star>
-              <Starspan style={{ width: props.list.rate }}></Starspan>
+              <Starspan style={{ width: 10 }}></Starspan>
             </Star>
-            <Detailbutton>View Details</Detailbutton>  
+            <Detailbutton>View Details</Detailbutton>
           </Col>
         </Row>
       </Container>
@@ -67,18 +77,17 @@ const Board = styled.div`
 `;
 
 const Details = styled.div`
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   font-size: 13px;
   line-height: 2px;
-  
 `;
 
 const Details2 = styled.div`
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   font-size: 21px;
   line-height: 2px;
   margin-top: 1rem;
