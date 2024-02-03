@@ -1,8 +1,10 @@
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Chat from "./chat";
 import ChatSearch from './ChatSearch';
 import styled from "styled-components";
 import { AuthContext } from "../application/store/AuthContext";
+
+
 
 const ChatPageContainer = styled.div`
   display: flex;
@@ -34,6 +36,10 @@ const ChatRoomsSection = styled.div`
 
 const ChatPage = () => {
   const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+
+
+  console.log("Selected chat room in ChatPage:", selectedChatRoom);
 
   // 로그인되어 있지 않으면 /signin으로 이동
   if (!isLoggedIn) {
@@ -45,11 +51,12 @@ const ChatPage = () => {
     <ChatPageContainer>
       <ChatSearchContainer>
         <ChatSearchSection>
-          <ChatSearch />
+          <ChatSearch onChatRoomClick={setSelectedChatRoom} />
         </ChatSearchSection>
       </ChatSearchContainer>
       <ChatContainer>
-        <Chat />
+        {/* Ensure that selectedChatRoom is defined */}
+        <Chat selectedChatRoom={selectedChatRoom} />
       </ChatContainer>
     </ChatPageContainer>
   );

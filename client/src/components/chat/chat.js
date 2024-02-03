@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import socket from "./server";
 import styled from "styled-components";
+import { AuthContext } from "../application/store/AuthContext"
 
 const ChatContainer = styled.div`
   display: flex;
@@ -53,12 +54,15 @@ const SendButton = styled.button`
   cursor: pointer;
 `;
 
-const Chat = () => {
+const Chat = ({ selectedChatRoom }) => {
+    const { userinfo } = useContext(AuthContext);
     const [messages, setMessages] = useState([]);
     const [messageInput, setMessageInput] = useState('');
     const [username, setUsername] = useState('exampleUser'); // Set the default username
     const messagesRef = useRef(null);
     const chatInputRef = useRef(null);
+
+    console.log("Selected chat room:", selectedChatRoom)
 
 
     useEffect(() => {
@@ -68,23 +72,31 @@ const Chat = () => {
     }, [messages]);
 
     useEffect(() => {
-        // 사용자 이름 설정
-        const user = prompt("Please enter your username:");
-        setUsername(user);
-        socket.emit("setUsername", user);
+        setUsername(userinfo.email)
+        socket.emit("setUsername", username);
+    }, [username]);
 
-        // 메세지 보냄
+    useEffect(() => {
+        console.log("useEffect triggered with selectedChatRoom:", selectedChatRoom); // 추가
+        socket.emit("joinChatRoom", selectedChatRoom); // 채팅방에 참여
+    }, [selectedChatRoom])
+
+    useEffect(() => {
         socket.on('message', (message) => {
             setMessages((prevMessages) => [...prevMessages, message]);
         });
-    }, []);
+    }, [])
 
     const sendMessage = (e) => {
         e.preventDefault();
         if (messageInput === "") {
             return false;
         }
-        socket.emit('sendMessage', { username, content: messageInput });
+        socket.emit('sendMessage', {
+            username,
+            content: messageInput,
+            chatRoom: selectedChatRoom, // Include the chat room name
+        });
         setMessageInput('');
 
         if (chatInputRef.current) {

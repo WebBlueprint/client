@@ -73,7 +73,7 @@ const lessonsPerSlide = 2;
       </RecentLessonsContainer>
     </SContainer>
 
-      {/* Render content based on the active tab */}
+     
       {selectedLesson && (
         <div>
           {activeTab === "detail" && (
@@ -83,7 +83,7 @@ const lessonsPerSlide = 2;
               <p>{`Date: ${selectedLesson.date}`}</p>
               <p>{`Time: ${selectedLesson.time}`}</p>
             </div>
-          )}
+          )} 
 
           {activeTab === "review" && (
             <div>
