@@ -11,7 +11,7 @@ const DrivingRange = () => {
   const [showReviews, setShowReviews] = useState([]);
   const [heartState, setHeartState] = useState({});
   const [golfCourseNames, setGolfCourseNames] = useState([]);
-  const user_Id = "윤승우";
+  const user_Id = "user1";
 
   useEffect(() => {
 
@@ -64,17 +64,21 @@ const DrivingRange = () => {
     });
   };
   
-  const handleReviewClick = (index) => {
-    setShowReviews((prevShowReviews) => {
-      const newShowReviews = [...prevShowReviews];
-      newShowReviews[index] = !newShowReviews[index];
-      return newShowReviews;
-    });
-    setSelectedRanges((prevSelectedRanges) => {
-      const newSelectedRanges = [...prevSelectedRanges];
-      newSelectedRanges[index] = false;
-      return newSelectedRanges;
-    });
+  const handleReviewClick = async (index) => {
+    try {
+      setShowReviews((prevShowReviews) => {
+        const newShowReviews = [...prevShowReviews];
+        newShowReviews[index] = !newShowReviews[index];
+        console.log("New Show Reviews:", newShowReviews); // Add this line
+        return newShowReviews;
+      });
+  
+      // If you need to submit the review data to the server, you can do it here
+      // Example: const response = await axios.post('/api/submitReview', { index, ...additionalData });
+  
+    } catch (error) {
+      console.error("Error handling review click:", error);
+    }
   };
 
   return (
@@ -104,18 +108,21 @@ const DrivingRange = () => {
                     }
                   />
 
+
                   <button
                     className={styles.prolist}
                     onClick={() => handleProListClick(index)}
                   >
                     Pro List
                   </button>
+
                   <button
-                    className={styles.review}
-                    onClick={() => handleReviewClick(index)}
-                  >
-                    Make a Review
-                  </button>
+                className={styles.Review}
+                onClick={() => handleReviewClick(index)}
+              >
+                Review
+              </button>
+           
                 </div>
 
                 {selectedRanges[index] && (
@@ -136,11 +143,13 @@ const DrivingRange = () => {
                   </div>
                 )}
 
-                {showReviews[index] && (
-                  <DrivingRangeReview
-                    key={`review-${golfboxData.golfCourseId}`}
-                  />
-                )}
+{showReviews[index] && (
+  <DrivingRangeReview
+    onClose={() => handleReviewClick(index)}  // Pass the appropriate props
+    active={showReviews[index]}
+    golfCourseName={golfboxData.golfCourseName}
+  />
+)}
               </>
             ) : (
               <p>Loading...</p>

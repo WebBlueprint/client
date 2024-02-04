@@ -136,7 +136,7 @@ const SubmitButton = styled.button`
   margin-top: 2px;
   padding: 10px;
   cursor: pointer;
-  background-color: #4caf50;
+  background-color:#1B4607;
   color: white;
   border: none;
   border-radius: 5px;
@@ -158,6 +158,8 @@ const CloseButton = styled.button`
   grid-column: 2 / span 1;
   grid-row: 4 / span 2;
   display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center; /* 수평 가운데 정렬 */
   position: relative;
   width: 8em;
 `;

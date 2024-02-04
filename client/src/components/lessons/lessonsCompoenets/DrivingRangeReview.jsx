@@ -1,9 +1,9 @@
-// MyProListReview.jsx
+// DrivingRangeReview.jsx
 import React, { useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styled from "styled-components";
 
-const DrivingRangeReview = ({ onClose, active, onSubmit }) => {
+const DrivingRangeReview = ({ onClose, active, proName, golfCourseName, onSubmit }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -41,7 +41,7 @@ const DrivingRangeReview = ({ onClose, active, onSubmit }) => {
       <Container>
 
         <TextMain>
-        <p> Please review who works at </p>
+        <p> Please review {proName} who works at {golfCourseName}! </p>
         </TextMain>
 
         <StarsAndRating>
@@ -67,6 +67,7 @@ const DrivingRangeReview = ({ onClose, active, onSubmit }) => {
         <Textarea
           rows="4"
           cols="50"
+          placeholder={`Write your review for ${proName} at ${golfCourseName} here`}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
@@ -135,7 +136,7 @@ const SubmitButton = styled.button`
   margin-top: 2px;
   padding: 10px;
   cursor: pointer;
-  background-color: #4caf50;
+  background-color: #1B4607;
   color: white;
   border: none;
   border-radius: 5px;
@@ -157,10 +158,11 @@ const CloseButton = styled.button`
   grid-column: 2 / span 1;
   grid-row: 4 / span 2;
   display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center; /* 수평 가운데 정렬 */
   position: relative;
   width: 8em;
 `;
-
 const Overlay = styled.div`
   display: none;
   position: fixed;

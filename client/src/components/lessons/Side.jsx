@@ -5,11 +5,15 @@ import { ReactComponent as Menu2Icon } from "./menu2.svg";
 
 export default function Side({ onTabClick }) {
   const [activeTab, setActiveTab] = useState("myList");
+  const [isPro, setIsPro] = useState(true); // Add this line
 
   const handleTabClick = (tabName) => {
-    onTabClick(tabName);
-    setActiveTab(tabName);
+    if (tabName === "myList" || (tabName === "myLessons" && isPro)) {
+      onTabClick(tabName);
+      setActiveTab(tabName);
+    }
   };
+
 
   return (
     <div>
@@ -60,8 +64,6 @@ export default function Side({ onTabClick }) {
           Lesson Reviews
         </div>
       </div>
-
-
     </div>
   );
 }
