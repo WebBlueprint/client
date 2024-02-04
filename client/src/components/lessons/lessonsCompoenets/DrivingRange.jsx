@@ -11,19 +11,19 @@ const DrivingRange = () => {
   const [showReviews, setShowReviews] = useState([]);
   const [heartState, setHeartState] = useState({});
   const [golfCourseNames, setGolfCourseNames] = useState([]);
-  const user_Id = "user2";
+  const user_Id = "윤승우";
 
   useEffect(() => {
+
     const mydrivingrange = async () => {
       try {
         const response = await axios.get(
           `https://p-match-ec61fc56d612.herokuapp.com/lesson/my-driving-range/${user_Id}`
         );
-        console.log("Response Data:", response.data);
-
+        console.log(response.data)
         // Assuming the response is an array, otherwise handle accordingly
-        const formattedData = Array.isArray(response.data) ? response.data : [];
-        
+        console.log("test", Array(response.data) )
+          const formattedData = Array(response.data) ?  Array(response.data)  : [];
         setData(formattedData);
         setSelectedRanges(new Array(formattedData.length).fill(false));
         setShowReviews(new Array(formattedData.length).fill(false));
@@ -127,7 +127,7 @@ const DrivingRange = () => {
                             <div className={styles.pronamebox}>
                               <div className={styles.imgbox}></div>
                               <div className={styles.protext}>{pro.proName}</div>
-                              <button>Details</button>
+                              <button>Detail</button>
                             </div>
                           </div>
                         ))}
@@ -147,7 +147,7 @@ const DrivingRange = () => {
             )}
           </div>
         </div>
-      ))}
+      ))} 
     </div>
   );
 };
