@@ -1,22 +1,23 @@
+// Side.jsx
 import React, { useState } from "react";
 import styles from "./Side.module.css";
 import { ReactComponent as Menu1Icon } from "./menu1.svg";
 import { ReactComponent as Menu2Icon } from "./menu2.svg";
+import { ReactComponent as ReviewIcon } from "./ReviewIcon.svg";
 
-export default function Side({ onTabClick }) {
+export default function Side({ onTabClick, isPro }) {
   const [activeTab, setActiveTab] = useState("myList");
-  const [isPro, setIsPro] = useState(true); // Add this line
 
   const handleTabClick = (tabName) => {
-    if (tabName === "myList" || (tabName === "myLessons" && isPro)) {
+    if (tabName === "myList" || (tabName === "myLessons") || (tabName === "proReviews" && isPro)) {
       onTabClick(tabName);
       setActiveTab(tabName);
     }
   };
 
-
   return (
     <div>
+       <div>
       <div
         className={
           activeTab === "myList"
@@ -47,23 +48,26 @@ export default function Side({ onTabClick }) {
         <div className={activeTab === "myLessons" ? styles.activeText : null}>
           My Lessons
         </div>
-      </div>
+      </div> 
+      </div> 
 
-      <div
-        className={
-          activeTab === "LessonReviews"
-            ? `${styles.cover1} ${styles.active}`
-            : styles.cover1
-        }
-        onClick={() => handleTabClick("LessonReviews")}
-      >
-        <div>
-          <Menu1Icon fill={activeTab === "LessonReviews" ? "#1B4607" : "#D9D9D9"} />
+      {isPro && (
+        <div
+          className={
+            activeTab === "proReviews"
+              ? `${styles.cover1} ${styles.active}`
+              : styles.cover1
+          }
+          onClick={() => handleTabClick("proReviews")}
+        >
+          <div>
+            <ReviewIcon fill={activeTab === "proReviews" ? "#1B4607" : "#D9D9D9"}  />
+          </div>
+          <div className={activeTab === "proReviews" ? styles.activeText : null}>
+            Lesson Reviews
+          </div>
         </div>
-        <div className={activeTab === "LessonReviews" ? styles.activeText : null}>
-          Lesson Reviews
-        </div>
-      </div>
+      )}
     </div>
   );
 }

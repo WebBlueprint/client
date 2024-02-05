@@ -1,3 +1,4 @@
+// SettingMain.jsx
 import React, { useState } from "react";
 import LessonsHeader from "../lessons/LessonsHeader";
 import styles from "./SettingMain.module.css";
@@ -10,9 +11,14 @@ import Settingside from "./Settingside";
 
 const SettingMain = () => {
   const [selectedTab, setSelectedTab] = useState("MyProfile");
+  const [isPro, setIsPro] = useState(true);
 
   const handleTabClick = (tabName) => {
     setSelectedTab(tabName);
+  };
+
+  const handleToggleProUser = () => {
+    setIsPro((prevIsPro) => !prevIsPro);
   };
 
   let tabContent = null;
@@ -30,11 +36,12 @@ const SettingMain = () => {
   return (
     <div className={styles.appsin}>
       <div className={styles.cover}>
-        <LessonsHeader />
+        {/* Pass the required props to LessonsHeader */}
+        <LessonsHeader isPro={isPro} onToggleProUser={handleToggleProUser} />
         <div className={styles.settingbody}>
           <div className={styles.sidebar}>
-            <Settingside onTabClick={handleTabClick} />
-          </div>
+          <Settingside onTabClick={handleTabClick} isPro={isPro} />
+                    </div>
           <div className={styles.tabContent}>{tabContent}</div>
         </div>
       </div>
