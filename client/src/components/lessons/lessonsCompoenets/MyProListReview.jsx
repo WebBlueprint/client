@@ -1,5 +1,4 @@
-// MyProListReview.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -7,6 +6,7 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [hoveredRating, setHoveredRating] = useState(0);
+  const [isReviewSubmitted, setReviewSubmitted] = useState(false);
 
   const handleStarClick = (newRating) => {
     setRating(newRating);
@@ -21,8 +21,38 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
   };
 
   const handleSubmitReview = () => {
+    // 클라이언트에서 리뷰 정보를 받아와서 onSubmit 함수를 호출
     onSubmit({ rating, comment });
-    onClose(); // Close the modal after submitting the review
+    
+    // 서버로 리뷰 정보를 전송하는 함수 호출
+    submitReviewToServer();
+    
+    onClose(); // 리뷰 작성이 완료되면 Modal을 닫음
+  };
+
+  const submitReviewToServer = async () => {
+    try {
+      const response = await fetch('/lesson/make-review', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: '65911b8d17a203ead2f021c2',
+          proName: '655b3c5c6c5cb384332f7bc0',
+          star: rating,
+          comment: comment,
+        }),
+      });
+
+      if (response.ok) {
+        setReviewSubmitted(true); 
+      } else {
+        console.error('Review submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error.message);
+    }
   };
 
   const getStarColor = (starValue) => {
@@ -37,11 +67,9 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
 
   return (
     <Overlay active={active}>
-
       <Container>
-
         <TextMain>
-        <p> Please review {proName} who works at {golfCourseName}! </p>
+          <p> Please review {proName} who works at {golfCourseName}! </p>
         </TextMain>
 
         <StarsAndRating>
@@ -71,10 +99,10 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
-<ButtonsWrapper>
-  <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
-  <CloseButton onClick={onClose}>Close</CloseButton>
-</ButtonsWrapper>
+        <ButtonsWrapper>
+          <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
+          <CloseButton onClick={onClose}>Close</CloseButton>
+        </ButtonsWrapper>
       </Container>
     </Overlay>
   );
