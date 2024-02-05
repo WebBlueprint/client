@@ -21,13 +21,10 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
   };
 
   const handleSubmitReview = () => {
-    // 클라이언트에서 리뷰 정보를 받아와서 onSubmit 함수를 호출
     onSubmit({ rating, comment });
+        submitReviewToServer();
     
-    // 서버로 리뷰 정보를 전송하는 함수 호출
-    submitReviewToServer();
-    
-    onClose(); // 리뷰 작성이 완료되면 Modal을 닫음
+    onClose(); 
   };
 
   const submitReviewToServer = async () => {
