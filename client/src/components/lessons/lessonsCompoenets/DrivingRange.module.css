@@ -22,21 +22,27 @@
 .probox > button   {
     background-color: #1B4607;
     color: #DDE3DA;
-    position: absolute;
+    position:absolute;
     width: 10em;
     height: 30%;
     border: 0px ;
     border-radius: 1em;
     right: 2em;
-    margin-top: 10px;
+    margin-top: 15px;
+    
+}
+.probox>img {
+    display: flex;
+    position: absolute;
+    top: 1.5em;
+    right:13em;
 }
 
 .prolist {
-    top: 10px;
+bottom: 2.5em;
 }
 .review {
-    position: absolute;
-    top: 60px;
+    top: 13em;
 }
 
 .imgbox {

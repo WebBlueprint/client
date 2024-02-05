@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
+import styles from "./RecentLessonList.module.css";
+
 
 export default function SendLessonReview() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -198,9 +200,8 @@ const [photoFiles, setPhotoFiles] = useState([]);
           </Container>     
 
         <BtnBox>  
-        <button onClick={handleClear}> Clear </button>
-        <button> Save </button>
-        <button> Confirm </button>
+        <button onClick={handleClear} className={styles.btns}> Clear </button>
+        <button className={styles.btns}> Confirm </button>
         </BtnBox>   
 
       </Wrap>

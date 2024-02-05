@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
-
+import styles from "./RecentLessonList.module.css";
+import { ReactComponent as Play } from "./Play.svg";
+import { ReactComponent as PlayBack } from "./Playback.svg";
 
 export default function RecentLessonList() {
   const [selectedLesson, setSelectedLesson] = useState(null);
@@ -53,8 +54,8 @@ const lessonsPerSlide = 2;
     <div>
 <SContainer>
   <SBtnWrap>
-      <SliderButton onClick={handlePrev}>&lt;</SliderButton>
-      <SliderButton onClick={handleNext}>&gt;</SliderButton>
+      <SliderButton onClick={handlePrev}><Play /></SliderButton>
+      <SliderButton onClick={handleNext}><PlayBack /></SliderButton>
   </SBtnWrap>
       <RecentLessonsContainer>
       <SliderWrapper style={{ transform: `translateX(-${slideIndex * (350 + 4)}px)` }}>
@@ -64,8 +65,10 @@ const lessonsPerSlide = 2;
               <p>{`Golf Course: ${lesson.golfCourseLocation}`}</p>
               <p>{`Date: ${lesson.date}`}</p>
               <p>{`Time: ${lesson.time}`}</p>
-              <button onClick={() => handleViewDetail(lesson)}>View Detail</button>
-              <button onClick={() => handleMakeReview(lesson)}>Make a Review</button>
+              <div className={styles.btnsgroup}> 
+              <button onClick={() => handleViewDetail(lesson)} className={styles.btns}>Detail</button>
+              <button onClick={() => handleMakeReview(lesson)} className={styles.btns} >Review</button>
+              </div>
             </RecentLesson>
           ))}
         </SliderWrapper>
@@ -144,9 +147,8 @@ const lessonsPerSlide = 2;
           </Container>     
 
         <BtnBox>  
-        <button onClick={handleClear}> Clear </button>
-        <button> Save </button>
-        <button> Confirm </button>
+        <button className={styles.btns} onClick={handleClear}> Clear </button>
+        <button className={styles.btns}> Confirm </button>
         </BtnBox>   
 
 
@@ -162,13 +164,13 @@ display: flex;
 overflow: auto;
 margin-top: 50px;
 margin-bottom: 50px;
-width: 100%;
+width: 100vw;
 `;
 const SBtnWrap = styled.div`
 display: flex;
 margin:-1em;
 position: relative;
-left:95%;
+left:0%;
 `;
 
 const SContainer = styled.div`
@@ -215,10 +217,15 @@ const SliderWrapper = styled.div`
   transition: transform 0.5s ease;
 `;
 const SliderButton = styled.button`
-  background-color: #333;
+background-color: #1b4607;  
+padding: 10px;
+margin-right:5px;
   color: #fff;
   border: none;
   display: flex;
+  width: 3em;
+  height: 3em;
+  border-radius: 2em;
 `;
 
 const FilePreviewContainer = styled.div`

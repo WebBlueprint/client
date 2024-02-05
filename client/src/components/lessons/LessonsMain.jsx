@@ -1,32 +1,22 @@
-
-import Side from "./Side";
-import SettingHeader from "./SettingHeader";
-import MyList from "./MyList";
-import MyLessons from "./MyLessons";
-
+//LessonMain.jsx
 import React, { useState } from "react";
+import Side from "./Side";
+import LessonsHeader from "./LessonsHeader";
 
-export default function SettingMain() {
-  const [selectedTab, setSelectedTab] = useState("myList"); // 초기 탭 설정
+const LessonsMain = () => {
+  const [isPro, setIsPro] = useState(true);
 
   const handleTabClick = (tabName) => {
-    setSelectedTab(tabName);
+    // Your tab click logic here
   };
 
   return (
-    <div className="App">
-      <div>
-        <SettingHeader />
-      </div>
-      <div className="settingbody">
-        <div>
-          <Side onTabClick={handleTabClick} />
-        </div>
-        <div>
-          {selectedTab === "myList" && <MyList />}
-          {selectedTab === "myLessons" && <MyLessons />}
-        </div>
-      </div>
+    <div>
+      <LessonsHeader isPro={isPro} />
+      <Side onTabClick={handleTabClick} isPro={isPro} />
+      {/* Add the rest of your LessonsMain content here */}
     </div>
   );
-}
+};
+
+export default LessonsMain;
