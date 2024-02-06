@@ -1,4 +1,3 @@
-// DrivingRangeReview.jsx
 import React, { useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styled from "styled-components";
@@ -7,6 +6,7 @@ const DrivingRangeReview = ({ onClose, active, proName, golfCourseName, onSubmit
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [hoveredRating, setHoveredRating] = useState(0);
+  const [showWarning, setShowWarning] = useState(false); // State to track whether to show warning
 
   const handleStarClick = (newRating) => {
     setRating(newRating);
@@ -20,9 +20,35 @@ const DrivingRangeReview = ({ onClose, active, proName, golfCourseName, onSubmit
     setHoveredRating(0);
   };
 
-  const handleSubmitReview = () => {
-    onSubmit({ rating, comment });
-    onClose(); // Close the modal after submitting the review
+  const handleSubmitReview = async () => {
+    if (rating === 0 || comment.trim() === "") {
+      setShowWarning(true);
+      return;
+    }
+
+    try {
+      const response = await fetch('https://p-match-ec61fc56d612.herokuapp.com/lesson/make-driving-range-review', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: "user1", // You may want to replace it with the actual user ID
+          drivingRangeName: golfCourseName,
+          star: rating,
+          comment: comment,
+        }),
+      });
+
+      if (response.ok) {
+        setReviewSubmitted(true);
+        onClose();
+      } else {
+        console.error('Review submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error.message);
+    }
   };
 
   const getStarColor = (starValue) => {
@@ -37,11 +63,9 @@ const DrivingRangeReview = ({ onClose, active, proName, golfCourseName, onSubmit
 
   return (
     <Overlay active={active}>
-
       <Container>
-
         <TextMain>
-        <p> Please review {proName} who works at {golfCourseName}! </p>
+          <p> Please review {proName} who works at {golfCourseName}! </p>
         </TextMain>
 
         <StarsAndRating>
@@ -71,10 +95,15 @@ const DrivingRangeReview = ({ onClose, active, proName, golfCourseName, onSubmit
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
-<ButtonsWrapper>
-  <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
-  <CloseButton onClick={onClose}>Close</CloseButton>
-</ButtonsWrapper>
+        {showWarning && (
+          <WarningMessage>
+            Please provide both rating and comment.
+          </WarningMessage>
+        )}
+        <ButtonsWrapper>
+          <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
+          <CloseButton onClick={onClose}>Close</CloseButton>
+        </ButtonsWrapper>
       </Container>
     </Overlay>
   );
@@ -163,6 +192,7 @@ const CloseButton = styled.button`
   position: relative;
   width: 8em;
 `;
+
 const Overlay = styled.div`
   display: none;
   position: fixed;
@@ -177,6 +207,7 @@ const Overlay = styled.div`
     display: block;
   `}
 `;
+
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -186,14 +217,18 @@ const ButtonsWrapper = styled.div`
   button + button {
     margin-left: 10px; // 원하는 간격 조절
   }
-  
 `;
-
-
 
 const TextMain = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px; // 필요한 경우에 조절하세요.
   grid-column: span 2; // 전체 그리드의 2개의 열을 차지하도록 설정
+`;
+
+const WarningMessage = styled.div`
+  color: red;
+  margin-top: 5px;
+  grid-column: span 2;
+  text-align: center;
 `;

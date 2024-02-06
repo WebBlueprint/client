@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -7,6 +7,9 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
   const [comment, setComment] = useState("");
   const [hoveredRating, setHoveredRating] = useState(0);
   const [isReviewSubmitted, setReviewSubmitted] = useState(false);
+  const userId = "user1";
+  const proNames = "홍길동";
+  const [showWarning, setShowWarning] = useState(false); // New state to handle showing/hiding warning
 
   const handleStarClick = (newRating) => {
     setRating(newRating);
@@ -20,30 +23,29 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
     setHoveredRating(0);
   };
 
-  const handleSubmitReview = () => {
-    onSubmit({ rating, comment });
-        submitReviewToServer();
-    
-    onClose(); 
-  };
+  const handleSubmitReview = async () => {
+    if (rating === 0 || comment.trim() === "") { // Check if rating or comment is empty
+      setShowWarning(true); // Show warning if either rating or comment is empty
+      return; // Exit function early if either rating or comment is empty
+    }
 
-  const submitReviewToServer = async () => {
     try {
-      const response = await fetch('/lesson/make-review', {
+      const response = await fetch('https://p-match-ec61fc56d612.herokuapp.com/lesson/make-review', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: '65911b8d17a203ead2f021c2',
-          proName: '655b3c5c6c5cb384332f7bc0',
+          userId: userId,
+          proName: proNames,
           star: rating,
           comment: comment,
         }),
       });
-
+  
       if (response.ok) {
-        setReviewSubmitted(true); 
+        setReviewSubmitted(true);
+        onClose();
       } else {
         console.error('Review submission failed');
       }
@@ -52,6 +54,7 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
     }
   };
 
+  
   const getStarColor = (starValue) => {
     if (starValue <= rating || (starValue <= hoveredRating && hoveredRating !== 0)) {
       return "#fcc419"; // Fully filled star
@@ -96,6 +99,11 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
+        {showWarning && ( // Conditional rendering for the warning message
+          <WarningMessage>
+            Please provide both rating and comment.
+          </WarningMessage>
+        )}
         <ButtonsWrapper>
           <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
           <CloseButton onClick={onClose}>Close</CloseButton>
@@ -183,8 +191,8 @@ const CloseButton = styled.button`
   grid-column: 2 / span 1;
   grid-row: 4 / span 2;
   display: flex;
-  align-items: center; /* 수직 가운데 정렬 */
-  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; 
+  justify-content: center; 
   position: relative;
   width: 8em;
 `;
@@ -206,20 +214,23 @@ const Overlay = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 10px; // 필요한 경우에 조절하세요.
-  grid-column: span 2; // 전체 그리드의 2개의 열을 차지하도록 설정
-  /* 버튼 간격을 위한 스타일 */
+  margin-top: 10px;
+  grid-column: span 2;
   button + button {
-    margin-left: 10px; // 원하는 간격 조절
+    margin-left: 10px; 
   }
   
 `;
 
-
+const WarningMessage = styled.p`
+  color: red;
+  margin-top: 5px;
+  grid-column: span 2; // Spanning both columns
+`;
 
 const TextMain = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 10px; // 필요한 경우에 조절하세요.
-  grid-column: span 2; // 전체 그리드의 2개의 열을 차지하도록 설정
+  margin-top: 10px;
+  grid-column: span 2; 
 `;
