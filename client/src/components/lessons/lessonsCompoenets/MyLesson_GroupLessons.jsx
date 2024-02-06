@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./MyLessonList.module.css";
-import style from "./MyLessons.module.css";  // Assuming this is the correct style import
+import style from "./MyLessons.module.css";
 import { Link } from "react-router-dom";
 import NoneImage from "./NoneImage.svg";
 
@@ -17,7 +17,6 @@ const MyLesson_GroupLessons = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedMonthKey, setSelectedMonthKey] = useState(null);
-
 
   // Array of months
   const months = [
@@ -83,6 +82,7 @@ const MyLesson_GroupLessons = () => {
     return new Intl.DateTimeFormat('en-US', options).format(date);
   };
 
+  // Handle month click
   const handleMonthClick = (monthValue, monthKey) => {
     setSelectedMonth(monthValue);
     setSelectedMonthKey(monthKey);
@@ -91,6 +91,11 @@ const MyLesson_GroupLessons = () => {
   // Handle reschedule click
   const handleRescheduleClick = (lesson) => {
     setSelectedLesson(lesson);
+    // 해당 수업의 날짜 정보를 newDate와 newTime 상태에 설정
+    const lessonDate = new Date(lesson.date).toISOString().split('T')[0];
+    const lessonTime = new Date(lesson.date).toISOString().split('T')[1].slice(0, 5);
+    setNewDate(lessonDate);
+    setNewTime(lessonTime);
     setIsModalOpen(true);
   };
 
@@ -105,6 +110,7 @@ const MyLesson_GroupLessons = () => {
     // 여기서 저장 또는 API 호출 수행
   };
 
+  // Check if month is selected
   const isMonthSelected = (monthValue) => {
     const isSelected = selectedMonth === monthValue;
     const selectedClass = isSelected ? `${styles.selectedMonth} ${styles.greenBackground}` : styles.nonSelectedMonth;

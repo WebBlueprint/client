@@ -41,7 +41,7 @@ const DrivingRangeReview = ({ onClose, active, proName, golfCourseName, onSubmit
       });
 
       if (response.ok) {
-        setReviewSubmitted(true);
+        onSubmit(); 
         onClose();
       } else {
         console.error('Review submission failed');
