@@ -17,7 +17,7 @@ const MyLesson_GroupLessons = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedMonthKey, setSelectedMonthKey] = useState(null);
-
+  const [showWarning, setShowWarning] = useState(false);
 
   // Array of months
   const months = [
@@ -83,26 +83,44 @@ const MyLesson_GroupLessons = () => {
     return new Intl.DateTimeFormat('en-US', options).format(date);
   };
 
-  const handleMonthClick = (monthValue, monthKey) => {
-    setSelectedMonth(monthValue);
-    setSelectedMonthKey(monthKey);
-  };
-
   // Handle reschedule click
   const handleRescheduleClick = (lesson) => {
     setSelectedLesson(lesson);
     setIsModalOpen(true);
-  };
+    
+    // 선택한 레슨의 날짜를 Date 객체로 변환
+    const selectedLessonDate = new Date(lesson.date);
 
-  // Handle modal close
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+    // 현재 시간에 12시간을 더한 시간을 설정
+    const newDate = new Date(selectedLessonDate.getTime() + 12 * 60 * 60 * 1000);
+
+    // 날짜 및 시간을 문자열로 변환하여 입력
+    setNewDate(newDate.toISOString().slice(0, 10));
+    setNewTime(newDate.toTimeString().slice(0, 5));
   };
 
   // Handle reschedule save
   const handleRescheduleSave = () => {
     setIsModalOpen(false);
-    // 여기서 저장 또는 API 호출 수행
+    
+    // 사용자가 선택한 새로운 날짜 및 시간을 Date 객체로 변환
+    const selectedDate = new Date(newDate + "T" + newTime);
+
+    // 현재 시간을 가져옴
+    const currentTime = new Date();
+
+    // 사용자가 선택한 시간이 현재 시간보다 이른 경우 알림 표시
+    if (selectedDate < currentTime) {
+      setShowWarning(true);
+    } else {
+      // 그렇지 않으면 저장 또는 API 호출 수행
+      setShowWarning(false);
+      // 저장 또는 API 호출 수행
+    }
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
   const isMonthSelected = (monthValue) => {
@@ -119,7 +137,7 @@ const MyLesson_GroupLessons = () => {
           <div
             key={month.value}
             className={`${isMonthSelected(month.value)}`}
-            onClick={() => handleMonthClick(month.value, month.value)}
+            onClick={() => setSelectedMonth(month.value)}
           >
             {month.label}
           </div>
@@ -179,10 +197,13 @@ const MyLesson_GroupLessons = () => {
               &times;
             </span>
             <h2>Reschedule Lesson</h2>
+            <label>Original Date:</label>
+            <p>{selectedLesson && formatLessonDate(selectedLesson.date)}</p>
             <label>New Date:</label>
             <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
             <label>New Time:</label>
             <input type="time" value={newTime} onChange={(e) => setNewTime(e.target.value)} />
+            {showWarning && <p style={{ color: 'red' }}>The selected date and time is earlier than the current time. Please select again.</p>}
             <button onClick={handleRescheduleSave}>Save</button>
           </div>
         </div>
