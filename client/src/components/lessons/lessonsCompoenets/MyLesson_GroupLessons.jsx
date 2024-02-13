@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./MyLessonList.module.css";
-import style from "./MyLessons.module.css";  // Assuming this is the correct style import
+import style from "./MyLessons.module.css";
 import { Link } from "react-router-dom";
 import NoneImage from "./NoneImage.svg";
 
@@ -16,7 +16,6 @@ const MyLesson_GroupLessons = () => {
   const [user_Id] = useState("user1");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedMonthKey, setSelectedMonthKey] = useState(null);
   const [showWarning, setShowWarning] = useState(false);
 
   // Array of months
@@ -42,91 +41,102 @@ const MyLesson_GroupLessons = () => {
       try {
         setLoading(true);
         setError(null);
-  
+
         const response = await axios.get(
           `https://p-match-ec61fc56d612.herokuapp.com/lesson/group-lessons/${user_Id}`,
           {
             timeout: 5000,
           }
         );
-  
+
         setLessons(response.data);
         console.log(response.data);
 
       } catch (error) {
-        console.error("fetchLessonsForUser에서 오류:", error);
-        console.error("오류 응답 데이터:", error.response?.data);
-        console.error("오류 요청 데이터:", error.request);
-  
+        console.error("Error occurred in fetchLessonsForUser:", error);
+        console.error("Error response data:", error.response?.data);
+        console.error("Error request data:", error.request);
+
         setError("Failed to fetch lessons. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchLessonsForUser();
 
   }, [user_Id, selectedMonth]);
-
-  // Format lesson date
-  const formatLessonDate = (dateString) => {
-    const date = new Date(dateString);
-    const options = {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true,
-    };
-
-    return new Intl.DateTimeFormat('en-US', options).format(date);
-  };
 
   // Handle reschedule click
   const handleRescheduleClick = (lesson) => {
     setSelectedLesson(lesson);
     setIsModalOpen(true);
-    
-    // 선택한 레슨의 날짜를 Date 객체로 변환
+
+    // Select the lesson's date as default
     const selectedLessonDate = new Date(lesson.date);
 
-    // 현재 시간에 12시간을 더한 시간을 설정
-    const newDate = new Date(selectedLessonDate.getTime() + 12 * 60 * 60 * 1000);
+    // Add 3 days to the selected date
+    selectedLessonDate.setDate(selectedLessonDate.getDate() + 3);
 
-    // 날짜 및 시간을 문자열로 변환하여 입력
-    setNewDate(newDate.toISOString().slice(0, 10));
-    setNewTime(newDate.toTimeString().slice(0, 5));
+    // Convert the date to string for input
+    setNewDate(selectedLessonDate.toISOString().slice(0, 10));
+    setNewTime(selectedLessonDate.toTimeString().slice(0, 5));
   };
 
-  // Handle reschedule save
-  const handleRescheduleSave = () => {
-    setIsModalOpen(false);
-    
-    // 사용자가 선택한 새로운 날짜 및 시간을 Date 객체로 변환
-    const selectedDate = new Date(newDate + "T" + newTime);
+// Handle reschedule save
+const handleRescheduleSave = async () => {
+  setIsModalOpen(false);
 
-    // 현재 시간을 가져옴
-    const currentTime = new Date();
+  // Convert the selected new date and time to a Date object
+  const selectedDate = new Date(newDate + "T" + newTime);
 
-    // 사용자가 선택한 시간이 현재 시간보다 이른 경우 알림 표시
-    if (selectedDate < currentTime) {
-      setShowWarning(true);
-    } else {
-      // 그렇지 않으면 저장 또는 API 호출 수행
-      setShowWarning(false);
-      // 저장 또는 API 호출 수행
+  // Get the current time
+  const currentTime = new Date();
+
+  // Show warning if the selected time is earlier than the current time
+  if (selectedDate < currentTime) {
+    setShowWarning(true);
+  } else {
+    // Otherwise, send the rescheduling request to the server
+    setShowWarning(false);
+    try {
+      const response = await axios.post('https://p-match-ec61fc56d612.herokuapp.com/lesson/reschedule', {
+        reservationId: selectedLesson._id,
+        newDate: selectedDate.toISOString().slice(0, 10), // Correctly format newDate
+        newTime: selectedDate.toTimeString().slice(0, 5) // Correctly format newTime
+      });
+      
+      if (response.status === 200) {
+        // Update the local state with the new date and time
+        const updatedLessons = lessons.map((lesson) => {
+          if (lesson._id === selectedLesson._id) {
+            return { ...lesson, date: selectedDate.toISOString().slice(0, 10) }; // Update the date
+          }
+          return lesson;
+        });
+        setLessons(updatedLessons);
+      }
+
+      console.log(selectedDate.toISOString().slice(0, 10));
+      // Optionally, you can update the local state here to reflect the changes immediately
+    } catch (error) {
+      console.error('Error occurred while rescheduling lesson:', error);
+      // Handle error
     }
-  };
+  }
+};
 
   const handleModalClose = () => {
+    setSelectedLesson(null);
     setIsModalOpen(false);
+    setNewDate("");
+    setNewTime("");
   };
 
   const isMonthSelected = (monthValue) => {
     const isSelected = selectedMonth === monthValue;
     const selectedClass = isSelected ? `${styles.selectedMonth} ${styles.greenBackground}` : styles.nonSelectedMonth;
-  
+
     return selectedClass;
   };
 
@@ -162,11 +172,11 @@ const MyLesson_GroupLessons = () => {
                   const lessonMonth = new Date(lesson.date).getMonth() + 1;
                   return lessonMonth === Number(selectedMonth);
                 });
-  
+
               if (filteredLessons.length === 0) {
                 return <div className={styles.Loading} >No Group Lessons</div>;
               }
-  
+
               return filteredLessons.map((lesson) => (
                 <div key={lesson._id} className={styles.myLessons}>
                   <div className={styles.iconwrap}></div>
@@ -175,7 +185,7 @@ const MyLesson_GroupLessons = () => {
                     <p>
                       {lesson.location} / <b> {lesson.status} </b>
                     </p>
-                    <p>{formatLessonDate(lesson.date)}</p>
+                    <p>{lesson.date}</p> {/* Display original date */}
                     <p>Remaining Lesson : {lesson.remaining_lesson}</p>
                   </div>
                   <div className={styles.btnwrap}>
@@ -198,7 +208,7 @@ const MyLesson_GroupLessons = () => {
             </span>
             <h2>Reschedule Lesson</h2>
             <label>Original Date:</label>
-            <p>{selectedLesson && formatLessonDate(selectedLesson.date)}</p>
+            <p>{selectedLesson && selectedLesson.date}</p>
             <label>New Date:</label>
             <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
             <label>New Time:</label>

@@ -57,6 +57,10 @@ const DrivingRange = () => {
     setSelectedRanges((prevSelectedRanges) => {
       const newSelectedRanges = [...prevSelectedRanges];
       newSelectedRanges[index] = !newSelectedRanges[index];
+  
+      // Logging the pro information
+      console.log("Pro Information:", data[index].pros); // Assuming pros is an array
+  
       return newSelectedRanges;
     });
     setShowReviews((prevShowReviews) => {
@@ -157,7 +161,10 @@ const DrivingRange = () => {
                           <div key={`pro-${proIndex}-${pro.proName}`}>
                             <div className={styles.pronamebox}>
                               <div className={styles.imgbox}></div>
-                              <div className={styles.protext}>{pro.proName}</div>
+                              <div className={styles.protext}>{pro._id} / {pro.name}
+                              <br />   {pro.phone} </div>
+                        
+                
                               <button>Detail</button>
                             </div>
                           </div>
