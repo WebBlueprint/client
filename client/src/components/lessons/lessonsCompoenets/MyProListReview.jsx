@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -7,6 +7,11 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
   const [comment, setComment] = useState("");
   const [hoveredRating, setHoveredRating] = useState(0);
   const [isReviewSubmitted, setReviewSubmitted] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
+  const [showReviewSubmittedModal, setShowReviewSubmittedModal] = useState(false); // State to manage the visibility of the modal
+
+  const userId = "user1";
+  const proNames = "홍길동";
 
   const handleStarClick = (newRating) => {
     setRating(newRating);
@@ -20,30 +25,29 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
     setHoveredRating(0);
   };
 
-  const handleSubmitReview = () => {
-    onSubmit({ rating, comment });
-        submitReviewToServer();
-    
-    onClose(); 
-  };
+  const handleSubmitReview = async () => {
+    if (rating === 0 || comment.trim() === "") {
+      setShowWarning(true);
+      return;
+    }
 
-  const submitReviewToServer = async () => {
     try {
-      const response = await fetch('/lesson/make-review', {
+      const response = await fetch('https://p-match-ec61fc56d612.herokuapp.com/lesson/make-review', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: '65911b8d17a203ead2f021c2',
-          proName: '655b3c5c6c5cb384332f7bc0',
+          userId: userId,
+          proName: proNames,
           star: rating,
           comment: comment,
         }),
       });
 
       if (response.ok) {
-        setReviewSubmitted(true); 
+        setReviewSubmitted(true);
+        setShowReviewSubmittedModal(true); // Show modal when review is submitted successfully
       } else {
         console.error('Review submission failed');
       }
@@ -52,13 +56,23 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
     }
   };
 
+  const handleCloseReviewSubmittedModal = () => {
+    setShowReviewSubmittedModal(false);
+    onClose(); // Close the review form modal when closing the review submitted modal
+    // Reset form state if needed
+    setRating(0);
+    setComment("");
+    setHoveredRating(0);
+    setShowWarning(false);
+  };
+
   const getStarColor = (starValue) => {
     if (starValue <= rating || (starValue <= hoveredRating && hoveredRating !== 0)) {
-      return "#fcc419"; // Fully filled star
+      return "#fcc419";
     } else if (starValue - 0.5 === rating || (starValue - 0.5 === hoveredRating && hoveredRating !== 0)) {
-      return "#ffa500"; // Half-filled star
+      return "#ffa500";
     } else {
-      return "gray"; // Empty star
+      return "gray";
     }
   };
 
@@ -96,11 +110,24 @@ const MyProListReview = ({ onClose, active, proName, golfCourseName, onSubmit })
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
+        {showWarning && (
+          <WarningMessage>
+            Please provide both rating and comment.
+          </WarningMessage>
+        )}
         <ButtonsWrapper>
           <SubmitButton onClick={handleSubmitReview}>Submit Review</SubmitButton>
           <CloseButton onClick={onClose}>Close</CloseButton>
         </ButtonsWrapper>
       </Container>
+
+      {/* Review Submitted Modal */}
+      {showReviewSubmittedModal && (
+        <ReviewSubmittedModal>
+          <ReviewSubmittedText>Review submitted successfully!</ReviewSubmittedText>
+          <CloseModalButton onClick={handleCloseReviewSubmittedModal}>Close</CloseModalButton>
+        </ReviewSubmittedModal>
+      )}
     </Overlay>
   );
 };
@@ -183,8 +210,8 @@ const CloseButton = styled.button`
   grid-column: 2 / span 1;
   grid-row: 4 / span 2;
   display: flex;
-  align-items: center; /* 수직 가운데 정렬 */
-  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; 
+  justify-content: center; 
   position: relative;
   width: 8em;
 `;
@@ -206,20 +233,52 @@ const Overlay = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 10px; // 필요한 경우에 조절하세요.
-  grid-column: span 2; // 전체 그리드의 2개의 열을 차지하도록 설정
-  /* 버튼 간격을 위한 스타일 */
+  margin-top: 10px;
+  grid-column: span 2;
   button + button {
-    margin-left: 10px; // 원하는 간격 조절
+    margin-left: 10px; 
   }
   
 `;
 
-
+const WarningMessage = styled.p`
+  color: red;
+  margin-top: 5px;
+  grid-column: span 2; // Spanning both columns
+`;
 
 const TextMain = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 10px; // 필요한 경우에 조절하세요.
-  grid-column: span 2; // 전체 그리드의 2개의 열을 차지하도록 설정
+  margin-top: 10px;
+  grid-column: span 2; 
+`;
+
+const ReviewSubmittedModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1100;
+`;
+
+const ReviewSubmittedText = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+`;
+
+const CloseModalButton = styled.button`
+  padding: 10px 20px;
+  background-color: #1B4607;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* Center-align the button */
 `;
