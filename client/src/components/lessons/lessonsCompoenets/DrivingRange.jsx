@@ -4,6 +4,8 @@ import styles from "./DrivingRange.module.css";
 import DrivingRangeReview from "./DrivingRangeReview";
 import heart from "./CHeart.svg";
 import Eheart from "./EHeart.svg";
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
 
 const DrivingRange = () => {
   const [data, setData] = useState([]);
@@ -83,6 +85,8 @@ const DrivingRange = () => {
 
   return (
     <div>
+
+
       {data.map((golfboxData, index) => (
         <div key={`golfbox-${index}-${golfboxData.golfCourseName}`}>
           <div>
@@ -91,7 +95,27 @@ const DrivingRange = () => {
                 <div className={styles.probox}>
                   <div className={styles.mapimg}>
                     {golfboxData.address && golfboxData.address.coordinates && (
-                      `map id ${golfboxData.address.coordinates[0]} ${golfboxData.address.coordinates[1]}`
+                                          <LoadScript googleMapsApiKey="AIzaSyDpVJ2n77XT_CoXu7wwBLz6ADDMkaXqroo">
+                                          <GoogleMap
+                                            mapContainerStyle={{
+                                              width: '100%',
+                                              height: '150px',
+                                              borderRadius: '20px' 
+                                            }}
+                                            center={{
+                                              lat: golfboxData.address.coordinates[1],
+                                              lng: golfboxData.address.coordinates[0]
+                                            }}
+                                            zoom={15}
+                                          >
+                                            <Marker
+                                              position={{
+                                                lat: golfboxData.address.coordinates[1],
+                                                lng: golfboxData.address.coordinates[0]
+                                              }}
+                                            />
+                                          </GoogleMap>
+                                        </LoadScript>
                     )}
                   </div>
                   <div className={styles.textbox}>

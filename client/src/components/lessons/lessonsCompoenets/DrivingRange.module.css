@@ -8,9 +8,9 @@
 
 .mapimg {
     background-color: #1B4607;
-    padding:2em;
     width:10em;
-    border-radius: 2em;
+    padding:10px;
+    border-radius: 20px;
     margin: 10px; }
 
 .textbox{
