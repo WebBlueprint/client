@@ -31,3 +31,10 @@
 .proFeatures {
   margin-top: 20px; /* Adjust the spacing between regular tabs and pro features */
 }
+
+.cover1 > div:first-child {
+  width: 24px; /* 아이콘의 너비 */
+  height: 24px; /* 아이콘의 높이 */
+  margin-right: 12px; /* 아이콘과 텍스트 사이의 간격 조정 */
+}
+

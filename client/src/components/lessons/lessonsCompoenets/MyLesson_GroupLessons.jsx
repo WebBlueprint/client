@@ -1,3 +1,4 @@
+// 이전 코드와의 차이점은 input 요소에 min 속성을 추가한 부분입니다.
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./MyLessonList.module.css";
@@ -50,7 +51,7 @@ const MyLesson_GroupLessons = () => {
         );
 
         setLessons(response.data);
-        console.log(response.data);
+        console.log("Group Lessons:", response.data); // 콘솔에 데이터 출력
 
       } catch (error) {
         console.error("Error occurred in fetchLessonsForUser:", error);
@@ -81,50 +82,52 @@ const MyLesson_GroupLessons = () => {
     // Convert the date to string for input
     setNewDate(selectedLessonDate.toISOString().slice(0, 10));
     setNewTime(selectedLessonDate.toTimeString().slice(0, 5));
+    console.log("Selected Lesson ID:", lesson._id); // 선택된 레슨 ID를 콘솔에 출력
+
   };
 
-// Handle reschedule save
-const handleRescheduleSave = async () => {
-  setIsModalOpen(false);
+  // Handle reschedule save
+  const handleRescheduleSave = async () => {
+    setIsModalOpen(false);
 
-  // Convert the selected new date and time to a Date object
-  const selectedDate = new Date(newDate + "T" + newTime);
+    // Convert the selected new date and time to a Date object
+    const selectedDate = new Date(newDate + "T" + newTime);
 
-  // Get the current time
-  const currentTime = new Date();
+    // Get the current time
+    const currentTime = new Date();
 
-  // Show warning if the selected time is earlier than the current time
-  if (selectedDate < currentTime) {
-    setShowWarning(true);
-  } else {
-    // Otherwise, send the rescheduling request to the server
-    setShowWarning(false);
-    try {
-      const response = await axios.post('https://p-match-ec61fc56d612.herokuapp.com/lesson/reschedule', {
-        reservationId: selectedLesson._id,
-        newDate: selectedDate.toISOString().slice(0, 10), // Correctly format newDate
-        newTime: selectedDate.toTimeString().slice(0, 5) // Correctly format newTime
-      });
-      
-      if (response.status === 200) {
-        // Update the local state with the new date and time
-        const updatedLessons = lessons.map((lesson) => {
-          if (lesson._id === selectedLesson._id) {
-            return { ...lesson, date: selectedDate.toISOString().slice(0, 10) }; // Update the date
-          }
-          return lesson;
+    // Show warning if the selected time is earlier than the current time
+    if (selectedDate < currentTime) {
+      setShowWarning(true);
+    } else {
+      // Otherwise, send the rescheduling request to the server
+      setShowWarning(false);
+      try {
+        const response = await axios.post('https://p-match-ec61fc56d612.herokuapp.com/lesson/reschedule', {
+          reservationId: selectedLesson._id,
+          newDate: selectedDate.toISOString().slice(0, 10), // Correctly format newDate
+          newTime: selectedDate.toTimeString().slice(0, 5) // Correctly format newTime
         });
-        setLessons(updatedLessons);
-      }
+        
+        if (response.status === 200) {
+          // Update the local state with the new date and time
+          const updatedLessons = lessons.map((lesson) => {
+            if (lesson._id === selectedLesson._id) {
+              return { ...lesson, date: selectedDate.toISOString().slice(0, 10) }; // Update the date
+            }
+            return lesson;
+          });
+          setLessons(updatedLessons);
+        }
 
-      console.log(selectedDate.toISOString().slice(0, 10));
-      // Optionally, you can update the local state here to reflect the changes immediately
-    } catch (error) {
-      console.error('Error occurred while rescheduling lesson:', error);
-      // Handle error
+        console.log(selectedDate.toISOString().slice(0, 10));
+        // Optionally, you can update the local state here to reflect the changes immediately
+      } catch (error) {
+        console.error('Error occurred while rescheduling lesson:', error);
+        // Handle error
+      }
     }
-  }
-};
+  };
 
   const handleModalClose = () => {
     setSelectedLesson(null);
@@ -210,7 +213,12 @@ const handleRescheduleSave = async () => {
             <label>Original Date:</label>
             <p>{selectedLesson && selectedLesson.date}</p>
             <label>New Date:</label>
-            <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
+            <input 
+              type="date" 
+              value={newDate} 
+              onChange={(e) => setNewDate(e.target.value)} 
+              min={new Date().toISOString().slice(0, 10)} // 현재 날짜 이전의 날짜를 비활성화
+            />
             <label>New Time:</label>
             <input type="time" value={newTime} onChange={(e) => setNewTime(e.target.value)} />
             {showWarning && <p style={{ color: 'red' }}>The selected date and time is earlier than the current time. Please select again.</p>}
