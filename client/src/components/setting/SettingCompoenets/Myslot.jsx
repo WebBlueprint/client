@@ -14,6 +14,9 @@ const Myslot = () => {
     locations: []
   });
 
+  const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const options = [
@@ -23,10 +26,39 @@ const Myslot = () => {
     { value: "Location 4", label: "Location 4" }
   ];
 
-  useEffect(() => {
-    console.log("Form Data:", formData);
-    localStorage.setItem("formData", JSON.stringify(formData));
-  }, [formData]);
+  const handleSubmit = () => {
+    if (
+      formData.selectedDays.length === 0 ||
+      formData.selectedGolfCourses.length === 0
+    ) {
+      setErrorMessage("Please fill in all required fields.");
+      setShowModal(true);
+      return;
+    }
+  
+    setErrorMessage(""); // Clear error message
+    const submittedFormData = {
+      ...formData,
+      dateSubmitted: new Date().toLocaleString()
+    };
+    localStorage.setItem("Myslot", JSON.stringify(submittedFormData));
+    setShowModal(true);
+  };
+  
+  const handleModalClose = () => {
+    setShowModal(false);
+    setErrorMessage("");
+    setFormData({
+      selectedDays: [],
+      startTime: "09:00",
+      endTime: "18:00",
+      lessonTime: 30,
+      breakTime: 10,
+      reservedTimes: [],
+      selectedGolfCourses: [],
+      locations: []
+    });
+  };
 
   const handleDayClick = (day) => {
     setFormData((prevData) => ({
@@ -78,13 +110,13 @@ const Myslot = () => {
     const selectedValues = selectedOptions.map((option) => option.value);
     setFormData((prevData) => ({
       ...prevData,
-      locations: selectedValues
+      selectedGolfCourses: selectedValues
     }));
   };
 
-  const handleSubmit = () => {
-    // Handle your submit logic here
-  };
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
 
   const calculateAvailableTimes = () => {
     const availableTimes = [];
@@ -117,7 +149,8 @@ const Myslot = () => {
               onClick={() => {
                 handleDayClick(day);
               }}
-              style={{ backgroundColor: formData.selectedDays.includes(day) ? "#1b4607" : "" }}
+              style={{ backgroundColor: formData.selectedDays.includes(day) ? "#1b4607" : "" 
+            }}
             >
               {day}
             </Btn>
@@ -183,7 +216,7 @@ const Myslot = () => {
             name="locations"
             isMulti
             value={options.filter((option) =>
-              formData.locations.includes(option.value)
+              formData.selectedGolfCourses.includes(option.value)
             )}
             onChange={handleLocationChange}
             options={options}
@@ -194,6 +227,16 @@ const Myslot = () => {
       <button onClick={handleSubmit}>
         Submit
       </button>
+
+      {showModal && (
+        <Modal>
+          <ModalContent>
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+            <p>Myslot has been saved.</p>
+            <button onClick={handleModalClose}>OK</button>
+          </ModalContent>
+        </Modal>
+      )}
     </div>
   );
 };
@@ -215,23 +258,49 @@ const Btn = styled.div`
   padding: 1em;
   margin: 5px;
   background-color: #dde3da;
+  color: ${props => props.style.backgroundColor === "#1b4607" ? "#ffffff" : "#000000"};
   text-align: center;
   display: flex;
   border: none;
   border-radius: 1em;
   height: 3em;
+  transition: background-color 0.3s;
 `;
 
 const Selects = styled.select`
-padding: 1em;
-margin: 5px;
-background-color: #dde3da;
-text-align: center;
-display: flex;
-border: none;
-border-radius: 1em;
-height: 3em;
-width: 100%;
+  padding: 1em;
+  margin: 5px;
+  background-color: #dde3da;
+  text-align: center;
+  display: flex;
+  border: none;
+  border-radius: 1em;
+  height: 3em;
+  width: 100%;
+`;
+
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 10px;
 `;
 
 export default Myslot;

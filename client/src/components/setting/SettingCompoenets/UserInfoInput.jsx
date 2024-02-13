@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import styles from "./Setting.module.css"; // UserInfo 모듈의 스타일을 임포트
+import styles from "./Setting.module.css";
 
 const UserInfoInput = () => {
   const [formData, setFormData] = useState({
@@ -64,6 +64,14 @@ const UserInfoInput = () => {
     { value: "Location 3", label: "Location 3" },
     { value: "Location 4", label: "Location 4" }
   ];
+
+  const handleSave = () => {
+    // 배열 안에 모든 내용을 콘솔에 출력
+    console.log(formData);
+
+    // 세션 스토리지에 배열 안에 모든 내용 저장
+    sessionStorage.setItem("My UserInfo", JSON.stringify(formData));
+  };
 
   return (
     <div className={styles.cover}>
@@ -129,7 +137,7 @@ const UserInfoInput = () => {
             className={styles.selectbox}
           />
         </div>
-        <button> Save </button>
+        <button onClick={handleSave}>Save</button>
       </div>
     </div>
   );
