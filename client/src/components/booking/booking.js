@@ -4,6 +4,7 @@ import styles from "../booking/booking.module.css";
 import MyPro from "../booking/MyPro";
 import Schedule from "../booking/Schedule";
 import { GoogleMap, Marker, withGoogleMap, withScriptjs } from "react-google-maps";
+import BookingMain from "./BookingMain";
 
 const proData = [
   { name: "김민지 프로", lesson: "(10/20)" },
@@ -65,7 +66,7 @@ function Booking() {
         <LessonHeader />
       </div>
       
-      {/* Add the Map component with markers */}
+      {/* Add the Map component with markers 
       <MapComponent
         googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDpVJ2n77XT_CoXu7wwBLz6ADDMkaXqroo&v=3.exp&libraries=geometry,drawing,places`}
         loadingElement={<div style={{ height: `100%` }} />}
@@ -75,6 +76,8 @@ function Booking() {
       />
       <MyPro />
       <Schedule />
+      */}
+      <BookingMain />
     </>
   );
 }

@@ -18,6 +18,8 @@ const StyledModal = styled.div`
 `;
 
 const ModalContent = styled.div`
+width: 40%;
+height: 50%;
   background-color: white;
   padding: 20px;
   border-radius: 5px;
@@ -95,11 +97,17 @@ const Modal = ({ lesson, activeTab, onClose, setVideoFiles, setPhotoFiles, video
     <StyledModal>
       <ModalContent>
         {activeTab === "detail" && (
-          <div>
-            <p>{`Customer: ${lesson.customerName}`}</p>
-            <p>{`Golf Course: ${lesson.golfCourseLocation}`}</p>
-            <p>{`Date: ${lesson.date}`}</p>
-            <p>{`Time: ${lesson.time}`}</p>
+          <div  className={styles.lessonshorts}  >
+            <p>{`Customer`}  <SearchBox value={` ${lesson.customerName}`} readOnly /> </p>
+            <p>{`Golf Course`} <SearchBox value={` ${lesson.golfCourseLocation}`} readOnly />  </p>
+            <div className={styles.textgrid}> 
+            <p>{`Date`} <SearchBox value={` ${lesson.date}`} readOnly /> </p>
+            <p>{`Time`}  <SearchBox value={` ${lesson.time}`} readOnly /> </p> 
+            </div>
+            <p>{`Lesson Note`}  <SearchBox value={` 리뷰 코멘트가 들어갑니다 `} readOnly /> </p> 
+            <BtnBox>
+            <button className={styles.btns} onClick={onClose}>Close</button>
+            </BtnBox>
           </div>
         )}
         {activeTab === "review" && (
@@ -150,11 +158,12 @@ const Modal = ({ lesson, activeTab, onClose, setVideoFiles, setPhotoFiles, video
             <BtnBox>
               <button className={styles.btns} onClick={() => handleClear(setVideoFiles, setPhotoFiles)}> Clear </button>
               <button className={styles.btns}> Confirm </button>
+              <button className={styles.btns} onClick={onClose}>Close</button>
             </BtnBox>
           </div>
         )}
 
-        <CloseButton onClick={onClose}>Close</CloseButton>
+
       </ModalContent>
     </StyledModal>
   );
@@ -214,10 +223,10 @@ export default function RecentLessonList() {
                 <p>{`Golf Course: ${lesson.golfCourseLocation}`}</p>
                 <p>{`Date: ${lesson.date}`}</p>
                 <p>{`Time: ${lesson.time}`}</p>
-                <div className={styles.btnsgroup}> 
+                <BtnBox>
                   <button onClick={() => handleViewDetail(lesson)} className={styles.btns}>Detail</button>
-                  <button onClick={() => handleMakeReview(lesson)} className={styles.btns}>Review</button>
-                </div>
+                  <button onClick={() => handleMakeReview(lesson)} className={styles.btns}>Lesson Note</button>
+                </BtnBox>
               </RecentLesson>
             ))}
           </SliderWrapper>

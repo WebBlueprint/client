@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./RecentLessonList.module.css";
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
 
 export default function SendLessonReview() {
@@ -16,7 +18,7 @@ export default function SendLessonReview() {
 
 const [videoFiles, setVideoFiles] = useState([]);
 const [photoFiles, setPhotoFiles] = useState([]);
-  
+const editorRef = useRef();
 
   const handleSearch = (event) => {
     const term = event.target.value.toLowerCase();
@@ -196,7 +198,12 @@ const [photoFiles, setPhotoFiles] = useState([]);
         </Container>
 <Container>  
 <TextWrap>  Comment </TextWrap>
-          <SearchBox type="text" />
+<Editor
+            height="500px"
+            previewStyle="vertical"
+            initialEditType="markdown"
+            ref={editorRef}
+          />
           </Container>     
 
         <BtnBox>  

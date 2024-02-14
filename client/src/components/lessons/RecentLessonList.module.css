@@ -13,3 +13,14 @@
 .btnsgroup {
     margin-left: 25px;
 }
+
+
+
+.lessonshorts > .btns {
+    bottom: 0;
+}
+
+.textgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

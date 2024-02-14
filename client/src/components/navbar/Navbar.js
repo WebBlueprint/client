@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const handleIconClick = (index) => {
     if (selectedIconIndex === index) {
-      setSelectedIconIndex(null); // 클릭한 아이콘을 다시 클릭하면 크기를 원래대로 돌립니다.
+      setSelectedIconIndex(index); // 클릭한 아이콘을 다시 클릭하면 크기를 원래대로 돌립니다.
     } else {
       setSelectedIconIndex(index);
     }

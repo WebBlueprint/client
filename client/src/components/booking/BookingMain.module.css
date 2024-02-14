@@ -1,0 +1,38 @@
+.mainwrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.main {
+    width: 95%;
+    height: 75vh;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* 각 행 간격 조절 */
+  }
+  
+  .courseinfo, .proinfo, .bookinginfo {
+    background-color: #F4F4F4;
+    padding: 1em;
+    height: 38vh;
+    border-radius: 20px;
+  }
+  
+  .courseinfo {
+    flex: 1; /* 좌측 요소가 확장되도록 함 */
+    margin-right: 10px; /* 좌측 요소 우측 간격 조절 */
+  }
+  
+  .proinfo {
+    flex: 1; /* 우측 요소가 확장되도록 함 */
+  }
+  
+  .bookinginfo {
+    padding: 1em;
+  }
+  

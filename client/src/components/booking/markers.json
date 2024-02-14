@@ -1,0 +1,173 @@
+[
+    {
+      "name": "Kuala Lumpur Golf & Country Club",
+      "lat": 3.145975,
+      "lng": 101.653441,
+      "description": "One of the premier golf and country clubs in Kuala Lumpur",
+      "professionals": [
+        {
+          "name": "John Smith"
+        },
+        {
+          "name": "Emily Johnson"
+        },
+        {
+          "name": "Michael Brown"
+        }
+      ]
+    },
+    {
+      "name": "TPC Kuala Lumpur",
+      "lat": 3.163064,
+      "lng": 101.717808,
+      "description": "Home to the prestigious CIMB Classic golf tournament",
+      "professionals": [
+        {
+          "name": "Jessica Davis"
+        },
+        {
+          "name": "Matthew Wilson"
+        },
+        {
+          "name": "Emma Taylor"
+        }
+      ]
+    },
+    {
+      "name": "Royal Selangor Golf Club",
+      "lat": 3.150878,
+      "lng": 101.705381,
+      "description": "One of the oldest and most esteemed golf clubs in Malaysia",
+      "professionals": [
+        {
+          "name": "Daniel Clark"
+        },
+        {
+          "name": "Olivia White"
+        },
+        {
+          "name": "Noah Anderson"
+        }
+      ]
+    },
+    {
+      "name": "Kelab Golf Perkhidmatan Awam",
+      "lat": 3.136981,
+      "lng": 101.689097,
+      "description": "A popular golf club among government officials and public servants",
+      "professionals": [
+        {
+          "name": "Sophia Wilson"
+        },
+        {
+          "name": "William Lee"
+        },
+        {
+          "name": "Ava Martinez"
+        }
+      ]
+    },
+    {
+      "name": "Kelab Golf Sultan Abdul Aziz Shah",
+      "lat": 3.082778,
+      "lng": 101.556944,
+      "description": "Known for its picturesque scenery and challenging courses",
+      "professionals": [
+        {
+          "name": "James Johnson"
+        },
+        {
+          "name": "Isabella Brown"
+        },
+        {
+          "name": "Jacob Taylor"
+        }
+      ]
+    },
+    {
+      "name": "Bukit Jalil Golf & Country Resort",
+      "lat": 3.055833,
+      "lng": 101.685556,
+      "description": "Featuring a championship golf course and luxurious amenities",
+      "professionals": [
+        {
+          "name": "Benjamin Wilson"
+        },
+        {
+          "name": "Sophia Anderson"
+        },
+        {
+          "name": "Lucas Clark"
+        }
+      ]
+    },
+    {
+      "name": "Glenmarie Golf & Country Club",
+      "lat": 3.104583,
+      "lng": 101.550583,
+      "description": "A premier golf destination offering two 18-hole championship courses",
+      "professionals": [
+        {
+          "name": "Ethan Taylor"
+        },
+        {
+          "name": "Olivia Lee"
+        },
+        {
+          "name": "Alexander Martinez"
+        }
+      ]
+    },
+    {
+      "name": "Tropicana Golf & Country Resort",
+      "lat": 3.121453,
+      "lng": 101.600695,
+      "description": "Known for its beautifully landscaped courses and exclusive amenities",
+      "professionals": [
+        {
+          "name": "Emma Brown"
+        },
+        {
+          "name": "Lucas Johnson"
+        },
+        {
+          "name": "Madison Wilson"
+        }
+      ]
+    },
+    {
+      "name": "Saujana Golf & Country Club",
+      "lat": 3.109694,
+      "lng": 101.579694,
+      "description": "Home to two championship golf courses designed by Ronald Fream",
+      "professionals": [
+        {
+          "name": "Sophia Davis"
+        },
+        {
+          "name": "Daniel White"
+        },
+        {
+          "name": "Isabella Anderson"
+        }
+      ]
+    },
+    {
+      "name": "Kota Permai Golf & Country Club",
+      "lat": 2.999722,
+      "lng": 101.580556,
+      "description": "Consistently ranked among the top golf courses in Malaysia",
+      "professionals": [
+        {
+          "name": "Benjamin Martinez"
+        },
+        {
+          "name": "Ava Johnson"
+        },
+        {
+          "name": "Jacob Brown"
+        }
+      ]
+    }
+  ]
+  

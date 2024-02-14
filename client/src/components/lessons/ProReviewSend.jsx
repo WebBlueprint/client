@@ -3,6 +3,7 @@ import styled from "styled-components";
 import RecentLessonList from "./RecentLessonList";
 import SendLessonReview from "./SendLessonReview";
 
+
 const Container = styled.div`
   text-align: left;
 `;
@@ -45,7 +46,7 @@ export default function ProReviewSend() {
           isTab2
           onClick={() => handleTabClick("SendLessonReview")}
         >
-          Send Lesson Review
+          Make a Lesson Note
         </Tab>
       </TabsContainer>
 
