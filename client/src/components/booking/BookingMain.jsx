@@ -6,15 +6,13 @@ import markersData from "./markers.json";
 
 const MapComponent = withScriptjs(withGoogleMap(props => {
   const [markers, setMarkers] = useState([]);
-  const [selectedMarkerInfo, setSelectedMarkerInfo] = useState(null);
-
+  
   useEffect(() => {
     setMarkers(markersData);
   }, []);
 
   const handleMarkerClick = (markerInfo) => {
-    console.log(markerInfo);
-    setSelectedMarkerInfo(markerInfo);
+    props.setSelectedMarkerInfo(markerInfo);
   };
 
   return (
@@ -36,17 +34,6 @@ const MapComponent = withScriptjs(withGoogleMap(props => {
         />
       ))}
 
-      {selectedMarkerInfo && (
-        <InfoWindow
-          position={{ lat: selectedMarkerInfo.lat, lng: selectedMarkerInfo.lng }}
-          onCloseClick={() => setSelectedMarkerInfo(null)}
-        >
-          <div>
-            <h3>{selectedMarkerInfo.name}</h3>
-            <p>{selectedMarkerInfo.description}</p>
-          </div>
-        </InfoWindow>
-      )}
     </GoogleMap>
   );
 }));
