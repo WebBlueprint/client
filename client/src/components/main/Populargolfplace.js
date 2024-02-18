@@ -19,7 +19,7 @@ const Populargolfplace = () => {
           {},
           { withCredentials: true }
         );
-        // console.log(response1.data);
+        //console.log(response1.data);
         setData1(...data1, response1.data);
       } catch (error) {
         console.error("사용자 확인 중 오류 발생:", error);
