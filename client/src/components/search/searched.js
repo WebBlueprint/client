@@ -5,6 +5,7 @@ import SearchCourse from "./searchCourse";
 import SearchPro from "./searchPro";
 import axios from "axios";
 
+
 function Searched() {
   const [selectedOption, setSelectedOption] = useState("course");
   const [locationName, setLocationName] = useState(""); // 추가: 받아온 name을 저장할 상태

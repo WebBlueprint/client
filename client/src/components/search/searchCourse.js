@@ -1,13 +1,13 @@
-// SearchCourse 컴포넌트
 import React from "react";
-import ReviewLocation from "./ReviewLocation";
 import styles from "./searched.module.css";
+import GolfPlaceNear from "./GolfPlaceNear";
+
 
 const SearchCourse = ({ locationName }) => {
   return (
     <div>
       <div className={styles.course}>
-        <ReviewLocation locationName={locationName} />
+        <GolfPlaceNear/>
       </div>
     </div>
   );
