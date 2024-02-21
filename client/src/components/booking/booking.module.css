@@ -175,8 +175,8 @@
 }
 .slotContainer{
   background-color: #DDE3DA;
-  width: 180px; 
-  height: 80px;
+  width: 160px; 
+  height: 60px;
   border-radius: 1.4em;
   flex-direction: column; 
   align-items: center; 
@@ -189,9 +189,9 @@
 .scheduledSlots {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  margin-top: 200px;
-  grid-gap: 1px;
-  margin-left: -40px;
+  margin-top: 30px;
+  grid-gap: 5px;
+  margin-left: 10px;
 }
 .clicked2 {
   background-color: #1B4607;
@@ -231,7 +231,8 @@
   font-weight: lighter;
 }
 .bookNowButton {
-  margin-top: 100px;
+  margin-top: -50px;
+  margin-left: 110px;
   padding: 10px;
   width: 150px;
   height: 50px;
@@ -282,6 +283,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.5); /* 투명 흰색 배경 설정 */
+
 }
 
 .modalContent {

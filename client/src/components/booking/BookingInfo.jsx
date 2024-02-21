@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import style from "./BookingMain.module.css";
+import ScheduledSlots from "./ScheduledSlots";
 
 const BookingInfo = ({ selectedMarkerInfo }) => {
   const [selectedProfessional, setSelectedProfessional] = useState(null);
+  const [showTimeSlots, setShowTimeSlots] = useState(false); // 시간 슬롯 표시 여부를 추적하는 상태 추가
 
   const handleProfessionalClick = (professional) => {
     setSelectedProfessional(professional);
+    setShowTimeSlots(true); // 전문가를 클릭했을 때 시간 슬롯을 표시
   };
 
   // 버튼 중 가장 긴 길이를 찾습니다.
@@ -60,7 +63,9 @@ const BookingInfo = ({ selectedMarkerInfo }) => {
           <>
             <h3>{selectedProfessional.name}</h3>
             <p>{selectedProfessional.description}</p>
-            <button className={style.greenButton}>예약하기</button>
+            {showTimeSlots && selectedProfessional && (
+        <ScheduledSlots day="MON" selectedProfessional={selectedProfessional} />
+      )}
           </>
         )}
       </div>
