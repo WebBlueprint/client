@@ -29,9 +29,6 @@ const ReviewLocation = ({ locationData, locationName }) => {
       <br />
       {showData && (
         <div className={styles.centered}>
-          {/* Data 컴포넌트에도 locationData를 전달할 수 있음 */}
-          {/* <Data locationData={locationData} /> */}
-          {/* Data 컴포넌트를 사용하려면 주석을 해제하세요 */}
         </div>
       )}
     </div>
