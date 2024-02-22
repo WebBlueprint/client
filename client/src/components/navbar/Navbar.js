@@ -4,6 +4,7 @@ import { Component } from "react";
 import { menudata } from "./menudata";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { ReactComponent as User } from "./User.svg";
 
 
 
@@ -54,16 +55,28 @@ const Navbar = () => {
           );
         })}
       </ul>
-      {!isLoggedIn ? <div>
-        <Link to="/signin" style={{ textDecoration: "none" }}>
-          <span className="login"> LOGIN</span>
-        </Link>
-        <Link to="/signup" style={{ textDecoration: "none" }}>
-          <span className="signin"> SIGN UP</span>
-        </Link>
-      </div> : <Link to="/signin">
-        <i className="fa fa-sign-in" onClick={() => logout()}></i>
-      </Link>}
+<div>      <Link to="/setting">   <User /> <div className="setting"> Setting </div>   </Link>   </div>
+
+      {!isLoggedIn ? (
+  <div>
+    <Link to="/signin" style={{ textDecoration: "none" }}>
+      <span className="login"> LOGIN</span>
+    </Link>
+    <Link to="/signup" style={{ textDecoration: "none" }}>
+      <span className="signin"> SIGN UP</span>
+    </Link>
+  </div>
+) : (
+  <div>
+    <Link to="/signin">
+      <i className="fa fa-sign-in" onClick={() => logout()}></i>
+    </Link>
+    <Link to="/setting">
+      <span> <User /> </span>
+    </Link> 
+  </div>
+)}
+
 
     </nav>
   );

@@ -26,12 +26,6 @@
   font-size: 15px;
   margin-left: 250px;
 }
-.nav-links {
-  text-decoration: none;
-  color: #fff;
-  padding: 0.7rem 1rem;
-  white-space: nowrap;
-}
 
 .fa-search,
 .fa-calendar-check-o,
@@ -74,4 +68,19 @@
   align-items: center;
   text-decoration: none;
   cursor: pointer;
+}
+.nav-links {
+  text-decoration: none;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  white-space: nowrap;
+}
+.setting {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+position: relative;
+left: -10px;
+
+  white-space: nowrap;
 }
