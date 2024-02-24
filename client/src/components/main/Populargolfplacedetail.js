@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,7 +7,6 @@ import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const Populargolfplacedetail = (props) => {
   console.log(props);
-
   const containerStyle = {
     width: "350px",
     height: "250px",
@@ -18,11 +17,12 @@ const Populargolfplacedetail = (props) => {
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
   });
+
   const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(props);
+    const bounds = new window.google.maps.LatLngBounds(props.center);
     map.fitBounds(bounds);
 
     setMap(map);
@@ -30,26 +30,29 @@ const Populargolfplacedetail = (props) => {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null);
   }, []);
+
   return (
     <Board>
       <Container>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={props.center}
-          zoom={8}
-          // onLoad={onLoad}
-          onUnmount={onUnmount}
-        >
-          {/* Child components, such as markers, info windows, etc. */}
-          <></>
-        </GoogleMap>
+        {isLoaded && (
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={props.center}
+            zoom={10}
+            //onLoad={onLoad}
+            onUnmount={onUnmount}
+          >
+            {/* Child components, such as markers, info windows, etc. */}
+            <Marker position={props.center} />
+          </GoogleMap>
+        )}
         <Row>
           <Col style={{ padding: "0 0 0 20px" }}>
             <Details>
               <p>{props.list.courseName}</p>
             </Details>
             <Details>
-              <p>{props.list.courseReview}</p>
+              <p>{props.list.courseReviews}</p>
             </Details>
             <Details2></Details2>
             <Star>

@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Modal from "react-modal";
 
 const Popularprodetail = (props) => {
-  // console.log(props);
+  console.log(props);
   const [isOpen, setIsOpen] = useState(false);
   const clickHandler = () => {
     setIsOpen(() => !isOpen);
@@ -24,7 +24,14 @@ const Popularprodetail = (props) => {
             }}
           >
             <Bold>Pro Name</Bold>
-            <p>{props.proname}</p>
+            <p>
+              {props.proName}
+              {props.proGender == "male" ? (
+                <p>&#x2640;</p>
+              ) : (
+                <p>&#x2642;</p>
+              )}{" "}
+            </p>
           </div>
         </Details>
       </div>

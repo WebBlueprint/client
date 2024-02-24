@@ -15,7 +15,7 @@ const Popularpro = () => {
     const popularPros = async () => {
       try {
         const response = await axios.get(
-          "https://p-match-ec61fc56d612.herokuapp.com/popular-pros",
+          "https://p-match-ec61fc56d612.herokuapp.com/main/top-pros",
           {},
           { withCredentials: true }
         );
@@ -44,7 +44,6 @@ const Popularpro = () => {
     };
     lessonInfo();
   }, []);
-  console.log(data);
   return (
     <>
       <Container>
@@ -60,9 +59,10 @@ const Popularpro = () => {
                 data.map((a, b) => {
                   return (
                     <Popularprodetail
-                      reviewCount={a.reviewCount}
-                      averageRating={a.averageRating.toFixed(2)}
-                      proname={a.pro.name}
+                      reviewCount={a.proReviews}
+                      averageRating={a.proRating.toFixed(2)}
+                      proName={a.proName}
+                      proGender={a.proGender}
                       key={b}
                     />
                   );

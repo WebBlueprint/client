@@ -14,7 +14,7 @@ const LessonReview = () => {
     const popularPros = async () => {
       try {
         const response = await axios.get(
-          "https://p-match-ec61fc56d612.herokuapp.com/schedule/lesson-info",
+          "https://p-match-ec61fc56d612.herokuapp.com/lesson/personal-lessons/윤승우",
           {},
           { withCredentials: true }
         );

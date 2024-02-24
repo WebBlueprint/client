@@ -9,28 +9,24 @@ import "./Carousel.css";
 import axios from "axios";
 
 const Populargolfplace = () => {
-  const [data, setData] = useState(true);
-  const [data1, setData1] = useState([]);
+  const [data2, setData2] = useState([]);
   useEffect(() => {
     const lessonInfo = async () => {
       try {
-        const response1 = await axios.get(
-          "https://p-match-ec61fc56d612.herokuapp.com/main/top-golfcourses",
-          {},
-          { withCredentials: true }
+        const response = await axios.get(
+          "https://p-match-ec61fc56d612.herokuapp.com/main/top-golfcourses"
         );
-        //console.log(response1.data);
-        setData1(...data1, response1.data);
+        console.log(response.data);
+        setData2(...data2, response.data);
       } catch (error) {
         console.error("사용자 확인 중 오류 발생:", error);
       }
     };
     lessonInfo();
   }, []);
-  console.log(data1);
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const chevronWidth = 40;
-
+  console.log(data2);
   return (
     <div>
       <Container>
@@ -51,7 +47,7 @@ const Populargolfplace = () => {
                 >
                   <div style={{ height: 600 }}>
                     <Board>
-                      {data1.map((a, b) => {
+                      {data2.map((a, b) => {
                         return (
                           <Populargolfplacedetail
                             list={a}
