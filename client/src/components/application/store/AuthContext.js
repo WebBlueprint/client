@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        console.log("AuthContext.js userinfo:", userinfo);
+        console.log("AuthContext.js 유저정보 - ", userinfo);
     }, [userinfo]);
 
 

@@ -39,7 +39,7 @@ function App() {
           {},
           { withCredentials: true }
         );
-        console.log("서버응답 확인", response.data.accessToken);
+        console.log("JWT토큰 응답 확인", response.data.accessToken);
         login({ email: response.data.decodedToken.email });
       } catch (error) {
         console.error("사용자 확인 중 오류 발생:", error);

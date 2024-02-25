@@ -45,7 +45,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [birth_date, setBirthDate] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   const [isPro, setIsPro] = useState(false);
   const [error, setError] = useState("");
@@ -69,14 +69,16 @@ const Signup = () => {
 
     if (
       validatePassword(password) &&
-      birth_date &&
+      birthDate &&
       (gender === "male" || gender === "female" || gender === "other")
     ) {
+      const user_id = email.split('@')[0];
       const userData = {
+        user_id,
         email,
         password,
         confirmPassword,
-        birth_date: birth_date.toISOString().split("T")[0],
+        birthDate: birthDate.toISOString().split("T")[0],
         gender,
         isPro
       };
@@ -213,7 +215,7 @@ const Signup = () => {
               </Form.Group>
               <Form.Group>
                 <DatePicker
-                  selected={birth_date}
+                  selected={birthDate}
                   placeholderText="Birth date"
                   onChange={(date) => setBirthDate(date)}
                   className="mb-3 form-control place_holder"

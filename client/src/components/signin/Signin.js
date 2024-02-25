@@ -70,9 +70,10 @@ const Signin = () => {
 
       try {
         let result;
-        result = await axios.post("http://p-match-ec61fc56d612.herokuapp.com/login", userData, {
+        result = await axios.post("http://localhost:3000/login", userData, {
           withCredentials: true, // 서버에서 쿠키를 전송받기 위해 withCredentials 옵션을 추가
         });
+
         console.log(result.data.message); // 여기에 추가
         login(userData)
         window.location = "/"
