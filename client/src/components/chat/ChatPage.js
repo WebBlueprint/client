@@ -49,17 +49,19 @@ const ChatPage = () => {
   }
 
   return (
-    <ChatPageContainer>
-      <ChatSearchContainer>
-        <ChatSearchSection>
-          <ChatSearch onChatRoomClick={setSelectedChatRoom} />
-        </ChatSearchSection>
-      </ChatSearchContainer>
-      <ChatContainer>
-        {/* Ensure that selectedChatRoom is defined */}
-        <Chat selectedChatRoom={selectedChatRoom} />
-      </ChatContainer>
-    </ChatPageContainer>
+    <>
+      <ChatPageContainer>
+        <ChatSearchContainer>
+          <ChatSearchSection>
+            <ChatSearch onChatRoomClick={setSelectedChatRoom} />
+          </ChatSearchSection>
+        </ChatSearchContainer>
+        <ChatContainer>
+          {/* Ensure that selectedChatRoom is defined */}
+          <Chat selectedChatRoom={selectedChatRoom} />
+        </ChatContainer>
+      </ChatPageContainer>
+    </>
   );
 }
 
