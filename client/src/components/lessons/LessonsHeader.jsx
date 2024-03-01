@@ -19,7 +19,6 @@ const LessonsHeader = ({ isPro, onToggleProUser }) => {
       <div>
         {/* Link to setting */}
         <Link to="/setting">
-          <img src={LessonsIcon} className={styles.imgicon} alt="Lessons Icon" />
         </Link>
       </div>
     </div>
