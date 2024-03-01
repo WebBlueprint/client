@@ -106,7 +106,7 @@ function ChatSearch({ onChatRoomClick }) {
     useEffect(() => {
         const fetchAllPros = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/getallpros', [], {
+                const response = await axios.get('http://localhost:3000/allpros', [], {
                     withCredentials: true,
                 });
                 const allPros = response.data.map(pro => pro.name);
