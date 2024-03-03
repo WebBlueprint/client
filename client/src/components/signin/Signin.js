@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../application/store/AuthContext"
 import { useNavigate, Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 import golfimage from "../../svgs/golfimage.svg";
@@ -90,6 +92,18 @@ const Signin = () => {
 
   return (
     <>
+      <Link
+        to="/"
+        style={{
+          position: 'absolute',
+          top: 20,
+          left: 40,
+          color: 'white',
+          fontSize: '30px'
+        }}
+      >
+        <FontAwesomeIcon icon={faHome} />
+      </Link>
       <Container fluid>
         <GlobalStyle />
         <Row>

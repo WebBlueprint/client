@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../application/store/AuthContext";
 import { useNavigate, Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 import golfimage from "../../svgs/golfimage.svg";
@@ -106,6 +108,18 @@ const Signup = () => {
   };
   return (
     <>
+      <Link
+        to="/"
+        style={{
+          position: 'absolute',
+          top: 20,
+          left: 40,
+          color: 'white',
+          fontSize: '30px'
+        }}
+      >
+        <FontAwesomeIcon icon={faHome} />
+      </Link>
       <Container fluid>
         <GlobalStyle />
         <Row>

@@ -43,7 +43,7 @@ const ChatPage = () => {
   console.log("Selected chat room in ChatPage:", selectedChatRoom);
 
   // 로그인되어 있지 않으면 /signin으로 이동
-  if (!isLoggedIn) {
+  if (isLoggedIn == undefined || !isLoggedIn) {
     window.location = '/signin';
     return null; // 이동 중에 다른 내용을 렌더링하거나 아무것도 렌더링하지 않도록 선택할 수 있습니다.
   }
