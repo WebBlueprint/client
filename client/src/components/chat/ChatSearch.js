@@ -194,7 +194,7 @@ function ChatSearch({ onChatRoomClick }) {
                 <input
                     ref={inputRef}
                     type="text"
-                    placeholder="프로 검색"
+                    placeholder="Add Your Pro"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={() => setIsInputFocused(true)}

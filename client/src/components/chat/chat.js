@@ -76,9 +76,9 @@ const Chat = ({ selectedChatRoom }) => {
     }, [messages]);
 
     useEffect(() => {
-        setUsername(userinfo.email)
+        setUsername(userinfo.user_id)
         socket.emit("setUsername", username);
-    }, [username]);
+    }, [username, userinfo.user_id]);
 
     useEffect(() => {
         console.log("useEffect triggered with selectedChatRoom:", selectedChatRoom); // 추가
