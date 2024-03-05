@@ -11,7 +11,6 @@ import Navbar from "./components/navbar/Navbar";
 import Search from "./components/search/Search";
 import Booking from "./components/booking/booking";
 import Schedule from "./components/schedule/schedule";
-import Lessons from "./components/lessons/Lessons";
 import Setting from "./components/setting/settingMain";
 import ChatPage from "./components/chat/ChatPage.js";
 import LocationBox from "../src/components/block/GolfLocationBox/LocationBox";
@@ -27,6 +26,7 @@ import LessonDetail from "../src/components/lessons/lessonsCompoenets/ViewDetail
 import Searched from "../src/components/search/searched";
 import SearchPro from "../src/components/search/searchPro";
 import SearchCourse from "../src/components/search/searchCourse";
+import MyLessonsMain from "./components/lessons/LessonsMain.jsx";
 
 function App() {
   const { login, userinfo, isLoggedIn } = useContext(AuthContext);
@@ -66,7 +66,7 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/booking" element={<Booking />} />
               <Route path="/schedule" element={<Schedule />} />
-              <Route path="/lessons" element={<Lessons />} />
+              <Route path="/lessons" element={<MyLessonsMain />} />
               <Route path="/lessons/:id" element={<LessonDetail />} />
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/setting" element={<Setting />} />

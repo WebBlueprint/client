@@ -1,7 +1,8 @@
 //LessonMain.jsx
 import React, { useState } from "react";
-import Side from "./Side";
 import LessonsHeader from "./LessonsHeader";
+import MyLessons from "../lessons/MyLessons";
+import styles from "../lessons/Lessons.module.css";
 
 const LessonsMain = () => {
   const [isPro, setIsPro] = useState(true);
@@ -11,10 +12,11 @@ const LessonsMain = () => {
   };
 
   return (
-    <div>
+    <div className={styles.appsin}>
+    <div className={styles.cover}>
       <LessonsHeader isPro={isPro} />
-      <Side onTabClick={handleTabClick} isPro={isPro} />
-      {/* Add the rest of your LessonsMain content here */}
+      <MyLessons />
+      </div>
     </div>
   );
 };

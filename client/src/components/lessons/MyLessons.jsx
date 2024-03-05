@@ -1,6 +1,6 @@
 import { useState } from "react";
-import MyLesson_GroupLessons from "./MyLesson_GroupLessons";
-import MyLessons_PersonalLessons from "./MyLessons_PersonalLessons";
+import MyLesson_GroupLessons from "./lessonsCompoenets/MyLesson_GroupLessons";
+import MyLessons_PersonalLessons from "./lessonsCompoenets/MyLessons_PersonalLessons";
 import style from "./MyList.module.css";
 
 export default function MyLessons() {
@@ -19,7 +19,7 @@ export default function MyLessons() {
 
   return (
     <div className={style.cover}>
-      <div className={style.tabs}>
+     {/*   <div className={style.tabs}>
         <div
           onClick={toggleMyProList}
           className={showMyGroup ? style.tab1Active : style.tab1}
@@ -38,7 +38,11 @@ export default function MyLessons() {
       <div>
         {showMyGroup && <MyLesson_GroupLessons />}
         {showMyPersonal && <MyLessons_PersonalLessons />}
-      </div>
+         
+  </div> */ }
+  <div className={style.tabz}> 
+          <MyLessons_PersonalLessons />
+   </div>
     </div>
   );
 }

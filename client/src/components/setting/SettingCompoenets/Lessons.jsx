@@ -1,12 +1,12 @@
 // Lessons.jsx
 import styles from "./Lessons.module.css";
-import Side from "./Side";
-import LessonsHeader from "./LessonsHeader";
+import Side from "../../lessons/Side";
+import LessonsHeader from "../../lessons/LessonsHeader";
 import MyList from "./lessonsCompoenets/MyList";
-import MyLessons from "./lessonsCompoenets/MyLessons";
+import MyLessons from "./MyLessons";
 
 import React, { useState } from "react";
-import ProReviewSend from "./ProReviewSend";
+import ProReviewSend from "../../lessons/ProReviewSend";
 
 export default function Setting() {
   const [isPro, setIsPro] = useState(true); // 초기 pro 여부 설정
@@ -25,15 +25,10 @@ export default function Setting() {
       <div>
         <LessonsHeader isPro={isPro} onToggleProUser={handleToggleProUser} />
       </div>
-      <div className={styles.settingbody}>
+
         <div>
-          <Side onTabClick={handleTabClick} isPro={isPro} />
-        </div>
-        <div>
-          {selectedTab === "myList" && <MyList />}
-          {selectedTab === "myLessons" && <MyLessons />}
-          {selectedTab === "proReviews" && isPro && <ProReviewSend />}
-        </div>
+        <MyLessons />
+    
       </div>
     </div>
   );

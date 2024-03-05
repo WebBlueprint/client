@@ -5,6 +5,7 @@ import { ReactComponent as Info } from "./InfoIcon.svg";
 import { ReactComponent as Setting } from "./SettingIcon.svg";
 import { ReactComponent as Profileicon } from "./Profileicon.svg";
 import { ReactComponent as SlotIcon } from "./SlotIcon.svg";
+import { ReactComponent as ListIcon } from "./ListIcon.svg";
 
 const Settingside = ({ onTabClick, isPro }) => {
   const [activeTab, setActiveTab] = useState("MyProfile");
@@ -59,6 +60,19 @@ const Settingside = ({ onTabClick, isPro }) => {
         </div>
       </div>
 
+      <div
+            className={`${styles.cover1} ${activeTab === "mylist" ? styles.active : ""}`}
+            onClick={() => handleTabClick("mylist")}
+            style={{ color: getTabColor("mylist") }}
+          >
+            <div onClick={() => handleIconClick("mylist")}>
+              <ListIcon fill={getIconFill("mylist")} />
+            </div>
+            <div className={activeTab === "mylist" ? styles.activeText : styles.texts}>
+              My List
+            </div>
+          </div>
+
       {isPro && (
         <div className={styles.proFeatures}>
           <div
@@ -86,6 +100,10 @@ const Settingside = ({ onTabClick, isPro }) => {
               My Slot
             </div>
           </div>
+
+          
+
+
         </div>
       )}
     </div>

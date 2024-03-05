@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import NoneImage from "./NoneImage.svg";
-import heart from "./CHeart.svg";
-import Eheart from "./EHeart.svg";
+import heart from "../../setting/SettingCompoenets/CHeart.svg";
+import Eheart from "../../setting/SettingCompoenets/EHeart.svg";
 import ProboxReview from "./ProboxReview";
 import axios from "axios";
 

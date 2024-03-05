@@ -1,0 +1,42 @@
+.cover {
+    text-align: left;
+  }
+  
+  .tabs {
+    text-align: left;
+    display: flex;
+    position: relative;
+    padding-right: 2em;
+  }
+  
+  
+  .tabz {
+  margin: 2em;
+  padding: 2em;
+  }
+  
+  
+  .title {
+    text-align: left;
+  }
+  
+  .tab1 {
+    margin-right: 2em;
+    color: #d9d9d9; /* Default color for tab1 */
+  }
+  
+  .tab2 {
+    margin-left: 2em;
+    color: #d9d9d9; /* Default color for tab2 */
+  }
+  
+  .tab1Active {
+    color: #1b4607; /* Text color when tab1 is active */
+    text-decoration: underline;
+  }
+  
+  .tab2Active {
+    color: #1b4607; /* Text color when tab2 is active */
+    text-decoration: underline;
+  }
+  
