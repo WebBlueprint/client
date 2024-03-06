@@ -35,7 +35,7 @@ const Booking = () => {
 
   useEffect(() => {
     if (selectedProSlot) {
-      const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const today = new Date();
       const todayDayOfWeek = weekdays[today.getDay()]; // 오늘 요일
       const nextDatesArray = [];
@@ -50,8 +50,7 @@ const Booking = () => {
         const nextDayOfWeek = weekdays[nextDate.getDay()];
 
         if (selectedProSlot.selectedDays.includes(nextDayOfWeek)) {
-          const formattedDate = `${nextDate.toLocaleDateString()} (${nextDayOfWeek})`;
-          nextDatesArray.push({ date: formattedDate, dayOfWeek: nextDayOfWeek });
+          nextDatesArray.push(nextDate.toLocaleDateString());
           foundNextDates++;
         }
 
@@ -62,17 +61,13 @@ const Booking = () => {
     }
   }, [selectedProSlot]);
 
-  const handleDateClick = (date) => {
-    console.log("Clicked Date:", date);
-  };
-
   return (
     <div className={styles.appsin}>
       <div className={styles.cover}>
         <div> booking </div>
         <div>
-          <span onClick={handlePrev}>앞으로</span>
-          <span onClick={handleNext}>뒤로</span>
+          <span onClick={handlePrev}>  앞으로  </span>
+          <span onClick={handleNext}> 뒤로 </span>
         </div>
 
         <div className={styles.bookingContainer}>
@@ -112,19 +107,20 @@ const Booking = () => {
           <div>
             <div>Selected Pro's Available Slot:</div>
             <div>Date: {selectedProSlot.selectedDays.join(", ")}</div>
-            {/* 다음 예약 가능한 날짜들 표시 */}
-            <div>
-              {nextDates.map((date, index) => (
-                <button key={index} onClick={() => handleDateClick(date.date)}>
-                  {date.date}
-                </button>
-              ))}
-            </div>
+
+        {/* 다음 예약 가능한 날짜들 표시 */}
+        <div>
+          {nextDates.map((date, index) => (
+            <button> {date}</button>
+          ))}
+        </div>
+
             <div>Start Time: {selectedProSlot.startTime}</div>
             <div>End Time: {selectedProSlot.endTime}</div>
             <div>Reserved Times: {selectedProSlot.reservedTimes.join(", ")}</div>
           </div>
         )}
+
       </div>
     </div>
   );
