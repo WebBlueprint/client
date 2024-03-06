@@ -3,19 +3,22 @@ import styled from "styled-components";
 import Select from "react-select";
 
 const Myslot = () => {
-  const [formData, setFormData] = useState({
+  const defaultFormData = {
     selectedDays: [],
     startTime: "09:00",
     endTime: "18:00",
-    lessonTime: 30,
-    breakTime: 10,
+    lessonTime: "",
     reservedTimes: [],
-    selectedGolfCourses: [],
-    locations: []
-  });
+    selectedGolfCourses: []
+  };
 
+  const [formData, setFormData] = useState(() => {
+    const savedFormData = localStorage.getItem("formData");
+    return savedFormData ? JSON.parse(savedFormData) : defaultFormData;
+  });
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [missingFields, setMissingFields] = useState([]);
 
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -27,37 +30,47 @@ const Myslot = () => {
   ];
 
   const handleSubmit = () => {
-    if (
-      formData.selectedDays.length === 0 ||
-      formData.selectedGolfCourses.length === 0
-    ) {
-      setErrorMessage("Please fill in all required fields.");
+    const missing = [];
+    if (formData.selectedDays.length === 0) {
+      missing.push("Available Slot");
+    }
+    if (!formData.startTime) {
+      missing.push("Start Time");
+    }
+    if (!formData.endTime) {
+      missing.push("End Time");
+    }
+    if (formData.lessonTime === "") {
+      missing.push("Lesson Time");
+    }
+    if (formData.selectedGolfCourses.length === 0) {
+      missing.push("Golf Course");
+    }
+    if (formData.reservedTimes.length === 0 && formData.lessonTime !== "") {
+      missing.push("Lesson Time");
+    }
+
+    if (missing.length > 0) {
+      setMissingFields(missing);
+      setErrorMessage(`Please fill in all required fields: ${missing.join(', ')}`);
       setShowModal(true);
       return;
     }
-  
+
     setErrorMessage(""); // Clear error message
     const submittedFormData = {
       ...formData,
       dateSubmitted: new Date().toLocaleString()
     };
-    localStorage.setItem("Myslot", JSON.stringify(submittedFormData));
+    localStorage.setItem("formData", JSON.stringify(submittedFormData));
     setShowModal(true);
+    setFormData(defaultFormData);
   };
-  
+
   const handleModalClose = () => {
     setShowModal(false);
     setErrorMessage("");
-    setFormData({
-      selectedDays: [],
-      startTime: "09:00",
-      endTime: "18:00",
-      lessonTime: 30,
-      breakTime: 10,
-      reservedTimes: [],
-      selectedGolfCourses: [],
-      locations: []
-    });
+    setMissingFields([]);
   };
 
   const handleDayClick = (day) => {
@@ -86,14 +99,7 @@ const Myslot = () => {
   const handleLessonTimeChange = (event) => {
     setFormData((prevData) => ({
       ...prevData,
-      lessonTime: parseInt(event.target.value, 10)
-    }));
-  };
-
-  const handleBreakTimeChange = (event) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      breakTime: parseInt(event.target.value, 10)
+      lessonTime: event.target.value
     }));
   };
 
@@ -120,6 +126,8 @@ const Myslot = () => {
 
   const calculateAvailableTimes = () => {
     const availableTimes = [];
+    if (!formData.lessonTime) return availableTimes; // Lesson Time이 입력되지 않은 경우 빈 배열 반환
+
     let currentTime = new Date(`2000-01-01T${formData.startTime}`);
     const endTimeObj = new Date(`2000-01-01T${formData.endTime}`);
 
@@ -130,8 +138,7 @@ const Myslot = () => {
           minute: "2-digit"
         })
       );
-      currentTime.setMinutes(currentTime.getMinutes() + formData.lessonTime);
-      currentTime.setMinutes(currentTime.getMinutes() + formData.breakTime);
+      currentTime.setMinutes(currentTime.getMinutes() + parseInt(formData.lessonTime, 10));
     }
 
     return availableTimes;
@@ -141,7 +148,7 @@ const Myslot = () => {
   return (
     <div>
       <div>
-        <div>Available Slot </div>
+        <div>Available Slot {missingFields.includes("Available Slot") && <ErrorMessage>Input required</ErrorMessage>}</div>
         <Container>
           {daysOfWeek.map((day) => (
             <Btn
@@ -162,17 +169,17 @@ const Myslot = () => {
         <div> Time Slot</div>
         <BigWrap>
           <div>
-            <div>Start Time:</div>
+            <div>Start Time: {missingFields.includes("Start Time") && <ErrorMessage>Input required</ErrorMessage>}</div>
             <input type="time" value={formData.startTime} onChange={handleStartTimeChange} />
           </div>
           <div>
-            <div>End Time:</div>
+            <div>End Time: {missingFields.includes("End Time") && <ErrorMessage>Input required</ErrorMessage>}</div>
             <input type="time" value={formData.endTime} onChange={handleEndTimeChange} />
           </div>
         </BigWrap>
         <BigWrap>
           <div>
-            <div>Lesson Duration (minutes):</div>
+            <div>Lesson Duration (minutes) </div>
             <Selects value={formData.lessonTime} onChange={handleLessonTimeChange}>
               {[10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((time) => (
                 <option key={time} value={time}>
@@ -181,36 +188,31 @@ const Myslot = () => {
               ))}
             </Selects>
           </div>
-          <div>
-            <div>Break Time (minutes):</div>
-            <Selects value={formData.breakTime} onChange={handleBreakTimeChange}>
-              {[5, 10, 15, 20, 30, 40, 50].map((time) => (
-                <option key={time} value={time}>
-                  {time} Mins
-                </option>
-              ))}
-            </Selects>
-          </div>
         </BigWrap>
         <div>
-          <Container>
-            {availableTimes.map((time, index) => (
-              <Btn
-                key={index}
-                onClick={() => handleReservation(time)}
-                style={{
-                  backgroundColor: formData.reservedTimes.includes(time) ? "#1b4607" : ""
-                }}
-              >
-                {time}
-              </Btn>
-            ))}
-          </Container>
-        </div>
+  <div> Lesson Time {missingFields.includes("Lesson Time") && availableTimes.length === 0 && <ErrorMessage>Input required</ErrorMessage>}</div>
+  <Container>
+    {availableTimes.length === 0 ? (
+      <ErrorMessage>No available times</ErrorMessage>
+    ) : (
+      availableTimes.map((time, index) => (
+        <Btn
+          key={index}
+          onClick={() => handleReservation(time)}
+          style={{
+            backgroundColor: formData.reservedTimes.includes(time) ? "#1b4607" : ""
+          }}
+        >
+          {time}
+        </Btn>
+      ))
+    )}
+  </Container>
+</div>
       </div>
 
       <div>
-        <div>Golf Course</div>
+        <div>Golf Course {missingFields.includes("Golf Course") && <ErrorMessage>Input required</ErrorMessage>}</div>
         <div>
           <Select
             name="locations"
@@ -232,7 +234,9 @@ const Myslot = () => {
         <Modal>
           <ModalContent>
             <ErrorMessage>{errorMessage}</ErrorMessage>
-            <p>Myslot has been saved.</p>
+            {errorMessage === "" && (
+              <p>Myslot has been saved.</p>
+            )}
             <button onClick={handleModalClose}>OK</button>
           </ModalContent>
         </Modal>
@@ -257,8 +261,8 @@ const Container = styled.div`
 const Btn = styled.div`
   padding: 1em;
   margin: 5px;
-  background-color: #dde3da;
-  color: ${props => props.style.backgroundColor === "#1b4607" ? "#ffffff" : "#000000"};
+  background-color: ${({ style }) => style && style.backgroundColor ? style.backgroundColor : "#dde3da"};
+  color: ${({ style }) => style && style.backgroundColor === "#1b4607" ? "#ffffff" : "#000000"};
   text-align: center;
   display: flex;
   border: none;
@@ -298,9 +302,10 @@ const ModalContent = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
-const ErrorMessage = styled.p`
+const ErrorMessage = styled.span`
   color: red;
   margin-bottom: 10px;
+  font-size: 12px;
 `;
 
 export default Myslot;

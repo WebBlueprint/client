@@ -18,7 +18,7 @@ export const menudata = [
         icon: "fa fa-calendar"
     },
     {
-        title: "Lessons",
+        title: "My Lessons",
         url: "/lessons",
         cName: "nav-links",
         icon: "fa fa-user-plus"
