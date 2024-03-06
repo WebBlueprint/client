@@ -7,11 +7,16 @@ import proboxData from "./Booking_probox.json";
 
 const Booking = () => {
   const [slideIndex, setSlideIndex] = useState(0);
-  const [selectedProSlot, setSelectedProSlot] = useState(null); // 클릭한 프로의 availableSlot 정보 상태로 관리
-  const [nextDates, setNextDates] = useState([]); // 다음 일자들을 저장하는 상태
+  const [selectedProIndex, setSelectedProIndex] = useState(null);
+  const [nextDates, setNextDates] = useState([]);
+  const [selectedDateIndex, setSelectedDateIndex] = useState(null);
+  const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [bookingMessage, setBookingMessage] = useState("");
+
   const slidesLength = proboxData.length;
   const slideWidth = 360;
-  const totalWidth = (slidesLength + 1) * slideWidth; // 슬라이드 전체 너비 계산
+  const totalWidth = (slidesLength + 1) * slideWidth;
 
   const handlePrev = () => {
     setSlideIndex((prevIndex) => (prevIndex - 1 + slidesLength) % slidesLength);
@@ -22,26 +27,51 @@ const Booking = () => {
   };
 
   const handleProClick = (index) => {
-    // 클릭한 프로의 availableSlot 정보를 상태에 저장
-    setSelectedProSlot(proboxData[index].availableSlot);
+    setSelectedProIndex(index);
+  };
+
+  const handleDateClick = (index) => {
+    setSelectedDateIndex(index);
+  };
+
+  const handleTimeClick = (index) => {
+    setSelectedTimeIndex(index);
+  };
+
+  const handleBooking = () => {
+    if (selectedProIndex !== null && selectedDateIndex !== null && selectedTimeIndex !== null) {
+      // 프로 이름과 선택한 날짜, 시간을 세션 스토리지에 저장
+      const proName = proboxData[selectedProIndex].Proname;
+      const selectedDate = nextDates[selectedDateIndex];
+      const selectedTime = proboxData[selectedProIndex].availableSlot.reservedTimes[selectedTimeIndex];
+      const bookingInfo = {
+        proName,
+        selectedDate,
+        selectedTime,
+      };
+      const bookings = JSON.parse(sessionStorage.getItem("bookings")) || [];
+      bookings.push(bookingInfo);
+      sessionStorage.setItem("bookings", JSON.stringify(bookings));
+
+      // 부킹이 완료되었다는 모달 메시지 표시
+      setBookingMessage("Booking Completed");
+      setModalVisible(true);
+    } else {
+      setBookingMessage("Please select a time or date.");
+      setModalVisible(true);
+    }
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 3000); // 3초마다 다음 슬라이드로 이동
-    return () => clearInterval(interval);
-  }, [slideIndex]);
-
-  useEffect(() => {
-    if (selectedProSlot) {
+    if (selectedProIndex !== null) {
+      const selectedProSlot = proboxData[selectedProIndex].availableSlot;
       const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const today = new Date();
-      const todayDayOfWeek = weekdays[today.getDay()]; // 오늘 요일
+      const todayDayOfWeek = weekdays[today.getDay()];
       const nextDatesArray = [];
 
       let foundNextDates = 0;
-      let daysToAdd = 1; // 다음 날짜를 확인하기 위해 하루씩 증가
+      let daysToAdd = 1;
 
       while (foundNextDates < 10) {
         const nextDate = new Date(today);
@@ -50,24 +80,24 @@ const Booking = () => {
         const nextDayOfWeek = weekdays[nextDate.getDay()];
 
         if (selectedProSlot.selectedDays.includes(nextDayOfWeek)) {
-          nextDatesArray.push(nextDate.toLocaleDateString());
+          nextDatesArray.push(nextDate.toLocaleDateString("en-US", { month: "short", day: "2-digit" }));
           foundNextDates++;
         }
 
-        daysToAdd++; // 다음 날짜로 이동
+        daysToAdd++;
       }
 
       setNextDates(nextDatesArray);
     }
-  }, [selectedProSlot]);
+  }, [selectedProIndex]);
 
   return (
     <div className={styles.appsin}>
       <div className={styles.cover}>
-        <div> booking </div>
+        <div> Booking </div>
         <div>
-          <span onClick={handlePrev}>  앞으로  </span>
-          <span onClick={handleNext}> 뒤로 </span>
+          <span onClick={handlePrev}>앞으로</span>
+          <span onClick={handleNext}>뒤로</span>
         </div>
 
         <div className={styles.bookingContainer}>
@@ -75,53 +105,84 @@ const Booking = () => {
             className={styles.bookingWrapper}
             style={{
               transform: `translateX(-${slideIndex * slideWidth}px)`,
-              width: `${totalWidth}px`, // 슬라이드 전체 너비 적용
+              width: `${totalWidth}px`,
             }}
           >
             {proboxData.map((item, index) => (
               <div key={index} className={styles.bookingItem} onClick={() => handleProClick(index)}>
-                <Gps />
-                <div>{item.Proname}</div>
-                <div>{`${item.Location1} - ${item.Location2}`}</div>
-                <div>{item.GolfCourseName}</div>
-                <div>{item.Like === "1" ? "Liked" : "Not Liked"}</div>
-                <img src={item.image} alt="Profile" />
-              </div>
-            ))}
-            {/* 첫 번째 슬라이드 복사하여 마지막에 추가 */}
-            {proboxData.slice(0, 1).map((item, index) => (
-              <div key={slidesLength + index} className={styles.bookingItem} onClick={() => handleProClick(index)}>
-                <Gps />
-                <div>{item.Proname}</div>
-                <div>{`${item.Location1} - ${item.Location2}`}</div>
-                <div>{item.GolfCourseName}</div>
-                <div>{item.Like === "1" ? "Liked" : "Not Liked"}</div>
-                <img src={item.image} alt="Profile" />
+                <div className={styles.box1}>
+                  <div>
+                    <Gps />
+                  </div>
+                  <div>
+                    <div>
+                      {item.Location1} <br /> {item.Location2}
+                    </div>
+                    <div>{item.GolfCourseName}</div>
+                  </div>
+                </div>
+                <br />
+                <div className={styles.box2}>
+                  <img src={item.image} alt="Profile" className={styles.imgs} />
+                  <div>
+                    <div>{item.Proname}</div>
+                    <div>{item.Like === "1" ? "Liked" : "Not Liked"}</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 클릭한 프로의 availableSlot 정보 표시 */}
-        {selectedProSlot && (
-          <div>
-            <div>Selected Pro's Available Slot:</div>
-            <div>Date: {selectedProSlot.selectedDays.join(", ")}</div>
+        {selectedProIndex !== null && (
+          <div className={styles.schedulebox}>
+            <div>{proboxData[selectedProIndex].Proname}'s Available Slot:</div>
+            <div>
+              {nextDates.map((date, index) => {
+                const dateObj = new Date(date);
+                const dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(dateObj);
+                return (
+                  <button
+                    key={index}
+                    className={`${styles.btndate} ${selectedDateIndex === index && styles.selected}`}
+                    onClick={() => handleDateClick(index)}
+                  >
+                    <b>{dayOfWeek}</b> <br />
+                    {date}
+                  </button>
+                );
+              })}
+            </div>
+            <hr />
+            <div>
+              {proboxData[selectedProIndex].availableSlot.reservedTimes.map((time, index) => (
+                <button
+                  key={index}
+                  className={`${styles.btntime} ${selectedTimeIndex === index && styles.selected}`}
+                  onClick={() => handleTimeClick(index)}
+                >
+                  {time}
+                </button>
+              ))}
+            </div>
 
-        {/* 다음 예약 가능한 날짜들 표시 */}
-        <div>
-          {nextDates.map((date, index) => (
-            <button> {date}</button>
-          ))}
-        </div>
-
-            <div>Start Time: {selectedProSlot.startTime}</div>
-            <div>End Time: {selectedProSlot.endTime}</div>
-            <div>Reserved Times: {selectedProSlot.reservedTimes.join(", ")}</div>
+            <button className={styles.btnbooking} onClick={handleBooking}>
+              Booking
+            </button>
           </div>
         )}
-
       </div>
+
+      {modalVisible && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <span className={styles.close} onClick={() => setModalVisible(false)}>
+              &times;
+            </span>
+            <p>{bookingMessage}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

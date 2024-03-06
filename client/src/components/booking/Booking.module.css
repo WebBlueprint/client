@@ -70,3 +70,96 @@
   margin: 0 0.5em;
   width: 350px;
 }
+
+
+.schedulebox {
+  width: 100%;
+  height: 450px;
+  background-color: #F4F4F4;
+  border-radius: 2em;
+  border: none;
+  padding: 2em;
+  text-align: center;
+}
+
+.btndate {
+  background-color:#DDE3DA ;
+  border-radius: 1em;
+  margin: 10px;
+  border: none;
+  padding: 1em;
+  text-align: center;
+  height: 10em;
+
+}
+.btntime {
+  background-color:#DDE3DA ;
+  border-radius: 1em;
+  margin: 10px;
+  border: none;
+  padding: 1em;
+  text-align: center;
+}
+
+.btnbooking {
+  background-color:#1B4607 ;
+  color: white;
+  border-radius: 1em;
+  margin: 10px;
+  border: none;
+  padding: 1em;
+  text-align: center; 
+}
+
+.box1 {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.imgs {
+  border-radius: 50%;
+}
+
+.box2 {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.selected {
+  background-color: #1B4607;
+  color: white;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContent {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
