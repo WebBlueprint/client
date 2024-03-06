@@ -9,7 +9,6 @@ import Signup from "./components/signup/Signup";
 import Signin from "./components/signin/Signin";
 import Navbar from "./components/navbar/Navbar";
 import Search from "./components/search/Search";
-import Booking from "./components/booking/booking";
 import Schedule from "./components/schedule/schedule";
 import Setting from "./components/setting/settingMain";
 import ChatPage from "./components/chat/ChatPage.js";
@@ -27,6 +26,7 @@ import Searched from "../src/components/search/searched";
 import SearchPro from "../src/components/search/searchPro";
 import SearchCourse from "../src/components/search/searchCourse";
 import MyLessonsMain from "./components/lessons/LessonsMain.jsx";
+import Booking from "./components/booking/Booking.jsx";
 
 function App() {
   const { login, userinfo, isLoggedIn } = useContext(AuthContext);
