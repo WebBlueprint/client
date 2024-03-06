@@ -8,6 +8,7 @@ import MyUserInfo from "./SettingCompoenets/MyUserInfo";
 import Myslot from "./SettingCompoenets/Myslot";
 import MyList from "./SettingCompoenets/MyList"; 
 import Settingside from "./Settingside";
+import ProReviewSend from "./ProReviewSend";
 
 const SettingMain = () => {
   const [selectedTab, setSelectedTab] = useState("MyProfile");
@@ -33,6 +34,8 @@ const SettingMain = () => {
     tabContent = <Myslot />;
   }else if (selectedTab === "mylist") {
     tabContent = <MyList />;
+  }else if (selectedTab === "ProReviewSend") {
+    tabContent = <ProReviewSend />;
   }
 
   return (

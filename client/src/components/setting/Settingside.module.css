@@ -38,3 +38,10 @@
   margin-right: 12px; /* 아이콘과 텍스트 사이의 간격 조정 */
 }
 
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px; /* 아이콘의 가로 길이에 맞게 조절 */
+  height: 36px; /* 아이콘의 세로 길이에 맞게 조절 */
+}

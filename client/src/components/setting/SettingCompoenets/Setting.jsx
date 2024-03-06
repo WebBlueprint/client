@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Setting.module.css"; // 스타일 모듈을 임포트
 
+
 const Setting = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");

@@ -1,4 +1,3 @@
-// Settingside.jsx
 import React, { useState } from "react";
 import styles from "./Settingside.module.css";
 import { ReactComponent as Info } from "./InfoIcon.svg";
@@ -6,6 +5,7 @@ import { ReactComponent as Setting } from "./SettingIcon.svg";
 import { ReactComponent as Profileicon } from "./Profileicon.svg";
 import { ReactComponent as SlotIcon } from "./SlotIcon.svg";
 import { ReactComponent as ListIcon } from "./ListIcon.svg";
+import { ReactComponent as Review } from "./Review.svg";
 
 const Settingside = ({ onTabClick, isPro }) => {
   const [activeTab, setActiveTab] = useState("MyProfile");
@@ -39,7 +39,7 @@ const Settingside = ({ onTabClick, isPro }) => {
         onClick={() => handleTabClick("UserInfo")}
         style={{ color: getTabColor("UserInfo") }}
       >
-        <div onClick={() => handleIconClick("UserInfo")}>
+        <div className={styles.iconWrapper} onClick={() => handleIconClick("UserInfo")}>
           <Info fill={getIconFill("UserInfo")} />
         </div>
         <div className={activeTab === "UserInfo" ? styles.activeText : styles.texts}>
@@ -52,7 +52,7 @@ const Settingside = ({ onTabClick, isPro }) => {
         onClick={() => handleTabClick("Setting")}
         style={{ color: getTabColor("Setting") }}
       >
-        <div onClick={() => handleIconClick("Setting")}>
+        <div className={styles.iconWrapper} onClick={() => handleIconClick("Setting")}>
           <Setting fill={getIconFill("Setting")} />
         </div>
         <div className={activeTab === "Setting" ? styles.activeText : styles.texts}>
@@ -61,17 +61,17 @@ const Settingside = ({ onTabClick, isPro }) => {
       </div>
 
       <div
-            className={`${styles.cover1} ${activeTab === "mylist" ? styles.active : ""}`}
-            onClick={() => handleTabClick("mylist")}
-            style={{ color: getTabColor("mylist") }}
-          >
-            <div onClick={() => handleIconClick("mylist")}>
-              <ListIcon fill={getIconFill("mylist")} />
-            </div>
-            <div className={activeTab === "mylist" ? styles.activeText : styles.texts}>
-              My List
-            </div>
-          </div>
+        className={`${styles.cover1} ${activeTab === "mylist" ? styles.active : ""}`}
+        onClick={() => handleTabClick("mylist")}
+        style={{ color: getTabColor("mylist") }}
+      >
+        <div className={styles.iconWrapper} onClick={() => handleIconClick("mylist")}>
+          <ListIcon fill={getIconFill("mylist")} />
+        </div>
+        <div className={activeTab === "mylist" ? styles.activeText : styles.texts}>
+          My List
+        </div>
+      </div>
 
       {isPro && (
         <div className={styles.proFeatures}>
@@ -80,7 +80,7 @@ const Settingside = ({ onTabClick, isPro }) => {
             onClick={() => handleTabClick("MyProfile")}
             style={{ color: getTabColor("MyProfile") }}
           >
-            <div onClick={() => handleIconClick("MyProfile")}>
+            <div className={styles.iconWrapper} onClick={() => handleIconClick("MyProfile")}>
               <Profileicon fill={getIconFill("MyProfile")} />
             </div>
             <div className={activeTab === "MyProfile" ? styles.activeText : styles.texts}>
@@ -93,7 +93,7 @@ const Settingside = ({ onTabClick, isPro }) => {
             onClick={() => handleTabClick("myslot")}
             style={{ color: getTabColor("myslot") }}
           >
-            <div onClick={() => handleIconClick("myslot")}>
+            <div className={styles.iconWrapper} onClick={() => handleIconClick("myslot")}>
               <SlotIcon fill={getIconFill("myslot")} />
             </div>
             <div className={activeTab === "myslot" ? styles.activeText : styles.texts}>
@@ -101,9 +101,18 @@ const Settingside = ({ onTabClick, isPro }) => {
             </div>
           </div>
 
-          
-
-
+          <div
+            className={`${styles.cover1} ${activeTab === "ProReviewSend" ? styles.active : ""}`}
+            onClick={() => handleTabClick("ProReviewSend")}
+            style={{ color: getTabColor("ProReviewSend") }}
+          >
+            <div className={styles.iconWrapper} onClick={() => handleIconClick("ProReviewSend")}>
+              <Review fill={getIconFill("ProReviewSend")} />
+            </div>
+            <div className={activeTab === "ProReviewSend" ? styles.activeText : styles.texts}>
+              Lessons Review
+            </div>
+          </div>
         </div>
       )}
     </div>
