@@ -69,6 +69,11 @@ const Booking = () => {
   
       setBookingMessage("Booking Completed");
       setModalVisible(true);
+  
+      // Reset selected data
+      setSelectedProIndex(null);
+      setSelectedDateIndex(null);
+      setSelectedTimeIndex(null);
     } else {
       setBookingMessage("Please select a time or date.");
       setModalVisible(true);

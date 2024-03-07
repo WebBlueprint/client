@@ -27,6 +27,8 @@ import SearchPro from "../src/components/search/searchPro";
 import SearchCourse from "../src/components/search/searchCourse";
 import MyLessonsMain from "./components/lessons/LessonsMain.jsx";
 import Booking from "./components/booking/Booking.jsx";
+import ProDetail from "./components/block/DetailPage/ProDetail.jsx";
+import DrivingRangeDetail from "./components/block/DetailPage/DrivingRangeDetail.jsx";
 
 function App() {
   const { login, userinfo, isLoggedIn } = useContext(AuthContext);
@@ -71,6 +73,8 @@ function App() {
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/searched" element={<Searched />} />
+              <Route path="/prodetail" element={<ProDetail />} />
+              <Route path="/drivingnrange" element={<DrivingRangeDetail />} />
             </Route>
             <Route path="signup" element={<Signup />} />
             <Route path="signin" element={<Signin />} />

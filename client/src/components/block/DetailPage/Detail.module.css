@@ -1,0 +1,68 @@
+.cover {
+    margin: 1em;
+    border-radius: 1em;
+    padding: 1em;
+  }
+  
+  .cover>h4 {
+margin-left: 100px;
+  }
+  .appsin {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    top: 100px;
+  }
+.probox1 {
+  background-color: #F4F4F4;
+  width: 95%;
+  height: 250px;
+  padding: 2em;
+  border-radius: 2em;
+  margin: 2em;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}  
+
+.probox2 {
+  margin: 1em; 
+  padding: 2em;
+  position: relative;
+  top: -3em;
+}
+
+/* Detail.module.css */
+
+.tabs {
+  display: flex;
+}
+
+.tab {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.tab:last-child {
+  margin-right: 0;
+}
+
+.tab.active {
+  text-decoration: underline;
+}
+
+.tabContent {
+  margin-top: 20px;
+}
+
+.golfRangebox {
+  background-color: antiquewhite;
+  border-radius: 2em;
+  padding: 1em;
+  margin: 10px;
+}
+
+.golfRange {
+  display: flex;
+}

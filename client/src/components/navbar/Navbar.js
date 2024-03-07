@@ -55,7 +55,11 @@ const Navbar = () => {
           );
         })}
       </ul>
-<div>      <Link to="/setting">   <User /> <div className="setting"> Setting </div>   </Link>   </div>
+<div>    
+    <Link to="/prodetail">   <div className="setting"> Pro Detail </div>   </Link>   
+    <Link to="/drivingnrange">    <div className="setting"> Driving Range </div>   </Link> 
+  
+    </div>
 
       {!isLoggedIn ? (
   <div>
