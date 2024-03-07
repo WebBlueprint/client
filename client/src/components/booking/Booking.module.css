@@ -51,14 +51,15 @@
 .bookingContainer {
   display: flex;
   overflow: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   width: 100vw;
 }
 
 .bookingWrapper {
   display: flex;
   width: 90%;
+  Margin:1em;
   transition: transform 0.5s ease;
 }
 
@@ -74,7 +75,7 @@
 
 .schedulebox {
   width: 100%;
-  height: 450px;
+  height: 470px;
   background-color: #F4F4F4;
   border-radius: 2em;
   border: none;
@@ -147,7 +148,8 @@
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 40%;
+  height: 20%;
 }
 
 .close {
@@ -162,4 +164,74 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.bookingInfo,
+.modalTitle {
+  text-align: center;
+}
+
+.iconwrap {
+  display: flex;
+  position: absolute;
+  z-index: 999; 
+}
+
+
+.iconwrap > div {
+  margin: 0 10px; /* 원하는 간격 값으로 조정하세요 */
+}
+
+.iconwrap > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent, black); /* 흰색으로 원형 페이드 아웃 */
+  opacity: 1; /* 원형 페이드 아웃의 투명도 */
+  z-index: -1;
+  filter: blur(10px); /* 블러 효과 */
+}
+
+.iconwrap1::before,
+.iconwrap2::before {
+  border-radius: 50%; /* 원형 모양으로 설정 */
+}
+
+.iconwrap1 {
+  display: flex;
+  position: absolute;
+  top:6em;
+}
+
+.iconwrap2 {
+  display: flex;
+  position: absolute;
+  top:6em;
+  left:92vw;
+}
+.selectedPro {
+ border: 3px solid #1B4607 ;
+
+}
+
+.selectedPro .gps-icon path {
+  fill: white; /* Change the color of the GPS icon when the professional is selected */
+}
+
+.likeButton {
+  width: 9em;
+  height: 10%;
+  border-radius: 1em;
+  border: 1px solid #1B4607  ;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.likeButtontext {
+  position: relative;
+  left:10px;
+  color:#1B4607;
 }
