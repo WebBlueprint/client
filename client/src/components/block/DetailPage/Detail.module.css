@@ -68,7 +68,7 @@ margin-left: 100px;
   margin: 5px;
 
   width: 300px;
-  height: 200px;
+  height: 300px;
 
   border: 1px solid #1B4607  ;
   text-align: center;
@@ -140,3 +140,8 @@ margin-left: 100px;
   height: 300px;
 }
 
+.rangePhotos  > img {
+  width:230px;
+  height:100px ;
+  margin-bottom: 1em;
+}
