@@ -221,16 +221,19 @@
 }
 
 .likeButton {
-  width: 9em;
-  height: 10%;
+  width: auto; /* 버튼 너비를 내용에 맞게 자동 조정 */
   border-radius: 1em;
-  border: 1px solid #1B4607  ;
+  border: 1px solid #1B4607;
   padding: 10px;
   margin-top: 5px;
+  display: flex;
+  align-items: center; /* 아이콘과 텍스트를 세로 중앙 정렬 */
+  position: absolute;
+  top: 30em;
+  left: 20em;
 }
 
 .likeButtontext {
-  position: relative;
-  left:10px;
-  color:#1B4607;
+  margin-left: 10px; /* 아이콘과 텍스트 사이에 간격 추가 */
+  color: #1B4607;
 }
