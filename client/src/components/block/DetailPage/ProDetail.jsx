@@ -4,6 +4,9 @@ import proboxData from "./ProDetail.json";
 import { ReactComponent as Mypro } from "./MyPro.svg";
 import { ReactComponent as AddPro } from "./AddPro.svg";
 import ProPhoto from "./ProPhoto";
+import StarRating from "./StarRate";
+import { Link } from "react-router-dom"; // Import Link component
+
 
 const ProDetail = () => {
   const [selectedProId, setSelectedProId] = useState(1);
@@ -32,7 +35,7 @@ const ProDetail = () => {
       <div className={styles.cover}>
         {selectedPro && (
           <>
-            <div> Pro Detail </div>
+            <div> Pro Detail <button> <Link to="/prodetailedit">Edit</Link>  </button>  </div> 
             <div className={styles.probox1}>
               <div className={styles.imagebox}>
                 <img className={styles.imagethumbnail} src={selectedPro.image} alt="프로 사진" />
@@ -54,7 +57,8 @@ const ProDetail = () => {
                     )}
                   </div>
                 </div>
-                <div>Review Rate {selectedPro.StarAvarage}</div>
+                {/* 별점을 표시하는 StarRating 컴포넌트를 사용 */}
+                <div><StarRating rating={parseFloat(selectedPro["StarAvarage"])} /></div>
                 <div className={styles.hashtag}><b>{selectedPro.Hastag.map(tag => `#${tag}`).join(", ")}</b></div>
                 <div className={styles.btnchat}>Chat Now</div>
               </div>
@@ -73,7 +77,8 @@ const ProDetail = () => {
                     {selectedPro.Reviews.map(review => (
                       <div className={styles.golfRangebox} key={review.id}>
                         <b>{review.author}</b>
-                        <p>Rating: {review.rating}</p>
+                        {/* 리뷰의 별점을 StarRating 컴포넌트로 대체 */}
+                        <div> <StarRating rating={review.rating} /></div>
                         <p>{review.comment}</p>
                       </div>
                     ))}
@@ -83,9 +88,9 @@ const ProDetail = () => {
               <br />
               <div className={styles.tabs}>Photos</div>
               <ProPhoto photos={selectedPro["Golf Range"].flatMap(range => range.photo)} />
-            <br />
+              <br />
               <div>
-              <div className={styles.tabs}> Golf Range</div>
+                <div className={styles.tabs}> Golf Range</div>
                 <div className={styles.golfRange}>
                   {Array.isArray(selectedPro["Golf Range"]) ? (
                     selectedPro["Golf Range"].map((range, idx) => (

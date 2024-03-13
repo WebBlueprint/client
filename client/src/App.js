@@ -29,6 +29,7 @@ import MyLessonsMain from "./components/lessons/LessonsMain.jsx";
 import Booking from "./components/booking/Booking.jsx";
 import ProDetail from "./components/block/DetailPage/ProDetail.jsx";
 import DrivingRangeDetail from "./components/block/DetailPage/DrivingRangeDetail.jsx";
+import ProDetailEdit from "./components/block/DetailPage/ProDetailEdit.jsx";
 
 function App() {
   const { login, userinfo, isLoggedIn } = useContext(AuthContext);
@@ -74,6 +75,7 @@ function App() {
               <Route path="/setting" element={<Setting />} />
               <Route path="/searched" element={<Searched />} />
               <Route path="/prodetail" element={<ProDetail />} />
+              <Route path="/prodetailedit" element={<ProDetailEdit />} />
               <Route path="/drivingnrange" element={<DrivingRangeDetail />} />
             </Route>
             <Route path="signup" element={<Signup />} />
