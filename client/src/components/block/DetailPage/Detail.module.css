@@ -13,6 +13,7 @@ margin-left: 100px;
     height: 700px;
     top: 100px;
   }
+
 .probox1 {
   background-color: #F4F4F4;
   width: 95%;
@@ -20,7 +21,6 @@ margin-left: 100px;
   padding: 2em;
   border-radius: 2em;
   margin: 2em;
-
   position: relative;
   display: grid;
   grid-template-columns: 20% 80%;
@@ -90,6 +90,8 @@ margin-left: 100px;
   width:100%;
   height:100%;
   object-fit:cover;
+  max-width: 350px;
+  max-height: 220px;
 }
 
 .probox3 {
@@ -142,6 +144,64 @@ margin-left: 100px;
 
 .rangePhotos  > img {
   width:230px;
-  height:100px ;
+  height:100px;
   margin-bottom: 1em;
+}
+
+
+
+.rangebox1 {
+  display: flex;
+  align-items: center;
+  background-color: #F4F4F4;
+  width: 95%;
+  height: 300px;
+  padding: 2em;
+  border-radius: 2em;
+  margin: 2em;
+  position: relative;
+}
+
+.rangebox1_imagebox {
+  flex: 1;
+}
+
+.rangebox1_details {
+  flex: 4;
+  padding-left: 1.5rem;
+  color: #1B4607;
+}
+
+.rangebox1_details > div {
+  margin-bottom: 0.5em;
+}
+.rangebox2 {
+  padding: 5rem 0;
+  margin: 0 auto;
+  display: flex;
+  width: 50%; /* 수정된 부분 */
+  justify-content: space-around;
+}
+
+.rangebox2_review {
+  background: #1B4607;
+  width: 250px;
+  height: 250px;
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+  display: flex; /* 추가된 부분 */
+  flex-direction: column; /* 추가된 부분 */
+  justify-content: center; /* 추가된 부분 */
+  align-items: center; /* 추가된 부분 */
+}
+
+.rangebox2_details {
+  padding-left: 1.5rem;
+  color: #1B4607;
+  width: 300px;
+  height: 250px;
+  display: flex; /* 추가된 부분 */
+  flex-direction: column; /* 추가된 부분 */
+  justify-content: center; /* 추가된 부분 */
 }

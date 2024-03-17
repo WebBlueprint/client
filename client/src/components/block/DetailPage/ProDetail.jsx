@@ -35,7 +35,7 @@ const ProDetail = () => {
       <div className={styles.cover}>
         {selectedPro && (
           <>
-            <div> Pro Detail <button> <Link to="/prodetailedit">Edit</Link>  </button>  </div> 
+            <div> Pro Detail <button> <Link to="/prodetailedit">Edit</Link>  </button>  </div>
             <div className={styles.probox1}>
               <div className={styles.imagebox}>
                 <img className={styles.imagethumbnail} src={selectedPro.image} alt="프로 사진" />

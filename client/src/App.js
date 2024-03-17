@@ -76,7 +76,7 @@ function App() {
               <Route path="/searched" element={<Searched />} />
               <Route path="/prodetail" element={<ProDetail />} />
               <Route path="/prodetailedit" element={<ProDetailEdit />} />
-              <Route path="/drivingnrange" element={<DrivingRangeDetail />} />
+              <Route path="/drivingnrange" element={<DrivingRangeDetail rangeId={1} />} />
             </Route>
             <Route path="signup" element={<Signup />} />
             <Route path="signin" element={<Signin />} />

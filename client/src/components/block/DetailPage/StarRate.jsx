@@ -9,6 +9,7 @@ const StarRating = ({ rating }) => {
     setCurrentRating(rating);
   }, [rating]);
 
+  const roundedRating = Math.ceil(currentRating * 2) / 2; // 별점을 반올림하여 0.5 단위로 나누기
 
   return (
     <div style={{ display: "inline-block" }}>
@@ -19,9 +20,9 @@ const StarRating = ({ rating }) => {
             key={index}
             style={{ display: "inline-block", cursor: "pointer" }}
           >
-            {ratingValue <= Math.floor(currentRating) ? (
+            {ratingValue <= Math.floor(roundedRating) ? (
               <FaStar style={{ fill: "#1B4607", width: "2em", height: "2em" }} />
-            ) : ratingValue - 0.5 === currentRating ? (
+            ) : ratingValue - 0.5 === roundedRating ? (
               <FaStarHalfAlt style={{ fill: "#1B4607", width: "2em", height: "2em" }} />
             ) : (
               <FaStar style={{ fill: "#e4e5e9", width: "2em", height: "2em" }} />
@@ -29,7 +30,7 @@ const StarRating = ({ rating }) => {
           </div>
         );
       })}
-      <p style={{ display: "inline-block", marginLeft: "0.5em" }}>StarAvarage: {currentRating} / 5</p>
+      <p style={{ display: "inline-block", marginLeft: "0.5em" }}>StarAvarage: {roundedRating} / 5</p>
     </div>
   );
 };
