@@ -2,6 +2,12 @@
   {
     "range_id": 1,
     "photo_url": "https://image.smartscore.kr/club/bg_20181130111610226509.png",
+    "photos": [
+      "https://image.smartscore.kr/club/bg_20230516174935226330.jpg",
+      "https://image.smartscore.kr/club/bg_20230925145905772883.jpg",
+      "https://image.smartscore.kr/club/CPT_20190607155221702691.jpg",
+      "https://image.smartscore.kr/club/bg_20171103141725799245.jpg"
+    ],
     "name": "Kuala Lumpur Golf & Country Club",
     "address": "Tournament Players Club (TPC) Bukit Kiara",
     "hashtags": ["golf", "golfaddict", "golfersofinstagram", "golfswag", "golfshot", "golfcourse", "golftips", "instagolf", "golfcoach", "golfday", "golfswing", "golfstagram", "instagolfer", "golfislife", "instagolfing", "golflife", "golfpro", "instagolftips", "instagolfers", "golfacademy"],
@@ -30,6 +36,11 @@
   {
     "range_id": 2,
     "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Golfer_swing.jpg",
+    "photos": [
+      "https://www.example.com/range2_photo1.jpg",
+      "https://www.example.com/range2_photo2.jpg",
+      "https://www.example.com/range2_photo3.jpg"
+    ],
     "name": "Range 2 Golf Club",
     "address": "456 Golf Club Road, City B",
     "hashtags": ["golf", "professional"],
@@ -58,6 +69,11 @@
   {
     "range_id": 3,
     "photo_url": "https://www.example.com/golf-range1.jpg",
+    "photos": [
+      "https://www.example.com/los_angeles_golf_club_photo1.jpg",
+      "https://www.example.com/los_angeles_golf_club_photo2.jpg",
+      "https://www.example.com/los_angeles_golf_club_photo3.jpg"
+    ],
     "name": "Los Angeles Golf Club",
     "address": "1234 Golf Club Road, Los Angeles, CA",
     "hashtags": ["usa", "golf", "professional"],
@@ -86,6 +102,11 @@
   {
     "range_id": 4,
     "photo_url": "https://www.example.com/golf-range2.jpg",
+    "photos": [
+      "https://www.example.com/tokyo_golf_club_photo1.jpg",
+      "https://www.example.com/tokyo_golf_club_photo2.jpg",
+      "https://www.example.com/tokyo_golf_club_photo3.jpg"
+    ],
     "name": "Tokyo Golf Club",
     "address": "5678 Golf Club Road, Tokyo",
     "hashtags": ["japan", "golf", "professional"],

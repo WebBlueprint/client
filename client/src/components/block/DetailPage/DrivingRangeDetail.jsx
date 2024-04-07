@@ -2,6 +2,8 @@ import React from "react";
 import data from "./DrivingRangeDetail.json";
 import styles from "./Detail.module.css";
 import StarRate from "./StarRate"
+import DrivingRangePhoto from "./DrivingRagnePhoto";
+import Popular from "../../main/Popular";
 
 const DrivingRangeDetail = ({ rangeId }) => {
   // range_id에 따른 데이터 필터링 함수
@@ -62,18 +64,24 @@ const DrivingRangeDetail = ({ rangeId }) => {
           </div>
         </div>
 
-        <div>
-          <h3>Price / Members / Guest</h3>
-          <p>Price for members: {range.price.for_members}</p>
-          <p>Price for guests: {range.price.for_guests}</p>
+        <div className={styles.rangebox2}>
+          <div className={styles.rangebox2_review}>
+            <h4>Price</h4>
+            <p>(100 Balls)</p>
+          </div>
+          <div className={styles.rangebox2_details}>
+            <p>Members: {range.price.for_members}</p>
+            <hr></hr>
+            <p>Guests: {range.price.for_guests}</p>
+          </div>
         </div>
         <div>
           <h3>Photos</h3>
-          {/* 여기에 사진 갤러리 등을 표시할 수 있음 */}
+          <DrivingRangePhoto rangeId={rangeId} />
         </div>
         <div>
           <h3>Popular Pros</h3>
-          {/* 여기에 인기 있는 프로들을 표시할 수 있음 */}
+          <Popular />
         </div>
 
       </div>

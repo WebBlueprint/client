@@ -77,6 +77,7 @@ function App() {
               <Route path="/prodetail" element={<ProDetail />} />
               <Route path="/prodetailedit" element={<ProDetailEdit />} />
               <Route path="/drivingnrange" element={<DrivingRangeDetail rangeId={1} />} />
+              {/* rangeId 동적가치로 받아와야함 */}
             </Route>
             <Route path="signup" element={<Signup />} />
             <Route path="signin" element={<Signin />} />
