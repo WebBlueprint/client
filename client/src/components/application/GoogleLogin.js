@@ -42,19 +42,21 @@ function GoogleLogin() {
         // navigate("/")
     }
 
-
     useEffect(() => {
-        const google = window.google
-        google.accounts.id.initialize({
-            client_id: process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID,
-            callback: handleCallbackResponse
-        });
+        const google = window.google;
 
-        google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            { theme: "outline", size: "large" }
-        );
-    }, [])
+        if (google && google.accounts) {
+            google.accounts.id.initialize({
+                client_id: process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID,
+                callback: handleCallbackResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("signInDiv"),
+                { theme: "outline", size: "large" }
+            );
+        }
+    }, [window.google]);
 
 
     return (

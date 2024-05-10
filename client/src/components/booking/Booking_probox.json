@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "Location1": "Kuala Lumpur",
+    "Location2": "KLGCC - Kuala Lumpur",
+    "GolfCourseName": "Golf & Country Club, Bukit Kiara",
+    "Proname": "잰더 샤우플리",
+    "Like": "1",
+    "image": "https://www.rchulaw.com/wp-content/uploads/2021/05/RichardChu-Profile-50x50-1.jpg",
+    "availableSlot": {
+      "selectedDays": ["Mon", "Tue", "Fri"],
+      "startTime": "10:00",
+      "endTime": "17:00",
+      "lessonTime": "60",
+      "dateSubmitted": "2024. 3. 6. 오후 12:25:36",
+      "reservedTimes": ["11:00 AM", "01:30 PM"]
+    }
+  },
+  {
+    "id": 2,
+    "Location1": "New York",
+    "Location2": "NYC Golf Club",
+    "GolfCourseName": "Central Park Golf Course",
+    "Proname": "타이거 우즈",
+    "Like": "0",
+    "image": "https://snuac.snu.ac.kr/2015_snuac/wp-content/uploads/2015/07/%EC%97%B0%EA%B5%AC%EC%B1%85%EC%9E%84%EC%9E%90-e1598248107711-50x50.jpg",
+    "availableSlot": {
+      "selectedDays": ["Wed", "Thu", "Sat"],
+      "startTime": "08:00",
+      "endTime": "16:00",
+      "lessonTime": "45",
+      "dateSubmitted": "2024. 3. 7. 오후 01:10:22",
+      "reservedTimes": ["10:00 AM", "12:30 PM", "02:00 PM"]
+    }
+  },
+  {
+    "id": 3,
+    "Location1": "Los Angeles",
+    "Location2": "LA Golf Club",
+    "GolfCourseName": "Beverly Hills Golf Course",
+    "Proname": "필 미켈슨",
+    "Like": "1",
+    "image": "https://snuac.snu.ac.kr/2015_snuac/wp-content/uploads/2015/07/%EC%97%B0%EA%B5%AC%EC%B1%85%EC%9E%84%EC%9E%90-e1598248107711-50x50.jpg",
+    "availableSlot": {
+      "selectedDays": ["Mon", "Tue", "Wed"],
+      "startTime": "07:30",
+      "endTime": "15:30",
+      "lessonTime": "50",
+      "dateSubmitted": "2024. 3. 8. 오후 02:45:18",
+      "reservedTimes": ["08:30 AM", "11:00 AM", "01:00 PM", "03:00 PM"]
+    }
+  },
+  {
+    "id": 4,
+    "Location1": "London",
+    "Location2": "Royal London Golf Club",
+    "GolfCourseName": "Windsor Golf Course",
+    "Proname": "리 오뇨",
+    "Like": "0",
+    "image": "https://snuac.snu.ac.kr/2015_snuac/wp-content/uploads/2021/03/%EA%B9%80%EB%B0%B1%EC%98%81_%EC%82%AC%EC%A7%84-50x50.jpg",
+    "availableSlot": {
+      "selectedDays": ["Thu", "Fri", "Sat"],
+      "startTime": "09:30",
+      "endTime": "17:30",
+      "lessonTime": "55",
+      "dateSubmitted": "2024. 3. 9. 오후 03:20:51",
+      "reservedTimes": ["11:00 AM", "01:30 PM", "03:30 PM"]
+    }
+  },
+  {
+    "id": 5,
+    "Location1": "Paris",
+    "Location2": "Eiffel Golf Club",
+    "GolfCourseName": "Champs de Mars Golf Course",
+    "Proname": "앤리케 캠포스",
+    "Like": "1",
+    "image": "https://snuac.snu.ac.kr/2015_snuac/wp-content/uploads/2015/09/CHS-%ED%99%8D%EC%84%9D%EA%B2%BD-%EA%B5%90%EC%88%98%EB%8B%98-%EC%9D%B4%EB%AF%B8%EC%A7%80-50x50.png",
+    "availableSlot": {
+      "selectedDays": ["Tue", "Wed", "Thu"],
+      "startTime": "11:00",
+      "endTime": "18:00",
+      "lessonTime": "65",
+      "dateSubmitted": "2024. 3. 10. 오후 04:50:33",
+      "reservedTimes": ["12:30 PM", "03:00 PM", "04:30 PM"]
+    }
+  },
+  {
+    "id": 6,
+    "Location1": "Tokyo",
+    "Location2": "Tokyo Golf & Country Club",
+    "GolfCourseName": "Mount Fuji Golf Course",
+    "Proname": "미키 마우스",
+    "Like": "0",
+    "image": "https://snuac.snu.ac.kr/2015_snuac/wp-content/uploads/2019/02/WJ-Moon-50x50.png",
+    "availableSlot": {
+      "selectedDays": ["Wed", "Thu", "Fri"],
+      "startTime": "07:00",
+      "endTime": "14:30",
+      "lessonTime": "55",
+      "dateSubmitted": "2024. 3. 11. 오후 06:15:12",
+      "reservedTimes": ["09:00 AM", "11:30 AM", "01:30 PM"]
+    }
+  },
+  {
+    "id": 7,
+    "Location1": "Sydney",
+    "Location2": "Sydney Harbour Golf Club",
+    "GolfCourseName": "Bondi Beach Golf Course",
+    "Proname": "그레그 노먼",
+    "Like": "1",
+    "image": "https://i1.rgstatic.net/ii/profile.image/917016017907712-1595645064562_Q64/Jun-Li-30.jpg",
+    "availableSlot": {
+      "selectedDays": ["Mon", "Tue", "Sat"],
+      "startTime": "10:30",
+      "endTime": "16:00",
+      "lessonTime": "60",
+      "dateSubmitted": "2024. 3. 12. 오후 07:35:48",
+      "reservedTimes": ["12:00 PM", "02:30 PM"]
+    }
+  },
+  {
+    "id": 8,
+    "Location1": "Dubai",
+    "Location2": "Burj Khalifa Golf Club",
+    "GolfCourseName": "Desert Oasis Golf Course",
+    "Proname": "이안 포울러",
+    "Like": "0",
+    "image": "https://i1.rgstatic.net/ii/profile.image/1093980460728320-1637836675505_Q64/Junsoo-Kim-3.jpg",
+    "availableSlot": {
+      "selectedDays": ["Thu", "Fri", "Sun"],
+      "startTime": "08:00",
+      "endTime": "14:00",
+      "lessonTime": "40",
+      "dateSubmitted": "2024. 3. 13. 오후 09:40:27",
+      "reservedTimes": ["09:30 AM", "11:00 AM", "01:00 PM"]
+    }
+  },
+  {
+    "id": 9,
+    "Location1": "Berlin",
+    "Location2": "Brandenburg Golf Club",
+    "GolfCourseName": "Tiergarten Golf Course",
+    "Proname": "마틴 케이머",
+    "Like": "1",
+    "image": "https://i1.rgstatic.net/ii/profile.image/11431281224080039-1708079347826_Q64/Aruna-Venkatesh.jpg",
+    "availableSlot": {
+      "selectedDays": ["Tue", "Wed", "Thu"],
+      "startTime": "10:00",
+      "endTime": "17:30",
+      "lessonTime": "75",
+      "dateSubmitted": "2024. 3. 14. 오후 10:55:14",
+      "reservedTimes": ["12:00 PM", "03:00 PM", "05:00 PM"]
+    }
+  },
+  {
+    "id": 10,
+    "Location1": "Rome",
+    "Location2": "Colosseum Golf Club",
+    "GolfCourseName": "Forum Romanum Golf Course",
+    "Proname": "프란체스코 모리나리",
+    "Like": "0",
+    "image": "https://i1.rgstatic.net/ii/profile.image/272514806972416-1441984001118_Q64/Juhan-Park.jpg",
+    "availableSlot": {
+      "selectedDays": ["Wed", "Fri", "Sat"],
+      "startTime": "09:00",
+      "endTime": "16:30",
+      "lessonTime": "55",
+      "dateSubmitted": "2024. 3. 15. 오후 11:20:09",
+      "reservedTimes": ["10:30 AM", "01:00 PM", "03:30 PM"]
+    }
+  }
+]

@@ -1,0 +1,135 @@
+[
+  {
+    "range_id": 1,
+    "photo_url": "https://image.smartscore.kr/club/bg_20181130111610226509.png",
+    "photos": [
+      "https://image.smartscore.kr/club/bg_20230516174935226330.jpg",
+      "https://image.smartscore.kr/club/bg_20230925145905772883.jpg",
+      "https://image.smartscore.kr/club/CPT_20190607155221702691.jpg",
+      "https://image.smartscore.kr/club/bg_20171103141725799245.jpg"
+    ],
+    "name": "Kuala Lumpur Golf & Country Club",
+    "address": "Tournament Players Club (TPC) Bukit Kiara",
+    "hashtags": ["golf", "golfaddict", "golfersofinstagram", "golfswag", "golfshot", "golfcourse", "golftips", "instagolf", "golfcoach", "golfday", "golfswing", "golfstagram", "instagolfer", "golfislife", "instagolfing", "golflife", "golfpro", "instagolftips", "instagolfers", "golfacademy"],
+    "star_average": "3.5",
+    "price": {
+      "for_members": "RM 50",
+      "for_guests": "RM 70"
+    },
+    "distance": "16.09 km",
+    "operating_hours": "8:00 AM - 6:00 PM",
+    "phone_number": "+1234567890",
+    "practice_tee": 1,
+    "reviews": [
+      {
+        "user": "John Doe",
+        "rating": 4.5,
+        "comment": "Great facilities and friendly staff!"
+      },
+      {
+        "user": "Jane Smith",
+        "rating": 3.0,
+        "comment": "Decent place, but could use some improvements."
+      }
+    ]
+  },
+  {
+    "range_id": 2,
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Golfer_swing.jpg",
+    "photos": [
+      "https://www.example.com/range2_photo1.jpg",
+      "https://www.example.com/range2_photo2.jpg",
+      "https://www.example.com/range2_photo3.jpg"
+    ],
+    "name": "Range 2 Golf Club",
+    "address": "456 Golf Club Road, City B",
+    "hashtags": ["golf", "professional"],
+    "star_average": "N/A",
+    "price": {
+      "for_members": "RM 60",
+      "for_guests": "RM 80"
+    },
+    "distance": "24.14 km",
+    "operating_hours": "7:00 AM - 8:00 PM",
+    "phone_number": "+0987654321",
+    "practice_tee": 2,
+    "reviews": [
+      {
+        "user": "Alice Johnson",
+        "rating": 4.0,
+        "comment": "Nice range with good amenities."
+      },
+      {
+        "user": "Bob Thompson",
+        "rating": 3.5,
+        "comment": "Decent practice facilities, but could use more variety."
+      }
+    ]
+  },
+  {
+    "range_id": 3,
+    "photo_url": "https://www.example.com/golf-range1.jpg",
+    "photos": [
+      "https://www.example.com/los_angeles_golf_club_photo1.jpg",
+      "https://www.example.com/los_angeles_golf_club_photo2.jpg",
+      "https://www.example.com/los_angeles_golf_club_photo3.jpg"
+    ],
+    "name": "Los Angeles Golf Club",
+    "address": "1234 Golf Club Road, Los Angeles, CA",
+    "hashtags": ["usa", "golf", "professional"],
+    "star_average": "4.2",
+    "price": {
+      "for_members": "RM 55",
+      "for_guests": "RM 75"
+    },
+    "distance": "32.19 km",
+    "operating_hours": "9:00 AM - 7:00 PM",
+    "phone_number": "+1123456789",
+    "practice_tee": 1,
+    "reviews": [
+      {
+        "user": "Emily Davis",
+        "rating": 4.8,
+        "comment": "Absolutely amazing range with top-notch facilities!"
+      },
+      {
+        "user": "Michael Brown",
+        "rating": 4.2,
+        "comment": "Great place to practice golf, highly recommend!"
+      }
+    ]
+  },
+  {
+    "range_id": 4,
+    "photo_url": "https://www.example.com/golf-range2.jpg",
+    "photos": [
+      "https://www.example.com/tokyo_golf_club_photo1.jpg",
+      "https://www.example.com/tokyo_golf_club_photo2.jpg",
+      "https://www.example.com/tokyo_golf_club_photo3.jpg"
+    ],
+    "name": "Tokyo Golf Club",
+    "address": "5678 Golf Club Road, Tokyo",
+    "hashtags": ["japan", "golf", "professional"],
+    "star_average": "4.0",
+    "price": {
+      "for_members": "RM 5000",
+      "for_guests": "RM 7000"
+    },
+    "distance": "40.23 km",
+    "operating_hours": "10:00 AM - 8:00 PM",
+    "phone_number": "+8156789012",
+    "practice_tee": 1,
+    "reviews": [
+      {
+        "user": "David Lee",
+        "rating": 3.5,
+        "comment": "Nice range overall, but a bit crowded on weekends."
+      },
+      {
+        "user": "Sarah Wilson",
+        "rating": 4.5,
+        "comment": "One of the best ranges I've been to, great experience!"
+      }
+    ]
+  }
+]

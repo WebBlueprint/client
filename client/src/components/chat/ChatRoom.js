@@ -10,7 +10,7 @@ function ChatRoom({ pro, onRemove, onClick, isSelected }) {
         padding: '10px', // Padding
         margin: '5px', // Margin
         cursor: 'pointer',
-        backgroundColor: isSelected ? '#e0e0e0' : 'transparent', // Apply different background color if selected
+        backgroundColor: isSelected ? '#DDE3DA' : 'transparent', // Apply different background color if selected
     };
 
     const closeButtonStyle = {

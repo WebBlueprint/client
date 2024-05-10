@@ -1,23 +1,47 @@
-/* Side.module.css */
-.cover1,
-.cover2 {
-  display: grid;
-  border-radius: 1em;
-  padding: 1em;
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  text-align: left;
-  color: #d9d9d9; /* Default background color */
-  list-style-type: none;
+/* Settingside.module.css */
+.sideGrid {
+  display: flex;
+  flex-direction: column;
 }
 
-.active {
-  color: #1b4607;
-  text-decoration: underline;
-  list-style-type: none; /* Background color when the tab is active */
-}
 
 .activeText {
-  color: #1b4607; /* Text color for the active tab */
-  list-style-type: none;
+  margin-left: 10px; 
+  color: #1b4607;
+}
+.texts {
+  margin-left: 10px; 
+  color: #d9d9d9;
+}
+
+.cover1 {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+
+}
+
+
+
+.cover1:hover > .texts {
+  color: #1b4607;
+}
+
+.proFeatures {
+  margin-top: 20px; /* Adjust the spacing between regular tabs and pro features */
+}
+
+.cover1 > div:first-child {
+  width: 24px; /* 아이콘의 너비 */
+  height: 24px; /* 아이콘의 높이 */
+  margin-right: 12px; /* 아이콘과 텍스트 사이의 간격 조정 */
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px; /* 아이콘의 가로 길이에 맞게 조절 */
+  height: 36px; /* 아이콘의 세로 길이에 맞게 조절 */
 }

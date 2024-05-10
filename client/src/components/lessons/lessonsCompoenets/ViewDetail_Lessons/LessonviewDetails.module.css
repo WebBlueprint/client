@@ -1,6 +1,6 @@
 .cover {
   position: relative;
-  top: 7em;
+  top: 4em;
   padding: 2em;
 
   display: grid;
@@ -8,4 +8,10 @@
 
   margin: 2em;
   padding: 1em;
+}
+
+
+.headers {
+  position: relative;
+  top: 4em;
 }

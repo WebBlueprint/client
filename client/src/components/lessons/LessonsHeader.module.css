@@ -22,7 +22,10 @@
 .round {
   background-color: #1b4607;
   border-radius: 50%;
+  width: 4em;
+  height: 4em;
   padding: 1em;
+  color:white;
 }
 
 .text {
@@ -30,7 +33,7 @@
   display: flex;
 
   left: 10px;
-  top: 10px;
+  top: 25px;
 
   font-size: large;
   font-weight: 700;
@@ -44,8 +47,21 @@
   padding-left: 1em;
 }
 
+.sidetext1 {
+  padding-top:0.5em;
+}
+
 .imgicon {
   position: absolute;
   top: 1.2em;
   right: 2em;
+}
+
+.togglBtn {
+  display: flex;
+  position: absolute;
+  right:10em;
+  top:1em;
+  background-color: #1b4607;
+  color: white;
 }

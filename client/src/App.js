@@ -9,9 +9,7 @@ import Signup from "./components/signup/Signup";
 import Signin from "./components/signin/Signin";
 import Navbar from "./components/navbar/Navbar";
 import Search from "./components/search/Search";
-import Booking from "./components/booking/booking";
 import Schedule from "./components/schedule/schedule";
-import Lessons from "./components/lessons/Lessons";
 import Setting from "./components/setting/settingMain";
 import ChatPage from "./components/chat/ChatPage.js";
 import LocationBox from "../src/components/block/GolfLocationBox/LocationBox";
@@ -27,6 +25,11 @@ import LessonDetail from "../src/components/lessons/lessonsCompoenets/ViewDetail
 import Searched from "../src/components/search/searched";
 import SearchPro from "../src/components/search/searchPro";
 import SearchCourse from "../src/components/search/searchCourse";
+import MyLessonsMain from "./components/lessons/LessonsMain.jsx";
+import Booking from "./components/booking/Booking.jsx";
+import ProDetail from "./components/block/DetailPage/ProDetail.jsx";
+import DrivingRangeDetail from "./components/block/DetailPage/DrivingRangeDetail.jsx";
+import ProDetailEdit from "./components/block/DetailPage/ProDetailEdit.jsx";
 
 function App() {
   const { login, userinfo, isLoggedIn } = useContext(AuthContext);
@@ -39,7 +42,7 @@ function App() {
           {},
           { withCredentials: true }
         );
-        console.log("서버응답 확인", response.data.accessToken);
+        console.log("JWT토큰 응답 확인", response.data.accessToken);
         login({ email: response.data.decodedToken.email });
       } catch (error) {
         console.error("사용자 확인 중 오류 발생:", error);
@@ -66,11 +69,15 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/booking" element={<Booking />} />
               <Route path="/schedule" element={<Schedule />} />
-              <Route path="/lessons" element={<Lessons />} />
+              <Route path="/lessons" element={<MyLessonsMain />} />
               <Route path="/lessons/:id" element={<LessonDetail />} />
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/searched" element={<Searched />} />
+              <Route path="/prodetail" element={<ProDetail />} />
+              <Route path="/prodetailedit" element={<ProDetailEdit />} />
+              <Route path="/drivingnrange" element={<DrivingRangeDetail rangeId={1} />} />
+              {/* rangeId 동적가치로 받아와야함 */}
             </Route>
             <Route path="signup" element={<Signup />} />
             <Route path="signin" element={<Signin />} />

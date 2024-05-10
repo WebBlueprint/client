@@ -1,0 +1,26 @@
+.btns {
+    background-color: #1b4607;
+    border-radius: 10px;
+    padding: 10px;
+    color:white;
+    margin: 5px;
+    border: none;
+
+
+
+
+}
+.btnsgroup {
+    margin-left: 25px;
+}
+
+
+
+.lessonshorts > .btns {
+    bottom: 0;
+}
+
+.textgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

@@ -12,17 +12,18 @@ const ChatPageContainer = styled.div`
   height: 100vh;
   margin: 0 auto;
   margin-top: 150px; /* 상단 여백 조정 */
+  padding: 0 150px;
 `;
 
 const ChatSearchContainer = styled.div`
-  flex-grow: 1.5;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   padding: 0 50px;
 `;
 
 const ChatContainer = styled.div`
-  flex-grow: 6;
+  flex-grow: 9;
 `;
 
 const ChatSearchSection = styled.div`
@@ -42,23 +43,25 @@ const ChatPage = () => {
   console.log("Selected chat room in ChatPage:", selectedChatRoom);
 
   // 로그인되어 있지 않으면 /signin으로 이동
-  if (!isLoggedIn) {
+  if (isLoggedIn == undefined || !isLoggedIn) {
     window.location = '/signin';
     return null; // 이동 중에 다른 내용을 렌더링하거나 아무것도 렌더링하지 않도록 선택할 수 있습니다.
   }
 
   return (
-    <ChatPageContainer>
-      <ChatSearchContainer>
-        <ChatSearchSection>
-          <ChatSearch onChatRoomClick={setSelectedChatRoom} />
-        </ChatSearchSection>
-      </ChatSearchContainer>
-      <ChatContainer>
-        {/* Ensure that selectedChatRoom is defined */}
-        <Chat selectedChatRoom={selectedChatRoom} />
-      </ChatContainer>
-    </ChatPageContainer>
+    <>
+      <ChatPageContainer>
+        <ChatSearchContainer>
+          <ChatSearchSection>
+            <ChatSearch onChatRoomClick={setSelectedChatRoom} />
+          </ChatSearchSection>
+        </ChatSearchContainer>
+        <ChatContainer>
+          {/* Ensure that selectedChatRoom is defined */}
+          <Chat selectedChatRoom={selectedChatRoom} />
+        </ChatContainer>
+      </ChatPageContainer>
+    </>
   );
 }
 

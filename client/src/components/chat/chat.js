@@ -19,7 +19,7 @@ const MessagesContainer = styled.div`
   border-radius: 8px;
   margin-bottom: 10px;
   overflow-y: scroll;
-  height: 400px;
+  height: 600px;
 `;
 
 const MessageItem = styled.li`
@@ -35,6 +35,7 @@ const Username = styled.span`
 const ChatForm = styled.form`
   display: flex;
   margin-top: 10px;
+  align-items: center
 `;
 
 const ChatInput = styled.input`
@@ -47,11 +48,14 @@ const ChatInput = styled.input`
 
 const SendButton = styled.button`
   padding: 7px 10px;
-  background-color: #007bff;
+  background-color: #1B4607;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 0;
+  height: 80%;
+  width: 100px
 `;
 
 const Chat = ({ selectedChatRoom }) => {
@@ -72,9 +76,9 @@ const Chat = ({ selectedChatRoom }) => {
     }, [messages]);
 
     useEffect(() => {
-        setUsername(userinfo.email)
+        setUsername(userinfo.user_id)
         socket.emit("setUsername", username);
-    }, [username]);
+    }, [username, userinfo.user_id]);
 
     useEffect(() => {
         console.log("useEffect triggered with selectedChatRoom:", selectedChatRoom); // 추가

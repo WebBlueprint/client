@@ -1,0 +1,239 @@
+.cover {
+  margin: 2em;
+  border-radius: 1em;
+  padding: 1em;
+
+}
+
+.appsin {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  top: 100px;
+}
+
+.settingbody {
+  display: grid;
+  grid-template-columns: 285px auto;
+
+  margin: 2em;
+  padding: 1em;
+}
+
+.content {
+  position: absolute;
+  display: flex;
+  top: 10em;
+  left: 40em;
+}
+
+
+.proboxContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.probox {
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 2em;
+  border: 1px solid darkslategray;
+  height: 300px;
+}
+
+.bookingContainer {
+  display: flex;
+  overflow: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100vw;
+}
+
+.bookingWrapper {
+  display: flex;
+  width: 90%;
+  Margin:1em;
+  transition: transform 0.5s ease;
+}
+
+.bookingItem {
+  margin-bottom: 20px;
+  background-color: #e2e7e0;
+  border-radius: 1em;
+  padding: 30px;
+  margin: 0 0.5em;
+  width: 350px;
+}
+
+
+.schedulebox {
+  width: 100%;
+  height: 470px;
+  background-color: #F4F4F4;
+  border-radius: 2em;
+  border: none;
+  padding: 2em;
+  text-align: center;
+}
+
+.btndate {
+  background-color:#DDE3DA ;
+  border-radius: 1em;
+  margin: 10px;
+  border: none;
+  padding: 1em;
+  text-align: center;
+  height: 10em;
+
+}
+.btntime {
+  background-color:#DDE3DA ;
+  border-radius: 1em;
+  margin: 10px;
+  border: none;
+  padding: 1em;
+  text-align: center;
+}
+
+.btnbooking {
+  background-color:#1B4607 ;
+  color: white;
+  border-radius: 1em;
+  margin: 10px;
+  border: none;
+  padding: 1em;
+  text-align: center; 
+}
+
+.box1 {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.imgs {
+  border-radius: 50%;
+}
+
+.box2 {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.selected {
+  background-color: #1B4607;
+  color: white;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContent {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  height: 20%;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bookingInfo,
+.modalTitle {
+  text-align: center;
+}
+
+.iconwrap {
+  display: flex;
+  position: absolute;
+  z-index: 999; 
+}
+
+
+.iconwrap > div {
+  margin: 0 10px; /* 원하는 간격 값으로 조정하세요 */
+}
+
+.iconwrap > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent, black); /* 흰색으로 원형 페이드 아웃 */
+  opacity: 1; /* 원형 페이드 아웃의 투명도 */
+  z-index: -1;
+  filter: blur(10px); /* 블러 효과 */
+}
+
+.iconwrap1::before,
+.iconwrap2::before {
+  border-radius: 50%; /* 원형 모양으로 설정 */
+}
+
+.iconwrap1 {
+  display: flex;
+  position: absolute;
+  top:6em;
+}
+
+.iconwrap2 {
+  display: flex;
+  position: absolute;
+  top:6em;
+  left:92vw;
+}
+.selectedPro {
+ border: 3px solid #1B4607 ;
+
+}
+
+.selectedPro .gps-icon path {
+  fill: white; /* Change the color of the GPS icon when the professional is selected */
+}
+
+.likeButton {
+  width: auto; /* 버튼 너비를 내용에 맞게 자동 조정 */
+  border-radius: 1em;
+  border: 1px solid #1B4607;
+  padding: 10px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center; /* 아이콘과 텍스트를 세로 중앙 정렬 */
+  position: absolute;
+  top: 30em;
+  left: 20em;
+}
+
+.likeButtontext {
+  margin-left: 10px; /* 아이콘과 텍스트 사이에 간격 추가 */
+  color: #1B4607;
+}

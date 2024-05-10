@@ -11,7 +11,7 @@ const LessonsHeader = (props) => {
   // useEffect 추가
 
   useEffect(() => {
-    setUserEmail(userinfo.email || "Guest");
+    setUserEmail(userinfo.user_id || "Guest");
   }, [userinfo]);
 
   return (
