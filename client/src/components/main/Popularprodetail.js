@@ -24,13 +24,11 @@ const Popularprodetail = (props) => {
             }}
           >
             <Bold>Pro Name</Bold>
-            <p>
+            <p style={{ color: "gray", fontSize: "18px" }}>
               {props.proName}
-              {props.proGender == "male" ? (
-                <p>&#x2640;</p>
-              ) : (
-                <p>&#x2642;</p>
-              )}{" "}
+              <br />
+              <Bold>성별</Bold>
+              {props.proGender == "male" ? "남" : "여"}
             </p>
           </div>
         </Details>
@@ -39,7 +37,7 @@ const Popularprodetail = (props) => {
 
       <Container>
         <Row>
-          <Col style={{ marginBottom: "1rem" }}>
+          <Col style={{ marginBottom: "1rem", textAlign: "center" }}>
             <Star style={{ marginTop: "1.5rem" }}>
               <Starspan
                 style={{ width: props.averageRating * 20 + "%" }}
@@ -69,7 +67,7 @@ const Popularprodetail = (props) => {
 export default Popularprodetail;
 
 const Board = styled.div`
-  padding: 40px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   background-color: #d9d9d9;
   border-radius: 30px;
   width: 100%;
@@ -102,7 +100,8 @@ const Details2 = styled.div`
 `;
 
 const ViewDetails = styled.button`
-  margin: 30px 0 0 30px;
+  margin: 20px 0 0 0;
+  text-align: center;
   font-size: 14px;
   width: 10rem;
 `;

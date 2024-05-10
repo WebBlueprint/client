@@ -5,9 +5,28 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import LessonHeader from "../block/Header/Header";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Schedule() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const popularPros = async () => {
+      try {
+        const response = await axios.get(
+          "https://p-match-ec61fc56d612.herokuapp.com/lesson/personal-lessons/user1",
+          {},
+          { withCredentials: true }
+        );
+        console.log(response.data);
+        setData(...data, response.data);
+      } catch (error) {
+        console.error("사용자 확인 중 오류 발생:", error);
+      }
+    };
+    popularPros();
+  }, []);
   const [reservations, setReservations] = useState([
     {
       reservation_id: "",

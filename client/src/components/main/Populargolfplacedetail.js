@@ -52,7 +52,7 @@ const Populargolfplacedetail = (props) => {
               <p>{props.list.courseName}</p>
             </Details>
             <Details>
-              <p>{props.list.courseReviews}</p>
+              <p>Total Reviews : {props.list.courseReviews}</p>
             </Details>
             <Details2></Details2>
             <Star>
