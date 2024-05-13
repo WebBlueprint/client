@@ -33,42 +33,12 @@ const BookingPro = (props) => {
   }
   const [value, onChange] = useState(new Date());
 
-  console.log(String(value).split(/\d{2}:/));
-  console.log(String(new Date()).split(/\d{2}:/));
-  const [clicked, setClicked] = useState(true);
-  const [whatClicked, setWhatClicked] = useState("");
-  const clickHandler = (e) => {
-    setWhatClicked(e.target.innerText);
-    if (e.target.innerText == whatClicked) {
-      setClicked(!clicked);
-    } else {
-      setClicked(false);
-    }
-  };
-
-  const [timeClicked, setTimeClicked] = useState(true);
-  const [whatTimeClicked, setWhatTimeClicked] = useState("");
-  const timeClickHandler = (e) => {
-    setWhatTimeClicked(e.target.innerText);
-    if (e.target.innerText == whatTimeClicked) {
-      setTimeClicked(!timeClicked);
-    } else {
-      setTimeClicked(false);
-    }
-  };
-  const submitButtonHandler = () => {
-    console.log(whatClicked, whatTimeClicked);
-  };
-  useEffect(() => {
-    console.log(clicked, timeClicked, whatClicked, whatTimeClicked);
-  }, [clicked, timeClicked, whatClicked, whatTimeClicked]);
   return (
     <>
       <div>Pro name : {props.proName}</div>
       <div>Pro place : {props.place}</div>
       <Box>
         <div>
-          {console.log(new Date(), value)}
           {String(value).split(/\d{2}:/)[0] ==
           String(new Date()).split(/\d{2}:/)[0] ? (
             <CalendarButton onClick={openModal}>Choose Date</CalendarButton>
@@ -95,43 +65,16 @@ const BookingPro = (props) => {
               value={value}
             />
           </Modal>
+          {console.log(String(value).split(/\d{2}:/))}
         </div>
       </Box>
-      <Timetable></Timetable>
-      <SubmitButton onClick={submitButtonHandler}>Submit</SubmitButton>
+      <Timetable value={value}></Timetable>
     </>
   );
 };
 
 export default BookingPro;
 
-const Select = styled.button`
-  background-color: ${(props) =>
-    props.children.includes(props.whatClicked) ? `green` : `white`};
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: "green";
-  }
-  display: flex;
-  width: 7rem;
-  height: 2rem;
-  border: solid 1px green;
-`;
-
-const Select1 = styled.button`
-  background-color: ${(props) =>
-    props.children.includes(props.whatTimeClicked) ? `green` : `white`};
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: "green";
-  }
-  display: flex;
-  width: 7rem;
-  height: 2rem;
-  border: solid 1px green;
-`;
 const Box = styled.div`
   display: flex;
 `;
